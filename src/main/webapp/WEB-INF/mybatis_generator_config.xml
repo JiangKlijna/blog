@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 使用方法:
+       1.配置 properties.
+       2.配置数据库驱动位置.
+       3.配置需要反向生成代码的表.
+       4.配置完成后,在项目目录test-maven下运行：mvn mybatis-generator:generate
+       5.生成的代码在：target/generated-sources/mybatis-generator目录下.
+     -->
+    <!-- 指定数据库驱动jar的位置，同上，使用绝对路径  -->
+    <classPathEntry
+            location="E:/jars/postgresql-9.4.1210.jre7.jar"/>
+
+    <context id="mybatis" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://127.0.0.1:5432/blog"
+                        userId="postgres"
+                        password="74898489">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.jiangKlijna.web.bean" targetProject="MAVEN">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="MAVEN">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.jiangKlijna.web.dao" targetProject="MAVEN">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <table tableName="blog_user" domainObjectName="User"
+               enableSelectByExample="false" enableDeleteByExample="false"
+               enableCountByExample="false" enableUpdateByExample="false"/>
+        <table tableName="blog_subject" domainObjectName="Subject"
+               enableSelectByExample="false" enableDeleteByExample="false"
+               enableCountByExample="false" enableUpdateByExample="false"/>
+        <table tableName="blog_article" domainObjectName="Article"
+               enableSelectByExample="false" enableDeleteByExample="false"
+               enableCountByExample="false" enableUpdateByExample="false"/>
+        <table tableName="blog_follow_user" domainObjectName="FollowUser"
+               enableSelectByExample="false" enableDeleteByExample="false"
+               enableCountByExample="false" enableUpdateByExample="false"/>
+        <table tableName="blog_follow_subject" domainObjectName="FollowSubject"
+               enableSelectByExample="false" enableDeleteByExample="false"
+               enableCountByExample="false" enableUpdateByExample="false"/>
+        <table tableName="blog_comment" domainObjectName="Comment"
+               enableSelectByExample="false" enableDeleteByExample="false"
+               enableCountByExample="false" enableUpdateByExample="false"/>
+
+    </context>
+</generatorConfiguration>
