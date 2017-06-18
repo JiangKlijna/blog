@@ -18,7 +18,7 @@ import javax.annotation.Resource
  */
 @Controller
 @RequestMapping("/")
-class IndexControl : BaseControl() {
+class PageControl : BaseControl() {
 
     //    @Resource
     //    private RedisTemplate<String, User> redisTemplate;
@@ -33,6 +33,8 @@ class IndexControl : BaseControl() {
 
     @RequestMapping("sign.do")
     fun sign(): String {
+
+
         if (i++ % 2 == 0)
             return "redirect:index.do"
         else
