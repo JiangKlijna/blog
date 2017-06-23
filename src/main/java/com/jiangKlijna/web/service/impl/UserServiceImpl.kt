@@ -27,21 +27,24 @@ class UserServiceImpl : BaseService(), UserService {
 
     }
 
-
-    override fun remove(id: Int): Result {
+    override fun find(username: String, password: String): Result {
         try {
-//            userDao!!.delete(id)
-            return sucessResult()
+            val u = Create.user(username, password)
+            val re = um!!.findByUser(u)
+            return (re != null && re > 0).let {
+                if (it) sucessResult() else errorResult()
+            }
         } catch (e: Exception) {
             return errorResult(e)
         }
-
     }
 
-    override fun find(id: Int): Result {
+    override fun find(username: String): Result {
         try {
-//            return sucessResult(userDao!!.get(id))
-            return sucessResult()
+            val re = um!!.findByUsername(username)
+            return (re != null && re > 0).let {
+                if (it) sucessResult() else errorResult()
+            }
         } catch (e: Exception) {
             return errorResult(e)
         }

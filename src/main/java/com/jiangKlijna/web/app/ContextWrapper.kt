@@ -25,4 +25,8 @@ open class ContextWrapper {
     fun <T> getBean(name: String): T {
         return applicationContext.getBean(name) as T
     }
+
+    fun getDesUtils(): DesUtils {
+        return getBean("DesUtils")
+    }
 }

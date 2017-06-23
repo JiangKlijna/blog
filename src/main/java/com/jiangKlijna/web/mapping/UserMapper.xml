@@ -143,4 +143,10 @@
       createtime = #{createtime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="findByUser" parameterType="com.jiangKlijna.web.bean.User" resultType="java.lang.Long">
+    select count(id) from blog_user where username=#{username} and password=#{password}
+  </select>
+  <select id="findByUsername" parameterType="java.lang.String" resultType="java.lang.Long">
+    select count(id) from blog_user where username=#{username}
+  </select>
 </mapper>

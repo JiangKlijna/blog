@@ -2,6 +2,7 @@ package com.jiangKlijna.web.app
 
 class Result {
 
+
     private var code: Int = 0
     private var message: String? = null
     private var data: Any? = null
@@ -45,4 +46,15 @@ class Result {
         return "Result [code=$code, message=$message, data=$data]"
     }
 
+    fun isSucess(): Boolean {
+        return code == 0
+    }
+
+    companion object {
+        const val FAILURE_LOGIN = "登陆失败"
+        const val FAILURE_REGIST = "注册失败"
+
+        const val SUCCESS_LOGIN = "登陆成功"
+        const val SUCCESS_REGIST = "注册成功"
+    }
 }

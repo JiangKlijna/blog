@@ -13,6 +13,10 @@ open class BaseService : ContextWrapper() {
         return sucessResult().setData(data)
     }
 
+    protected fun errorResult(): Result {
+        return applicationContext.getBean("errorResult", Result::class.java)
+    }
+
     protected fun errorResult(message: String): Result {
         return applicationContext.getBean("errorResult", Result::class.java).setMessage(message)
     }

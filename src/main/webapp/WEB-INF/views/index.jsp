@@ -4,8 +4,6 @@
 <head>
 	<title>博客</title>
 </head>
-<body>
-</head>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" href="static/css/index.css" />
 <body>

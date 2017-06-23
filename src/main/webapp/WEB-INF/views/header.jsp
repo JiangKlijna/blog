@@ -19,7 +19,7 @@
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Kotlin</a></li>
+                <li class="active"><a href="sign.do">Kotlin</a></li>
                 <li><a href="#">GIT</a></li>
             </ul>
         </div>
