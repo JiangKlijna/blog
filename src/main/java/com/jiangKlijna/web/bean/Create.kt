@@ -2,6 +2,7 @@ package com.jiangKlijna.web.bean
 
 /**
  * Created by leil7 on 2017/6/13. ssm-blog
+ * 因为实体类都是mybatis自动生成的，所以就不对生成的类进行改动
  */
 object Create {
     @JvmStatic fun user(username: String, password: String): User {

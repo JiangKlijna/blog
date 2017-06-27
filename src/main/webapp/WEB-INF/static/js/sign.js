@@ -2,7 +2,7 @@
 window.cj = {
     SIGNIN_URL: 'user/login.json',
     SIGNUP_URL: 'user/regist.json',
-    onLoad: function () {
+    onLoad: function () {//注冊各种事件
         $('#title_signin').click(cj.onClickTitleSignin);
         $('#title_signup').click(cj.onClickTilteSignup);
         $('#btn_signin').click(cj.onClickSignin);
@@ -12,14 +12,14 @@ window.cj = {
 
         $('#title_signin').css('color', '#ea6f5a').css("border-bottom","3px solid #ea6f5a");
     },
-    onClickSignin: function () {
+    onClickSignin: function () {//当点击登陆按钮的时候触发
         var data = cj.getSignData();
         if (data) $.post(cj.SIGNIN_URL, data, function(result){
             if (result.code == 0) location = "./";
             else cj.alert(result.message);
         });
     },
-    onClickSignup: function () {
+    onClickSignup: function () {//当点击登陆按钮的时候触发
         var data = cj.getSignData();
         if (data) $.post(cj.SIGNUP_URL, data, function(result){
             cj.alert(result.message);
@@ -28,19 +28,19 @@ window.cj = {
             }
         });
     },
-    onClickTitleSignin: function () {
+    onClickTitleSignin: function () {//当点击注册按钮的时候触发
         $('#btn_signup').hide();
         $('#btn_signin').show();
         $('#title_signin').css('color', '#ea6f5a').css("border-bottom","3px solid #ea6f5a");
         $('#title_signup').removeAttr("style");
     },
-    onClickTilteSignup: function () {
+    onClickTilteSignup: function () {//当点击上方登录注册按钮的时候触发
         $('#btn_signup').show();
         $('#btn_signin').hide();
         $('#title_signup').css('color', '#ea6f5a').css("border-bottom","3px solid #ea6f5a");
         $('#title_signin').removeAttr("style");
     },
-    onChangeInput: function () {
+    onChangeInput: function () {//当两个输入框内容改变的时候触发
         if($(this).val() == '')
             $(this).parent().addClass("has-error");
         else

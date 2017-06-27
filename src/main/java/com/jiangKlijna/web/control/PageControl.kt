@@ -17,6 +17,11 @@ import javax.annotation.Resource
 @RequestMapping("/")
 class PageControl : BaseControl() {
 
+    /**
+     * 判断用户是否登陆
+     * 通过session存入的加密后的username
+     * 并通过数据库查询
+     */
     var isLogin: Boolean = false
         get() = session!!.getAttribute("un").let {
             if (it != null) {
@@ -29,6 +34,9 @@ class PageControl : BaseControl() {
     @Resource(name = "userService")
     var us: UserService? = null
 
+    /**
+     * 主頁
+     */
     @RequestMapping("index.do")
     fun index(m: Model): String {
         val isLogin = isLogin
@@ -38,6 +46,9 @@ class PageControl : BaseControl() {
         return "index"
     }
 
+    /**
+     * 如果用户已登录则重定向到index主页
+     */
     @RequestMapping("sign.do")
     fun sign(): String {
         return if (isLogin) "redirect:index.do" else "sign"

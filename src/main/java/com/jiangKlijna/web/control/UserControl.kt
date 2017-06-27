@@ -15,6 +15,10 @@ class UserControl : BaseControl() {
     @Resource(name = "userService")
     var us: UserService? = null
 
+    /**
+     * 用户注册
+     * username若已存在，则注册失败
+     */
     @ResponseBody
     @RequestMapping("/regist.json", method = arrayOf(RequestMethod.POST))
     fun regist(username: String?, password: String?, action: String?): Result {
@@ -25,6 +29,10 @@ class UserControl : BaseControl() {
         }
     }
 
+    /**
+     * 用户登录
+     * 成功后，并加密username，写入session中
+     */
     @ResponseBody
     @RequestMapping("/login.json", method = arrayOf(RequestMethod.POST))
     fun login(username: String?, password: String?, action: String?): Result {
@@ -38,6 +46,11 @@ class UserControl : BaseControl() {
         }
     }
 
+    /**
+     * 判断参数username和session中的username是否一致
+     * 且查询数据库，username是否存在
+     * 成功则，删除session中的username
+     */
     @ResponseBody
     @RequestMapping("/logout.json", method = arrayOf(RequestMethod.POST))
     fun logout(username: String?): Result {
