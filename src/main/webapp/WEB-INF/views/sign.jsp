@@ -24,7 +24,7 @@
         </div><br>
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-            <input id="sign_password" type="text" class="form-control" placeholder="请输入密码">
+            <input id="sign_password" type="password" class="form-control" placeholder="请输入密码">
         </div><br>
         <Button id="btn_signin">登录</button>
         <Button id="btn_signup">注册</button>

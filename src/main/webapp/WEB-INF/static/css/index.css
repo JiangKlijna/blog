@@ -6,7 +6,9 @@ html, body, .hundred {
     width: 100%;
     height: 100%;
 }
-section {
+#main {
     display: block;
-    width: 100%;
+    width: 1000px;
+    margin: 0 auto;
+    background-color: #f8f8f8;
 }

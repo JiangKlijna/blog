@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="static/css/index.css" />
 <body>
 <%@ include file="header.jsp" %>
-<section>
+<section id="main">
     <h1 id="jqtest">Echo Server</h1>
 </section>
 <%@ include file="footer.jsp" %>

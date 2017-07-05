@@ -39,7 +39,7 @@ class UserControl : BaseControl() {
         testParameter(username, password, action).let {
             return if (it) us!!.find(username!!, password!!).apply {
                 if (isSucess()) {
-                    session!!.setAttribute("un", getDesUtils().encrypt(username))
+                    session!!.setAttribute(TOKEN, getDesUtils().encrypt(username))
                     setMessage(Result.SUCCESS_LOGIN)
                 } else setMessage(Result.FAILURE_LOGIN)
             } else errorParameterResult
@@ -54,11 +54,11 @@ class UserControl : BaseControl() {
     @ResponseBody
     @RequestMapping("/logout.json", method = arrayOf(RequestMethod.POST))
     fun logout(username: String?): Result {
-        val un = session!!.getAttribute("un") as String?
+        val un = session!!.getAttribute(TOKEN) as String?
         testParameter(username, un).let { if (!it) return errorParameterResult }
-        return getDesUtils().decrypt(session!!.getAttribute("un") as String).equals(username).let {
+        return getDesUtils().decrypt(session!!.getAttribute(TOKEN) as String).equals(username).let {
             if (it) us!!.find(username!!).apply {
-                if (isSucess()) session!!.removeAttribute("un")
+                if (isSucess()) session!!.removeAttribute(TOKEN)
             } else errorParameterResult
         }
     }

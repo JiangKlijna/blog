@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" import="java.util.*" %>
-<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false" %>
+<!-- header的css -->
 <style>
 #header_nav {
     width: 100%;
@@ -10,18 +12,76 @@
 #header_menu {
     width: 80%;
 }
+.navbar-nav {
+    padding-left: 100px;
+    padding-right: 100px;
+    width: 100%;
+}
+#nav_right {
+    float: right;
+}
+.input-group {
+    margin-left: 50px;
+    width: 280px;
+    margin-top: 3%;
+}
+.nav_middle {
+    margin-top: 6%;
+}
+.nav_title:hover {
+    color: black;
+    background-color: #e7e7e7;
+}
 </style>
-<nav class="navbar navbar-default" role="navigation"></nav>
-<nav id="header_nav" class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default"></nav>
+<nav id="header_nav" class="navbar navbar-default">
     <div class="container-fluid" id="header_menu">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">菜鸟教程</a>
-        </div>
         <div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="sign.do">Kotlin</a></li>
-                <li><a href="#">GIT</a></li>
+
+                <li class="nav_title"><a href="index.do">主页</a></li>
+                <li class="nav_title"><a href="explore.do">发现</a></li>
+                <li>
+                    <form action="search.do"><div class="input-group">
+                        <input type="text" class="form-control" name="query">
+                        <span class="input-group-btn">
+                        <button class="btn btn-info" type="submit"><span class="glyphicon glyphicon-search"></span>搜索</button>
+                        </span>
+                    </div></form>
+                </li>
+                <div id="nav_right">
+                <c:choose>
+                <c:when test="${isLogin}">
+                    <div class="btn-group nav_middle">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-bell"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu"></ul>
+                    </div>
+                    <div class="btn-group nav_middle">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span>&nbsp;${username}&nbsp;<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="${username}.do">个人中心</a></li>
+                            <li class="divider"></li>
+                            <li><a href="write.do">写文章</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">注销</a></li>
+                        </ul>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <a type="button" class="btn btn-success navbar-btn" href="sign.do">登陆</a>
+                    <a type="button" class="btn btn-danger navbar-btn" href="sign.do">注册</a>
+                </c:otherwise>
+                </c:choose>
+                <div>
             </ul>
         </div>
     </div>
 </nav>
+<!-- header的js -->
+<script>
+
+</script>

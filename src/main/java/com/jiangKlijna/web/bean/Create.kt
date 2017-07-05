@@ -16,7 +16,7 @@ object Create {
         return u
     }
 
-    @JvmStatic fun subject(title: String, touser: Int): Subject {
+    @JvmStatic fun subject(title: String): Subject {
         val s = Subject()
         s.id = 0
         s.title = title
