@@ -63,7 +63,7 @@
                             <span class="glyphicon glyphicon-user"></span>&nbsp;${username}&nbsp;<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="${username}.do">个人中心</a></li>
+                            <li><a href="people.do?name=${name}">个人中心</a></li>
                             <li class="divider"></li>
                             <li><a href="write.do">写文章</a></li>
                             <li class="divider"></li>

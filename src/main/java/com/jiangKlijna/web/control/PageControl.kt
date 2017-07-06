@@ -5,6 +5,7 @@ import com.jiangKlijna.web.service.UserService
 import org.apache.log4j.Logger
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 
@@ -86,6 +87,44 @@ class PageControl : BaseControl() {
         return "write"
     }
 
+    /**
+     * 每个人的主页
+     */
+    @RequestMapping("people.do")
+    fun people(name: String, m: Model): String {
+        val isLogin = isLogin
+        var username = sess_username
+        m.addAttribute("isLogin", isLogin)
+        m.addAttribute("username", username)
+        m.addAttribute("name", name)
+        return "people"
+    }
+
+    /**
+     * 文章
+     */
+    @RequestMapping("article.do")
+    fun article(id: Int?, m: Model): String {
+        val isLogin = isLogin
+        var username = sess_username
+        m.addAttribute("isLogin", isLogin)
+        m.addAttribute("username", username)
+
+        return "index"
+    }
+
+    /**
+     * 课题
+     */
+    @RequestMapping("subject.do")
+    fun subject(id: Int?, m: Model): String {
+        val isLogin = isLogin
+        var username = sess_username
+        m.addAttribute("isLogin", isLogin)
+        m.addAttribute("username", username)
+
+        return "index"
+    }
 
     /**
      * 如果用户已登录则重定向到index主页
