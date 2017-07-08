@@ -1,0 +1,28 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+html, body, .hundred {
+    width: 100%;
+    height: 100%;
+}
+#main {
+    display: block;
+    width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+    background-color: #f8f8f8;
+    padding: 5px;
+}
+#write_title {
+    width: 100%;
+    background-color: transparent;
+    color: black;
+    font-size: 32px;
+    border: none;
+    outline: none;
+}
+hr {
+    margin-top: 10px;
+    margin-bottom: 0;
+}

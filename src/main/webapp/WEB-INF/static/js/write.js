@@ -1,5 +1,5 @@
 
 
-$(document).ready(function(){
-    $('#main').notebook();
+$(function(){
+    $('#write_content').notebook();
 });
