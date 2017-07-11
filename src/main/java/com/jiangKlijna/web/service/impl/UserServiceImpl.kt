@@ -24,7 +24,6 @@ class UserServiceImpl : BaseService(), UserService {
         } catch (e: Exception) {
             return errorResult(e)
         }
-
     }
 
     override fun find(username: String, password: String): Result {
@@ -45,6 +44,15 @@ class UserServiceImpl : BaseService(), UserService {
             return (re != null && re > 0).let {
                 if (it) sucessResult() else errorResult()
             }
+        } catch (e: Exception) {
+            return errorResult(e)
+        }
+    }
+
+    override fun get(username: String): Result {
+        try {
+            val re = um!!.findUserByName(username)
+            return if (re != null) sucessResult(re) else errorResult()
         } catch (e: Exception) {
             return errorResult(e)
         }

@@ -54,4 +54,6 @@ interface UserMapper {
     fun findByUser(u: User): Long?
 
     fun findByUsername(username: String): Long?
+
+    fun findUserByName(username: String): User?
 }

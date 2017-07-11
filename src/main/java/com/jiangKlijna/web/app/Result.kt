@@ -53,8 +53,11 @@ class Result {
     companion object {
         const val FAILURE_LOGIN = "登陆失败"
         const val FAILURE_REGIST = "注册失败"
+        const val FAILURE_PUBLISH = "发布成功"
 
         const val SUCCESS_LOGIN = "登陆成功"
         const val SUCCESS_REGIST = "注册成功"
+        const val SUCCESS_PUBLISH = "发布成功"
+
     }
 }
