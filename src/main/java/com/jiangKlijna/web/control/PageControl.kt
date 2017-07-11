@@ -18,10 +18,6 @@ import javax.annotation.Resource
 @RequestMapping("/")
 class PageControl : BaseControl() {
 
-    var sess_username: String? = null
-        get() = session!!.getAttribute(TOKEN).let {
-            if (it != null) getDesUtils().decrypt(it as String) else null
-        }
     /**
      * 判断用户是否登陆
      * 通过session存入的加密后的username

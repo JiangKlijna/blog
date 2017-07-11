@@ -54,13 +54,11 @@ class UserControl : BaseControl() {
     @ResponseBody
     @RequestMapping("/logout.json", method = arrayOf(RequestMethod.POST))
     fun logout(username: String?): Result {
-        val un = session!!.getAttribute(TOKEN) as String?
+        val un = sess_username
         testParameter(username, un).let { if (!it) return errorParameterResult }
-        return getDesUtils().decrypt(session!!.getAttribute(TOKEN) as String).equals(username).let {
-            if (it) us!!.find(username!!).apply {
-                if (isSucess()) session!!.removeAttribute(TOKEN)
-            } else errorParameterResult
-        }
+        return if (un == username) us!!.find(username!!).apply {
+            if (isSucess()) session!!.removeAttribute(TOKEN)
+        } else errorParameterResult
     }
 
     //    @Resource(name = "redisTemplate")
