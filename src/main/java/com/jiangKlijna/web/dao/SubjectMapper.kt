@@ -50,4 +50,6 @@ interface SubjectMapper {
      * @mbg.generated Tue Jun 13 22:31:48 GMT+08:00 2017
      */
     fun updateByPrimaryKey(record: Subject): Int
+
+    fun findSubjectByTitle(title: String): Subject?
 }

@@ -108,4 +108,11 @@
       createtime = #{createtime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="findSubjectByTitle" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from blog_subject
+    where title = #{title}
+  </select>
 </mapper>

@@ -17,9 +17,6 @@ import javax.annotation.Resource
 @Controller
 class ArticleControl : BaseControl() {
 
-    @Resource(name = "userService")
-    var us: UserService? = null
-
     @Resource(name = "articleService")
     var `as`: ArticleService? = null
 
@@ -32,10 +29,8 @@ class ArticleControl : BaseControl() {
     fun publish(content: String?, title: String?, subject: String?): Result {
         val username = sess_username
         if (!testParameter(content, title, subject, username)) return errorParameterResult
-        return `as`!!.publish(content!!, title!!, subject!!, username!!).let {
-            if (it.isSucess()) {
-                TODO()
-            } else errorParameterResult
+        return `as`!!.publish(content!!, title!!, subject!!, username!!).apply {
+            setMessage(if (isSucess()) Result.SUCCESS_PUBLISH else Result.FAILURE_PUBLISH)
         }
         //val u = us!!.get(username!!)
     }
