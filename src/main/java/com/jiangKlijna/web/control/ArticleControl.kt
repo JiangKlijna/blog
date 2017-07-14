@@ -35,4 +35,17 @@ class ArticleControl : BaseControl() {
         //val u = us!!.get(username!!)
     }
 
+    /**
+     * 删除文章，直接从数据库中删除，不用推送消息
+     */
+    @ResponseBody
+    @RequestMapping("/delete.json", method = arrayOf(RequestMethod.POST))
+    fun delete(id: Int, username: String?): Result {
+        val un = sess_username
+        testParameter(username, un).let { if (!it) return errorParameterResult }
+        return if (un == username) `as`!!.delete(id, username!!).apply {
+            setMessage(if (isSucess()) Result.SUCCESS_DELETE else Result.FAILURE_DELETE)
+        } else errorParameterResult
+    }
+
 }

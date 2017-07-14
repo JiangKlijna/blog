@@ -41,4 +41,18 @@ class ArticleServiceImpl : BaseService(), ArticleService {
         }
     }
 
+    override fun delete(id: Int, username: String): Result {
+        try {
+            val u = um!!.findUserByName(username)
+            val a = am!!.selectByPrimaryKey(id)
+            if (u!!.id == a!!.userid) {
+                am!!.deleteByPrimaryKey(a.id)
+                return sucessResult()
+            }
+            return errorResult()
+        } catch (e: Exception) {
+            return errorResult(e)
+        }
+    }
+
 }

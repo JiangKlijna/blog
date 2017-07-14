@@ -6,32 +6,29 @@ data class Result(
         var data: Any? = null
 ) {
 
-    fun setCode(code: Int): Result {
+    fun setCode(code: Int): Result = apply {
         this.code = code
-        return this
     }
 
-    fun setMessage(message: String): Result {
+    fun setMessage(message: String): Result = apply {
         this.message = message
-        return this
     }
 
-    fun setData(data: Any): Result {
+    fun setData(data: Any): Result = apply {
         this.data = data
-        return this
     }
 
-    fun isSucess(): Boolean {
-        return code == 0
-    }
+    fun isSucess(): Boolean = code == 0
 
     companion object {
         const val FAILURE_LOGIN = "登陆失败"
         const val FAILURE_REGIST = "注册失败"
-        const val FAILURE_PUBLISH = "发布成功"
+        const val FAILURE_PUBLISH = "发布失败"
+        const val FAILURE_DELETE = "删除失败"
 
         const val SUCCESS_LOGIN = "登陆成功"
         const val SUCCESS_REGIST = "注册成功"
         const val SUCCESS_PUBLISH = "发布成功"
+        const val SUCCESS_DELETE = "删除成功"
     }
 }
