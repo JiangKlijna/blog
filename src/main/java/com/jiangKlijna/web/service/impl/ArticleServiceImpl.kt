@@ -1,7 +1,8 @@
 package com.jiangKlijna.web.service.impl
 
 import com.jiangKlijna.web.app.Result
-import com.jiangKlijna.web.bean.Create
+import com.jiangKlijna.web.bean.Article
+import com.jiangKlijna.web.bean.Subject
 import com.jiangKlijna.web.dao.ArticleMapper
 import com.jiangKlijna.web.dao.SubjectMapper
 import com.jiangKlijna.web.dao.UserMapper
@@ -30,10 +31,10 @@ class ArticleServiceImpl : BaseService(), ArticleService {
             val u = um!!.findUserByName(username)
             var s = sm!!.findSubjectByTitle(subject)
             if (s == null) {
-                s = Create.subject(subject)
+                s = Subject(title = subject)
                 sm!!.insert(s)
             }
-            val a = Create.article(content, title, s.id!!, u!!.id!!)
+            val a = Article(content = content, title = title, subjectid = s.id!!, userid = u!!.id!!)
             am!!.insert(a)
             return sucessResult()
         } catch (e: Exception) {

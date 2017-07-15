@@ -1,9 +1,7 @@
 package com.jiangKlijna.web.control
 
 import com.jiangKlijna.web.app.Result
-import com.jiangKlijna.web.bean.Create
 import com.jiangKlijna.web.service.ArticleService
-import com.jiangKlijna.web.service.UserService
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
