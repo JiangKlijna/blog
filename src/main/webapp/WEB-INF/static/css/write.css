@@ -26,3 +26,6 @@ hr {
     margin-top: 10px;
     margin-bottom: 0;
 }
+.jquery-notebook.bubble {
+    height: 78px;
+}

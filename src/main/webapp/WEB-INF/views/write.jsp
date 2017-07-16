@@ -5,9 +5,9 @@
 	<title>博客</title>
 </head>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<link rel="stylesheet" href="static/css/write.css" />
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="static/css/jquery.notebook.css" />
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="static/css/write.css" />
 <body>
 <%@ include file="header.jsp" %>
 <section id="main">
