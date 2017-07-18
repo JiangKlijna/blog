@@ -9,18 +9,24 @@ html, body, .hundred {
 #main {
     display: block;
     width: 1000px;
-    height: 500px;
+    min-height: 500px;
     margin: 0 auto;
     background-color: #f8f8f8;
     padding: 5px;
 }
-#write_title {
+.write_input {
     width: 100%;
     background-color: transparent;
     color: black;
-    font-size: 32px;
     border: none;
     outline: none;
+}
+#write_title {
+    font-size: 32px;
+    font-weight: 900;
+}
+#write_subject {
+    font-size: 24px;
 }
 hr {
     margin-top: 10px;
@@ -28,4 +34,10 @@ hr {
 }
 .jquery-notebook.bubble {
     height: 78px;
+}
+#write_submit {
+    display: block;
+    width: 1000px;
+    margin: 0 auto;
+    padding: 5px;
 }
