@@ -3,6 +3,14 @@
 <%@ page isELIgnored="false" %>
 <!-- header的css -->
 <style>
+* {
+    padding: 0;
+    margin: 0;
+}
+html, body, .hundred {
+    width: 100%;
+    height: 100%;
+}
 #header_nav {
     width: 100%;
     position: fixed;
