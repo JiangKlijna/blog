@@ -74,14 +74,12 @@ class PageControl : BaseControl() {
      * 写文章
      */
     @RequestMapping("write.do")
-    fun write(m: Model): String {
-        val isLogin = isLogin
-        var username = sess_username
-        m.addAttribute("isLogin", isLogin)
+    fun write(m: Model): String = if (isLogin) {
+        val username = sess_username
+        m.addAttribute("isLogin", true)
         m.addAttribute("username", username)
-
-        return "write"
-    }
+        "write"
+    } else "redirect:sign.do"
 
     /**
      * 每个人的主页
