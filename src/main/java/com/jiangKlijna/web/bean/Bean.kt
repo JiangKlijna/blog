@@ -4,7 +4,7 @@ package com.jiangKlijna.web.bean
  * Created by leil7 on 2017/7/13. blog
  */
 data class Article(
-        var id: Int? = null,
+        var id: Int = 0,
         var title: String? = null,
         var content: String? = null,
         var userid: Int? = null,
@@ -15,7 +15,7 @@ data class Article(
 )
 
 data class Comment(
-        var id: Int? = null,
+        var id: Int = 0,
         var content: String? = null,
         var userid: Int? = null,
         var articleid: Int? = null,
@@ -23,30 +23,30 @@ data class Comment(
 )
 
 data class FollowSubject(
-        var id: Int? = null,
+        var id: Int = 0,
         var fromuser: Int? = null,
         var tosubject: Int? = null,
         var createtime: Long = System.currentTimeMillis()
 )
 
 data class FollowUser(
-        var id: Int? = null,
+        var id: Int = 0,
         var fromuser: Int? = null,
         var touser: Int? = null,
         var createtime: Long = System.currentTimeMillis()
 )
 
 data class Subject(
-        var id: Int? = null,
+        var id: Int = 0,
         var title: String? = null,
         var createtime: Long = System.currentTimeMillis()
 )
 
 data class User(
-        var id: Int? = null,
+        var id: Int = 0,
         var username: String? = null,
         var password: String? = null,
-        var avatar: String? = null,
+        var avatar: String = "",
         var numberofwords: Long = 0,
         var createtime: Long = System.currentTimeMillis()
 )
