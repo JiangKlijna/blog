@@ -32,17 +32,20 @@ window.dialog = {
         $('#dialog_title').html(title);
         $('#dialog_body').html(msg);
         $('#dialog_footer_area').hide();
-        $('#dialog_show').click();
+        if ($('#dialog_modal').css('display') == 'none')
+            $('#dialog_show').click();
     },
-    dialog: function (msg, primary, onClickPrimary) {
+    show: function (msg, primary, onClickPrimary) {
         $('#dialog_header_area').hide();
         $('#dialog_body').html(msg);
 		$('#dialog_primary').text(primary).click(onClickPrimary)
         $('#dialog_footer_area').show();
-        $('#dialog_show').click();
+        if ($('#dialog_modal').css('display') == 'none')
+            $('#dialog_show').click();
     },
 	dismiss: function () {
-		$('#dialog_show').click();
+	    if ($('#dialog_modal').css('display') != 'none')
+		    $('#dialog_show').click();
 	}
 }
 </script>
