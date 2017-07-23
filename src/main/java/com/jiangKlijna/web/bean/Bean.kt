@@ -11,6 +11,7 @@ data class Article(
         var subjectid: Int? = null,
         var favoritenumber: Int = 0,
         var seenumber: Int = 0,
+        var numberofwords: Long = 0,
         var createtime: Long = System.currentTimeMillis()
 )
 
@@ -46,7 +47,6 @@ data class User(
         var id: Int = 0,
         var username: String? = null,
         var password: String? = null,
-        var avatar: String = "",
-        var numberofwords: Long = 0,
         var createtime: Long = System.currentTimeMillis()
 )
+
