@@ -38,7 +38,7 @@ window.dialog = {
     show: function (msg, primary, onClickPrimary) {
         $('#dialog_header_area').hide();
         $('#dialog_body').html(msg);
-		$('#dialog_primary').text(primary).click(onClickPrimary)
+		$('#dialog_primary').text(primary).unbind("click").click(onClickPrimary)
         $('#dialog_footer_area').show();
         if ($('#dialog_modal').css('display') == 'none')
             $('#dialog_show').click();
