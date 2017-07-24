@@ -17,43 +17,43 @@ import javax.annotation.Resource
 @Service("articleService")
 class ArticleServiceImpl : BaseService(), ArticleService {
 
-    @Resource
-    private val um: UserMapper? = null
+	@Resource
+	private val um: UserMapper? = null
 
-    @Resource
-    private val am: ArticleMapper? = null
+	@Resource
+	private val am: ArticleMapper? = null
 
-    @Resource
-    private val sm: SubjectMapper? = null
+	@Resource
+	private val sm: SubjectMapper? = null
 
-    override fun publish(content: String, title: String, subject: String, username: String): Result {
-        try {
-            val u = um!!.findUserByName(username)
-            var s = sm!!.findSubjectByTitle(subject)
-            if (s == null) {
-                s = Subject(title = subject)
-                sm!!.insert(s)
-            }
-            val a = Article(content = content, title = title, subjectid = s.id!!, userid = u!!.id!!)
-            am!!.insert(a)
-            return sucessResult()
-        } catch (e: Exception) {
-            return errorResult(e)
-        }
-    }
+	override fun publish(content: String, title: String, subject: String, username: String, numberofwords: Long): Result {
+		try {
+			val u = um!!.findUserByName(username)
+			var s = sm!!.findSubjectByTitle(subject)
+			if (s == null) {
+				s = Subject(title = subject)
+				sm!!.insert(s)
+			}
+			val a = Article(content = content, title = title, subjectid = s.id!!, userid = u!!.id!!, numberofwords = numberofwords)
+			am!!.insert(a)
+			return sucessResult()
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
 
-    override fun delete(id: Int, username: String): Result {
-        try {
-            val u = um!!.findUserByName(username)
-            val a = am!!.selectByPrimaryKey(id)
-            if (u!!.id == a!!.userid) {
-                am!!.deleteByPrimaryKey(a.id)
-                return sucessResult()
-            }
-            return errorResult()
-        } catch (e: Exception) {
-            return errorResult(e)
-        }
-    }
+	override fun delete(id: Int, username: String): Result {
+		try {
+			val u = um!!.findUserByName(username)
+			val a = am!!.selectByPrimaryKey(id)
+			if (u!!.id == a!!.userid) {
+				am!!.deleteByPrimaryKey(a.id)
+				return sucessResult()
+			}
+			return errorResult()
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
 
 }

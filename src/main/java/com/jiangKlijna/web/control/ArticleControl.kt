@@ -15,35 +15,34 @@ import javax.annotation.Resource
 @Controller
 class ArticleControl : BaseControl() {
 
-    @Resource(name = "articleService")
-    var `as`: ArticleService? = null
+	@Resource(name = "articleService")
+	var `as`: ArticleService? = null
 
-    /**
-     * 发表文章
-     * 顺便给所有订阅此人和订阅主题的用户推送消息
-     */
-    @ResponseBody
-    @RequestMapping("/publish.json", method = arrayOf(RequestMethod.POST))
-    fun publish(content: String?, title: String?, subject: String?): Result {
-        val username = sess_username
-        if (!testParameter(content, title, subject, username)) return errorParameterResult
-        return `as`!!.publish(content!!, title!!, subject!!, username!!).apply {
-            setMessage(if (isSucess()) Result.SUCCESS_PUBLISH else Result.FAILURE_PUBLISH)
-        }
-        //val u = us!!.get(username!!)
-    }
+	/**
+	 * 发表文章
+	 * 顺便给所有订阅此人和订阅主题的用户推送消息
+	 */
+	@ResponseBody
+	@RequestMapping("/publish.json", method = arrayOf(RequestMethod.POST))
+	fun publish(content: String?, title: String?, subject: String?, numberofwords: Long?): Result {
+		val username = sess_username
+		if (!testParameter(content, title, subject, username, numberofwords)) return errorParameterResult
+		return `as`!!.publish(content!!, title!!, subject!!, username!!, numberofwords!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_PUBLISH else Result.FAILURE_PUBLISH)
+		}
+	}
 
-    /**
-     * 删除文章，直接从数据库中删除，不用推送消息
-     */
-    @ResponseBody
-    @RequestMapping("/delete.json", method = arrayOf(RequestMethod.POST))
-    fun delete(id: Int, username: String?): Result {
-        val un = sess_username
-        testParameter(username, un).let { if (!it) return errorParameterResult }
-        return if (un == username) `as`!!.delete(id, username!!).apply {
-            setMessage(if (isSucess()) Result.SUCCESS_DELETE else Result.FAILURE_DELETE)
-        } else errorParameterResult
-    }
+	/**
+	 * 删除文章，直接从数据库中删除，不用推送消息
+	 */
+	@ResponseBody
+	@RequestMapping("/delete.json", method = arrayOf(RequestMethod.POST))
+	fun delete(id: Int?, username: String?): Result {
+		val un = sess_username
+		testParameter(id, username, un).let { if (!it) return errorParameterResult }
+		return if (un == username) `as`!!.delete(id!!, username!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_DELETE else Result.FAILURE_DELETE)
+		} else errorParameterResult
+	}
 
 }

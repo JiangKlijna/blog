@@ -15,11 +15,12 @@
     <input id="write_subject" class="write_input" placeholder="请输入主题"><hr>
     <div id="write_content"><h4>请输入正文</h4></div>
 </section>
-<div id="write_submit">
-    <a type="button" class="btn btn-success navbar-btn" href="sign.do">发布</a>
-    <a type="button" class="btn btn-danger navbar-btn" href="sign.do">清除</a>
+<div id="write_btn">
+    <a id="btn_submit" type="button" class="btn btn-success navbar-btn" href="#">发布</a>
+    <a id="btn_clear" type="button" class="btn btn-danger navbar-btn" href="#">清除</a>
 </div>
 <%@ include file="footer.jsp" %>
+<%@ include file="dialog.jsp" %>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="static/js/jquery.notebook.js"></script>

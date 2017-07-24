@@ -90,6 +90,4 @@ html, body, .hundred {
     </div>
 </nav>
 <!-- header的js -->
-<script>
-
-</script>
+<script>un = '${username}'</script>

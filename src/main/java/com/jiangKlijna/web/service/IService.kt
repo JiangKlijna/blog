@@ -19,7 +19,7 @@ interface UserService {
 
 interface ArticleService {
     //发布一篇文章
-    fun publish(content: String, title: String, subject: String, username: String): Result
+    fun publish(content: String, title: String, subject: String, username: String, numberofwords: Long): Result
 
     //删除一篇文章
     fun delete(id: Int, username: String): Result

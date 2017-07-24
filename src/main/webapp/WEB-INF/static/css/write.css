@@ -27,7 +27,7 @@ hr {
 .jquery-notebook.bubble {
     height: 78px;
 }
-#write_submit {
+#write_btn {
     display: block;
     width: 1000px;
     margin: 0 auto;
