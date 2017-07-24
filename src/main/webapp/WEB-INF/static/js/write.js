@@ -20,7 +20,7 @@ window.cj = {
                         'numberofwords': cj.numberofwords()};
             $.post(cj.PUBLISH_URL, obj, function (result) {
                 dialog.dismiss();
-                if (result.code == 0) location = "./index.do";
+                if (result.code == 0) location = "./person.do?name=" + un;
                 else cj.alert(result.message);
             });
         });

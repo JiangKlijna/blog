@@ -9,7 +9,7 @@
 <body>
 <%@ include file="header.jsp" %>
 <section id="main">
-    <h1 id="jqtest">${username}</h1>
+    <h1 id="jqtest">${name}</h1>
 </section>
 <%@ include file="footer.jsp" %>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>

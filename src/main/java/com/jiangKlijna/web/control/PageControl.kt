@@ -84,14 +84,14 @@ class PageControl : BaseControl() {
     /**
      * 每个人的主页
      */
-    @RequestMapping("people.do")
+    @RequestMapping("person.do")
     fun people(name: String, m: Model): String {
         val isLogin = isLogin
         var username = sess_username
         m.addAttribute("isLogin", isLogin)
         m.addAttribute("username", username)
         m.addAttribute("name", name)
-        return "people"
+        return "person"
     }
 
     /**
