@@ -18,112 +18,114 @@ import javax.annotation.Resource
 @RequestMapping("/")
 class PageControl : BaseControl() {
 
-    /**
-     * 判断用户是否登陆
-     * 通过session存入的加密后的username
-     * 并通过数据库查询
-     */
-    var isLogin: Boolean = false
-        get() = sess_username.let {
-            return if (it != null) us!!.find(it).isSucess() else false
-        }
+	/**
+	 * 判断用户是否登陆
+	 * 通过session存入的加密后的username
+	 * 并通过数据库查询
+	 */
+	var isLogin: Boolean = false
+		get() = sess_username.let {
+			return if (it != null) us!!.find(it).isSucess() else false
+		}
 
-    @Resource(name = "userService")
-    var us: UserService? = null
+	@Resource(name = "userService")
+	var us: UserService? = null
 
-    /**
-     * 主頁
-     */
-    @RequestMapping("index.do")
-    fun index(m: Model): String {
-        val isLogin = isLogin
-        var username = sess_username
-        m.addAttribute("isLogin", isLogin)
-        m.addAttribute("username", username)
+	/**
+	 * 主頁
+	 */
+	@RequestMapping("index.do")
+	fun index(m: Model): String {
+		val isLogin = isLogin
+		var username = sess_username
+		m.addAttribute("isLogin", isLogin)
+		m.addAttribute("username", username)
 
-        return "index"
-    }
+		return "index"
+	}
 
-    /**
-     * 发现
-     */
-    @RequestMapping("explore.do")
-    fun explore(m: Model): String {
-        val isLogin = isLogin
-        var username = sess_username
-        m.addAttribute("isLogin", isLogin)
-        m.addAttribute("username", username)
+	/**
+	 * 发现
+	 */
+	@RequestMapping("explore.do")
+	fun explore(m: Model): String {
+		val isLogin = isLogin
+		var username = sess_username
+		m.addAttribute("isLogin", isLogin)
+		m.addAttribute("username", username)
 
-        return "index"
-    }
+		return "index"
+	}
 
-    /**
-     * 搜索
-     */
-    @RequestMapping("search.do")
-    fun search(query: String, m: Model): String {
-        val isLogin = isLogin
-        var username = sess_username
-        m.addAttribute("isLogin", isLogin)
-        m.addAttribute("username", username)
+	/**
+	 * 搜索
+	 */
+	@RequestMapping("search.do")
+	fun search(query: String, m: Model): String {
+		val isLogin = isLogin
+		var username = sess_username
+		m.addAttribute("isLogin", isLogin)
+		m.addAttribute("username", username)
 
-        return "index"
-    }
+		return "index"
+	}
 
-    /**
-     * 写文章
-     */
-    @RequestMapping("write.do")
-    fun write(m: Model): String = if (isLogin) {
-        val username = sess_username
-        m.addAttribute("isLogin", true)
-        m.addAttribute("username", username)
-        "write"
-    } else "redirect:sign.do"
+	/**
+	 * 写文章
+	 */
+	@RequestMapping("write.do")
+	fun write(m: Model): String = if (isLogin) {
+		val username = sess_username
+		m.addAttribute("isLogin", true)
+		m.addAttribute("username", username)
+		"write"
+	} else "redirect:sign.do"
 
-    /**
-     * 每个人的主页
-     */
-    @RequestMapping("person.do")
-    fun people(name: String, m: Model): String {
-        val isLogin = isLogin
-        var username = sess_username
-        m.addAttribute("isLogin", isLogin)
-        m.addAttribute("username", username)
-        m.addAttribute("name", name)
-        return "person"
-    }
+	/**
+	 * 每个人的主页
+	 */
+	@RequestMapping("person.do")
+	fun people(name: String, m: Model): String {
+		val isLogin = isLogin
+		val username = sess_username
+		val isExist = us!!.find(name).isSucess()
+		m.addAttribute("isLogin", isLogin)
+		m.addAttribute("isExist", isExist)
+		m.addAttribute("username", username)
+		m.addAttribute("name", name)
+		return "person"
+	}
 
-    /**
-     * 文章
-     */
-    @RequestMapping("article.do")
-    fun article(id: Int?, m: Model): String {
-        val isLogin = isLogin
-        var username = sess_username
-        m.addAttribute("isLogin", isLogin)
-        m.addAttribute("username", username)
+	/**
+	 * 文章
+	 */
+	@RequestMapping("article.do")
+	fun article(id: Int?, m: Model): String {
+		val isLogin = isLogin
+		var username = sess_username
+		m.addAttribute("isLogin", isLogin)
+		m.addAttribute("username", username)
 
-        return "index"
-    }
+		return "index"
+	}
 
-    /**
-     * 课题
-     */
-    @RequestMapping("subject.do")
-    fun subject(id: Int?, m: Model): String {
-        val isLogin = isLogin
-        var username = sess_username
-        m.addAttribute("isLogin", isLogin)
-        m.addAttribute("username", username)
+	/**
+	 * 课题
+	 */
+	@RequestMapping("subject.do")
+	fun subject(id: Int?, m: Model): String {
+		val isLogin = isLogin
+		var username = sess_username
+		m.addAttribute("isLogin", isLogin)
+		m.addAttribute("username", username)
 
-        return "index"
-    }
+		return "index"
+	}
 
-    /**
-     * 如果用户已登录则重定向到index主页
-     */
-    @RequestMapping("sign.do")
-    fun sign(): String = if (isLogin) "redirect:index.do" else "sign"
+	/**
+	 * 如果用户已登录则重定向到index主页
+	 */
+	@RequestMapping("sign.do")
+	fun sign(): String = if (isLogin) "redirect:index.do" else "sign"
 
 }

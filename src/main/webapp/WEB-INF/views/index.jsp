@@ -4,7 +4,7 @@
 <head>
 	<title>博客</title>
 </head>
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<%@ include file="js.jsp" %>
 <link rel="stylesheet" href="static/css/index.css" />
 <body>
 <%@ include file="header.jsp" %>
@@ -12,8 +12,6 @@
     <h1 id="jqtest">Echo Server</h1>
 </section>
 <%@ include file="footer.jsp" %>
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="static/js/index.js"></script>
 </body>
 </html>

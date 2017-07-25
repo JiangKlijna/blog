@@ -5,10 +5,9 @@
 <head>
 	<title>登陆</title>
 </head>
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<%@ include file="js.jsp" %>
 <link rel="stylesheet" href="static/css/sign.css" />
 <body>
-
 <section class="hundred">
     <br />
     <div id="sign-div">
@@ -30,7 +29,6 @@
         <Button id="btn_signup">注册</button>
     </div>
 </section>
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="static/js/sign.js"></script>
 </body>
 </html>
