@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>博客</title>
+	<title>${name}的博客</title>
 </head>
 <%@ include file="js.jsp" %>
 <link rel="stylesheet" href="static/css/index.css" />
@@ -15,6 +15,7 @@
     <c:when test="${isExist}">
     </c:when>
     <c:otherwise>
+        <p class="text-center" style="font-weight: 900; font-size: 20px;padding: 20px;">此用户不存在, <a href="./" class="text-primary">返回主页</a></p>
     </c:otherwise>
     </c:choose>
 </section>
