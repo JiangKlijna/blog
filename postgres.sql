@@ -40,6 +40,14 @@ create table blog_comment(
 	articleid int4 not null references blog_article(id),
 	createTime int8 not null
 );
+create table blog_message(
+	id serial PRIMARY KEY,
+	fromUser int4 not null references blog_user(id),
+	toUser int4 not null references blog_user(id),
+	flag int4 default(0) not null, --消息的类型
+	isread boolean default(false) not null,
+	createTime int8 not null
+);
 create view v_blog_user as select * from blog_user --关注数，粉丝数，文章数，文章喜欢数
 create view v_blog_subject as select * from blog_subject --文章数，关注数
 create view v_blog_article as select * from blog_article --评论数
