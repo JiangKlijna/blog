@@ -48,6 +48,14 @@ create table blog_message(
 	isread boolean default(false) not null,
 	createTime int8 not null
 );
-create view v_blog_user as select * from blog_user --关注数，粉丝数，文章数，文章喜欢数
+create view v_blog_user as
+select u.id, u.username, u.createtime,
+    (select count(id) from blog_article where userid = u.id) as numberOfArticles, -- 文章数, 喜欢数
+    (select count(id) from blog_follow_user where fromuser = u.id) as numberOfConcerns, -- 关注数
+    (select count(id) from blog_follow_user where touser = u.id) as numberOfFans, -- 粉丝数
+    (select sum(favoriteNumber) from blog_article where userid = u.id) as favoriteNumber, -- 喜欢数
+    (select sum(numberOfWords) from blog_article where userid = u.id) as numberOfWords -- 字数
+from blog_user as u
+
 create view v_blog_subject as select * from blog_subject --文章数，关注数
 create view v_blog_article as select * from blog_article --评论数
