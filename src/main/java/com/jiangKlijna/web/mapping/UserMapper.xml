@@ -12,6 +12,17 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="createtime" jdbcType="BIGINT" property="createtime" />
   </resultMap>
+  <!-- v_blog_user -->
+  <resultMap id="ViewUser" type="com.jiangKlijna.web.bean.VUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="createtime" jdbcType="BIGINT" property="createtime" />
+    <result column="numberOfArticles" jdbcType="INTEGER" property="numberOfArticles" />
+    <result column="numberOfConcerns" jdbcType="INTEGER" property="numberOfConcerns" />
+    <result column="numberOfFans" jdbcType="INTEGER" property="numberOfFans" />
+    <result column="favoriteNumber" jdbcType="INTEGER" property="favoriteNumber" />
+    <result column="numberOfWords" jdbcType="INTEGER" property="numberOfWords" />
+  </resultMap>
   <sql id="Base_Column_List">
     <!--
       WARNING - @mbg.generated
@@ -126,5 +137,9 @@
     <include refid="Base_Column_List" />
     from blog_user
     where username = #{username}
+  </select>
+
+  <select id="getView" parameterType="java.lang.String" resultMap="ViewUser">
+    select * from v_blog_user where username = #{username}
   </select>
 </mapper>

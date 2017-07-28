@@ -60,3 +60,14 @@ data class Message(
 		var isread: Boolean = false,
 		var createtime: Long = currentTimeMillis()
 )
+
+data class VUser(
+		var id: Int = 0,
+		var username: String? = null,
+		var createtime: Long = currentTimeMillis(),
+		var numberOfArticles: Int? = null,
+		var numberOfConcerns: Int? = null,
+		var numberOfFans: Int? = null,
+		var favoriteNumber: Int? = null,
+		var numberOfWords: Int? = null
+)

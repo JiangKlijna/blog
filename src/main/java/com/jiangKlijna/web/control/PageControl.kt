@@ -88,11 +88,13 @@ class PageControl : BaseControl() {
 	fun people(name: String, m: Model): String {
 		val isLogin = isLogin
 		val username = sess_username
-		val isExist = us!!.find(name).isSucess()
+		val re = us!!.getView(name)
+		val isExist = re.isSucess()
 		m.addAttribute("isLogin", isLogin)
 		m.addAttribute("isExist", isExist)
 		m.addAttribute("username", username)
 		m.addAttribute("name", name)
+		m.addAttribute("vu", re.data)
 		return "person"
 	}
 
