@@ -14,6 +14,7 @@ create table blog_article(
 	id serial PRIMARY KEY,
 	title varchar(50) not null,
 	content text not null,
+	preview varchar(150) not null,
 	userid int4 not null references blog_user(id),
 	subjectid int4 not null references blog_subject(id),
 	favoriteNumber int4 default(0) not null, --喜欢数

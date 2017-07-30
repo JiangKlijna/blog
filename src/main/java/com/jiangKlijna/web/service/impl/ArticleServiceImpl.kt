@@ -26,7 +26,7 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 	@Resource
 	private val sm: SubjectMapper? = null
 
-	override fun publish(content: String, title: String, subject: String, username: String, numberofwords: Long): Result {
+	override fun publish(content: String, preview: String, title: String, subject: String, username: String, numberofwords: Long): Result {
 		try {
 			val u = um!!.findUserByName(username)
 			var s = sm!!.findSubjectByTitle(subject)
@@ -34,7 +34,7 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 				s = Subject(title = subject)
 				sm!!.insert(s)
 			}
-			val a = Article(content = content, title = title, subjectid = s.id!!, userid = u!!.id!!, numberofwords = numberofwords)
+			val a = Article(content = content, preview = preview, title = title, subjectid = s.id!!, userid = u!!.id!!, numberofwords = numberofwords)
 			am!!.insert(a)
 			return sucessResult()
 		} catch (e: Exception) {

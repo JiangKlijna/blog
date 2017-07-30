@@ -24,10 +24,10 @@ class ArticleControl : BaseControl() {
 	 */
 	@ResponseBody
 	@RequestMapping("/publish.json", method = arrayOf(RequestMethod.POST))
-	fun publish(content: String?, title: String?, subject: String?, numberofwords: Long?): Result {
+	fun publish(content: String?, preview: String?, title: String?, subject: String?, numberofwords: Long?): Result {
 		val username = sess_username
-		if (!testParameter(content, title, subject, username, numberofwords)) return errorParameterResult
-		return `as`!!.publish(content!!, title!!, subject!!, username!!, numberofwords!!).apply {
+		if (!testParameter(content, preview, title, subject, username, numberofwords)) return errorParameterResult
+		return `as`!!.publish(content!!, preview!!, title!!, subject!!, username!!, numberofwords!!).apply {
 			setMessage(if (isSucess()) Result.SUCCESS_PUBLISH else Result.FAILURE_PUBLISH)
 		}
 	}

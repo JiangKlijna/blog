@@ -14,14 +14,16 @@ window.cj = {
     submit: function() {
         dialog.show('是否发布内容', '发布', function () {
             cj.remove_content_attr();
+            var content_text = cj.content_text()
             var obj  = {'content': cj.$content.html(),
+                        'preview': content_text.substr(0, 80),
                         'title': cj.$title.val(),
                         'subject': cj.$subject.val(),
-                        'numberofwords': cj.numberofwords()};
+                        'numberofwords': content_text.length};
             $.post(cj.PUBLISH_URL, obj, function (result) {
                 dialog.dismiss();
                 if (result.code == 0) location = "./person.do?name=" + un;
-                else cj.alert(result.message);
+                else dialog.error(result.message);
             });
         });
     },
@@ -37,9 +39,9 @@ window.cj = {
     remove_content_attr: function() {
         $('#write_content *').removeAttr('contenteditable');
     },
-    // 计算文章的字数
-    numberofwords: function() {
-        return cj.$content.text().trim().length
+    // 获得content的纯文本数据
+    content_text: function() {
+        return cj.$content.text().trim()
     }
 }
 $(cj.onLoad);

@@ -9,6 +9,7 @@ data class Article(
 		var id: Int = 0,
 		var title: String? = null,
 		var content: String? = null,
+		var preview: String? = null,
 		var userid: Int? = null,
 		var subjectid: Int? = null,
 		var favoritenumber: Int = 0,
