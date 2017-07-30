@@ -67,4 +67,9 @@ create view v_blog_subject as
 	select s.*,
 	(select count(id) from blog_article where subjectid = s.id) as numberOfArticles, -- 文章数
 	(select count(id) from blog_follow_subject where tosubject = s.id) as numberOfConcerns -- 关注数
-from blog_subject as s
+from blog_subject as s;
+
+create view v_blog_comment as
+	select c.*,
+	(select username from blog_user where id = c.userid) as username
+from blog_comment as c
