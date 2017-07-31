@@ -18,6 +18,21 @@
     <result column="createtime" jdbcType="BIGINT" property="createtime" />
     <result column="preview" jdbcType="VARCHAR" property="preview" />
   </resultMap>
+  <resultMap id="ViewArticle" type="com.jiangKlijna.web.bean.VArticle">
+    <!-- @jiangKlijna -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="subjectid" jdbcType="INTEGER" property="subjectid" />
+    <result column="favoritenumber" jdbcType="INTEGER" property="favoritenumber" />
+    <result column="seenumber" jdbcType="INTEGER" property="seenumber" />
+    <result column="numberofwords" jdbcType="BIGINT" property="numberofwords" />
+    <result column="createtime" jdbcType="BIGINT" property="createtime" />
+    <result column="preview" jdbcType="VARCHAR" property="preview" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="numberOfComments" jdbcType="INTEGER" property="numberOfComments" />
+  </resultMap>
   <sql id="Base_Column_List">
     <!--
       WARNING - @mbg.generated
@@ -184,4 +199,8 @@
       preview = #{preview,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="listByUser" resultMap="ViewArticle">
+    select * from v_blog_article where username = #{username} limit #{limit} offset #{offset}
+  </select>
 </mapper>

@@ -45,4 +45,17 @@ class ArticleControl : BaseControl() {
 		} else errorParameterResult
 	}
 
+	/**
+	 * 分页查询user的文章
+	 */
+	@ResponseBody
+	@RequestMapping("/listByUser.json", method = arrayOf(RequestMethod.POST))
+	fun listByUser(username: String?, pageNum: Int, perPage: Int, size: Int): Result {
+		testParameter(username).let { if (!it) return errorParameterResult }
+		return `as`!!.listByUser(username!!, pageNum, perPage, size).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
+		}
+	}
+
+
 }

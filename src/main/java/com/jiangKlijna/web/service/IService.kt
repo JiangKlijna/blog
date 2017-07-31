@@ -1,7 +1,6 @@
 package com.jiangKlijna.web.service
 
 import com.jiangKlijna.web.app.Result
-import com.jiangKlijna.web.bean.Article
 
 interface UserService {
 	//注册用户
@@ -26,4 +25,7 @@ interface ArticleService {
 
 	//删除一篇文章
 	fun delete(id: Int, username: String): Result
+
+	//分页查询user的文章
+	fun listByUser(username: String, pageNum: Int, perPage: Int, size: Int): Result
 }

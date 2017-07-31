@@ -72,3 +72,18 @@ data class VUser(
 		var favoriteNumber: Int? = null,
 		var numberOfWords: Int? = null
 )
+
+data class VArticle(
+		var id: Int = 0,
+		var title: String? = null,
+		var content: String? = null,
+		var preview: String? = null,
+		var userid: Int? = null,
+		var subjectid: Int? = null,
+		var favoritenumber: Int = 0,
+		var seenumber: Int = 0,
+		var numberofwords: Long = 0,
+		var createtime: Long = currentTimeMillis(),
+		var username: String? = null,
+		var numberOfComments: Int? = 0
+)

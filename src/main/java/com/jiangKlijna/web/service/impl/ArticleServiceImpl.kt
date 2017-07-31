@@ -56,4 +56,13 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 		}
 	}
 
+	override fun listByUser(username: String, pageNum: Int, perPage: Int, size: Int): Result {
+		try {
+			val list = am!!.listByUser(username, perPage, size * pageNum)
+			return sucessResult(list)
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
+
 }
