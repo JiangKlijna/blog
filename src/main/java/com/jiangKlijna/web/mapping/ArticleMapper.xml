@@ -201,6 +201,6 @@
   </update>
 
   <select id="listByUser" resultMap="ViewArticle">
-    select * from v_blog_article where username = #{username} limit #{limit} offset #{offset}
+    select id, title, preview, userid, subjectid, favoritenumber, seenumber, numberofwords, createtime, username, numberOfComments from v_blog_article where username = #{username} limit #{limit} offset #{offset}
   </select>
 </mapper>
