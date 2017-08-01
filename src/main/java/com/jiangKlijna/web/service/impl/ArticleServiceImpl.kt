@@ -56,6 +56,15 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 		}
 	}
 
+	override fun findById(id: Int): Result {
+		try {
+			val a = am!!.findById(id)
+			return sucessResult(a)
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
+
 	override fun listByUser(username: String, pageNum: Int, perPage: Int, size: Int): Result {
 		try {
 			val list = am!!.listByUser(username, perPage, size * pageNum)

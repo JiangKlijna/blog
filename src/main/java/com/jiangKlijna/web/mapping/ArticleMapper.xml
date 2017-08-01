@@ -203,4 +203,8 @@
   <select id="listByUser" resultMap="ViewArticle">
     select id, title, preview, userid, subjectid, favoritenumber, seenumber, numberofwords, createtime, username, numberOfComments from v_blog_article where username = #{username} limit #{limit} offset #{offset}
   </select>
+
+  <select id="listByUser" parameterType="java.lang.Integer" resultMap="ViewArticle">
+    select * from v_blog_article where id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

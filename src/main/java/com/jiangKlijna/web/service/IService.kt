@@ -26,6 +26,9 @@ interface ArticleService {
 	//删除一篇文章
 	fun delete(id: Int, username: String): Result
 
+	//通过id查询文章
+	fun findById(id: Int): Result
+
 	//分页查询user的文章
 	fun listByUser(username: String, pageNum: Int, perPage: Int, size: Int): Result
 }

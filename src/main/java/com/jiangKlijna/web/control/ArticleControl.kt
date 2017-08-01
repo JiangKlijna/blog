@@ -46,13 +46,25 @@ class ArticleControl : BaseControl() {
 	}
 
 	/**
+	 * 通过id查询文章
+	 */
+	@ResponseBody
+	@RequestMapping("/findById.json", method = arrayOf(RequestMethod.POST))
+	fun findById(id: Int?): Result {
+		testParameter(id).let { if (!it) return errorParameterResult }
+		return `as`!!.findById(id!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
+		}
+	}
+
+	/**
 	 * 分页查询user的文章
 	 */
 	@ResponseBody
 	@RequestMapping("/listByUser.json", method = arrayOf(RequestMethod.POST))
-	fun listByUser(username: String?, pageNum: Int, perPage: Int, size: Int): Result {
-		testParameter(username).let { if (!it) return errorParameterResult }
-		return `as`!!.listByUser(username!!, pageNum, perPage, size).apply {
+	fun listByUser(username: String?, pageNum: Int?, perPage: Int?, size: Int?): Result {
+		testParameter(username, pageNum, perPage, size).let { if (!it) return errorParameterResult }
+		return `as`!!.listByUser(username!!, pageNum!!, perPage!!, size!!).apply {
 			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
 		}
 	}
