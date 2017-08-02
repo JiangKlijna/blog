@@ -1,6 +1,7 @@
 package com.jiangKlijna.web.control
 
 import com.jiangKlijna.web.app.Result
+import com.jiangKlijna.web.service.ArticleService
 import com.jiangKlijna.web.service.UserService
 import org.apache.log4j.Logger
 import org.springframework.stereotype.Controller
@@ -30,6 +31,9 @@ class PageControl : BaseControl() {
 
 	@Resource(name = "userService")
 	var us: UserService? = null
+
+	@Resource(name = "articleService")
+	var `as`: ArticleService? = null
 
 	/**
 	 * 主頁
@@ -104,11 +108,19 @@ class PageControl : BaseControl() {
 	@RequestMapping("article.do")
 	fun article(id: Int?, m: Model): String {
 		val isLogin = isLogin
-		var username = sess_username
+		val username = sess_username
 		m.addAttribute("isLogin", isLogin)
 		m.addAttribute("username", username)
-
-		return "index"
+		var isExist = false
+		if (id != null) {
+			val r = `as`!!.findById(id)
+			if (r.isSucess()) {
+				isExist = true
+				m.addAttribute("article", r.data)
+			}
+		}
+		m.addAttribute("isExist", isExist)
+		return "article"
 	}
 
 	/**
@@ -117,7 +129,7 @@ class PageControl : BaseControl() {
 	@RequestMapping("subject.do")
 	fun subject(id: Int?, m: Model): String {
 		val isLogin = isLogin
-		var username = sess_username
+		val username = sess_username
 		m.addAttribute("isLogin", isLogin)
 		m.addAttribute("username", username)
 

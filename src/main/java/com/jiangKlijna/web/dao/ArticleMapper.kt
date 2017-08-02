@@ -55,6 +55,6 @@ interface ArticleMapper {
 
 	fun listByUser(@Param("username") username: String, @Param("limit") limit: Int, @Param("offset") offset: Int): List<VArticle>
 
-	fun findById(id: Int): Article
+	fun findById(id: Int): VArticle
 
 }
