@@ -1,7 +1,6 @@
 #main {
     display: block;
     width: 660px;
-    min-height: 660px;
     margin: 0 auto;
     background-color: #f8f8f8;
 }
@@ -10,4 +9,20 @@
     font-size: 26px;
     font-weight: 700;
     line-height: 30px;
+}
+#article {
+    min-height: 660px;
+}
+#article-text {
+    width: 80%;
+    font-size: 18px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    outline: none;
+    padding: 4px;
+    margin-left: 1%;
+}
+#article_comment_submit {
+    width: 10%;
+    outline: none;
 }
