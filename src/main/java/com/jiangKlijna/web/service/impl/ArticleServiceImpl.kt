@@ -2,8 +2,10 @@ package com.jiangKlijna.web.service.impl
 
 import com.jiangKlijna.web.app.Result
 import com.jiangKlijna.web.bean.Article
+import com.jiangKlijna.web.bean.Comment
 import com.jiangKlijna.web.bean.Subject
 import com.jiangKlijna.web.dao.ArticleMapper
+import com.jiangKlijna.web.dao.CommentMapper
 import com.jiangKlijna.web.dao.SubjectMapper
 import com.jiangKlijna.web.dao.UserMapper
 import com.jiangKlijna.web.service.ArticleService
@@ -25,6 +27,9 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 
 	@Resource
 	private val sm: SubjectMapper? = null
+
+	@Resource
+	private val cm: CommentMapper? = null
 
 	override fun publish(content: String, preview: String, title: String, subject: String, username: String, numberofwords: Long): Result {
 		try {
@@ -69,6 +74,17 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 		try {
 			val list = am!!.listByUser(username, perPage, size * pageNum)
 			return sucessResult(list)
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
+
+	override fun write_comment(username: String, articleid: Int, content: String): Result {
+		try {
+			val u = um!!.findUserByName(username)
+			val c = Comment(userid = u!!.id, content = content, articleid = articleid)
+			cm!!.insert(c)
+			return sucessResult()
 		} catch (e: Exception) {
 			return errorResult(e)
 		}

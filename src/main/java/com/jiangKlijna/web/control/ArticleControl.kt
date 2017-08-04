@@ -69,5 +69,17 @@ class ArticleControl : BaseControl() {
 		}
 	}
 
+	/**
+	 * 写评论,并推送给文章作者
+	 */
+	@ResponseBody
+	@RequestMapping("/comment/write.json", method = arrayOf(RequestMethod.POST))
+	fun writeComment(articleid: Int?, content: String?): Result {
+		val un = sess_username
+		testParameter(un, articleid, content).let { if (!it) return errorParameterResult }
+		return `as`!!.write_comment(un!!, articleid!!, content!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_PUBLISH else Result.FAILURE_PUBLISH)
+		}
+	}
 
 }
