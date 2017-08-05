@@ -25,7 +25,7 @@
         <c:choose>
         <c:when test="${isLogin}">
             <div>
-                <input id="article-text" placeholder="写下你的评论...">&nbsp;&nbsp;
+                <input id="article-comment" placeholder="写下你的评论...">&nbsp;&nbsp;
                 <button id="article_comment_submit" type="button" class="btn btn-primary">评论</button>
             </div>
         </c:when>
@@ -40,6 +40,8 @@
     </div>
 </section>
 <%@ include file="footer.jsp" %>
+<%@ include file="dialog.jsp" %>
+<script>articleid=${article.id}</script>
 <script src="static/js/article.js"></script>
 </body>
 </html>
