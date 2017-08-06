@@ -1,6 +1,6 @@
 
 window.cj = {
-    WRITE_COMMENT_URL: "article/comment/write.json",
+    WRITE_COMMENT_URL: "comment/write.json",
     onLoad: function() {
         $('#article_comment_submit').click(cj.onClickComment);
     },

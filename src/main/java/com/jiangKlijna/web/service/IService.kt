@@ -32,7 +32,10 @@ interface ArticleService {
 	//分页查询user的文章
 	fun listByUser(username: String, pageNum: Int, perPage: Int, size: Int): Result
 
+}
+
+interface CommentService {
 	//写评论
-	fun write_comment(username: String, articleid: Int, content: String): Result
+	fun write(username: String, articleid: Int, content: String): Result
 
 }
