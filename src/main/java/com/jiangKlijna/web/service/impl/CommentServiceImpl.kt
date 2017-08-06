@@ -31,4 +31,13 @@ class CommentServiceImpl : BaseService(), CommentService {
 			return errorResult(e)
 		}
 	}
+
+	override fun listByArticle(articleid: Int, pageNum: Int, perPage: Int, size: Int): Result {
+		try {
+			val list = cm!!.listByArticle(articleid, perPage, size * pageNum)
+			return sucessResult(list)
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
 }

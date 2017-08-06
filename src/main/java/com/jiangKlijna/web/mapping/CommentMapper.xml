@@ -13,6 +13,15 @@
     <result column="articleid" jdbcType="INTEGER" property="articleid" />
     <result column="createtime" jdbcType="BIGINT" property="createtime" />
   </resultMap>
+  <resultMap id="ViewComment" type="com.jiangKlijna.web.bean.VComment">
+    <!-- @jiangKlijna -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="articleid" jdbcType="INTEGER" property="articleid" />
+    <result column="createtime" jdbcType="BIGINT" property="createtime" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+  </resultMap>
   <sql id="Base_Column_List">
     <!--
       WARNING - @mbg.generated
@@ -124,4 +133,9 @@
       createtime = #{createtime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="listByArticle" resultMap="ViewComment">
+    select * from v_blog_comment where articleid = #{articleid} limit #{limit} offset #{offset}
+  </select>
+
 </mapper>

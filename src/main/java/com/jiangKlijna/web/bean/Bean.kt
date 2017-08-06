@@ -87,3 +87,12 @@ data class VArticle(
 		var username: String? = null,
 		var numberOfComments: Int? = 0
 )
+
+data class VComment(
+		var id: Int = 0,
+		var content: String? = null,
+		var userid: Int? = null,
+		var articleid: Int? = null,
+		var createtime: Long = currentTimeMillis(),
+		var username: String? = null
+)

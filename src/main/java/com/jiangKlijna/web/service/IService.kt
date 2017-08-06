@@ -38,4 +38,7 @@ interface CommentService {
 	//写评论
 	fun write(username: String, articleid: Int, content: String): Result
 
+	//分页查询articleid的评论
+	fun listByArticle(articleid: Int, pageNum: Int, perPage: Int, size: Int): Result
+
 }

@@ -32,4 +32,15 @@ class CommentControl : BaseControl() {
 		}
 	}
 
+	/**
+	 * 分页查询Article的评论
+	 */
+	@ResponseBody
+	@RequestMapping("/listByArticle.json", method = arrayOf(RequestMethod.POST))
+	fun listByArticle(articleid: Int?, pageNum: Int?, perPage: Int?, size: Int?): Result {
+		testParameter(articleid, pageNum, perPage, size).let { if (!it) return errorParameterResult }
+		return cs!!.listByArticle(articleid!!, pageNum!!, perPage!!, size!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
+		}
+	}
 }
