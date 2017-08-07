@@ -62,9 +62,9 @@ class ArticleControl : BaseControl() {
 	 */
 	@ResponseBody
 	@RequestMapping("/listByUser.json", method = arrayOf(RequestMethod.POST))
-	fun listByUser(username: String?, pageNum: Int?, perPage: Int?, size: Int?): Result {
-		testParameter(username, pageNum, perPage, size).let { if (!it) return errorParameterResult }
-		return `as`!!.listByUser(username!!, pageNum!!, perPage!!, size!!).apply {
+	fun listByUser(username: String?, pageNum: Int?, perPage: Int?): Result {
+		testParameter(username, pageNum, perPage).let { if (!it) return errorParameterResult }
+		return `as`!!.listByUser(username!!, pageNum!!, perPage!!).apply {
 			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
 		}
 	}

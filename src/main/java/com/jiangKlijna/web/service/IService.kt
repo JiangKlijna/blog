@@ -30,7 +30,7 @@ interface ArticleService {
 	fun findById(id: Int): Result
 
 	//分页查询user的文章
-	fun listByUser(username: String, pageNum: Int, perPage: Int, size: Int): Result
+	fun listByUser(username: String, pageNum: Int, perPage: Int): Result
 
 }
 
@@ -39,6 +39,6 @@ interface CommentService {
 	fun write(username: String, articleid: Int, content: String): Result
 
 	//分页查询articleid的评论
-	fun listByArticle(articleid: Int, pageNum: Int, perPage: Int, size: Int): Result
+	fun listByArticle(articleid: Int, pageNum: Int, perPage: Int): Result
 
 }

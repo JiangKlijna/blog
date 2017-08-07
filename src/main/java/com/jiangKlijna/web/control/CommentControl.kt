@@ -37,9 +37,9 @@ class CommentControl : BaseControl() {
 	 */
 	@ResponseBody
 	@RequestMapping("/listByArticle.json", method = arrayOf(RequestMethod.POST))
-	fun listByArticle(articleid: Int?, pageNum: Int?, perPage: Int?, size: Int?): Result {
-		testParameter(articleid, pageNum, perPage, size).let { if (!it) return errorParameterResult }
-		return cs!!.listByArticle(articleid!!, pageNum!!, perPage!!, size!!).apply {
+	fun listByArticle(articleid: Int?, pageNum: Int?, perPage: Int?): Result {
+		testParameter(articleid, pageNum, perPage).let { if (!it) return errorParameterResult }
+		return cs!!.listByArticle(articleid!!, pageNum!!, perPage!!).apply {
 			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
 		}
 	}
