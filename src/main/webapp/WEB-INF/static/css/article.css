@@ -26,3 +26,13 @@
     width: 10%;
     outline: none;
 }
+.comment .username {
+    font-size: 18px;
+    margin-left: 10px;
+}
+.comment .content {
+    margin-left: 10px;
+}
+.comment .time {
+    float: right;
+}

@@ -35,11 +35,22 @@ window.cj = {
     },
     // 获得一条评论的html
     commentHtml(c) {
-        return "<div class=\"comment\"><div><span><a href=\"person.do?name=" + c.username + "\">"
-            + c.username + "</a></span><span>"
-            + c.createtime + "</span></div><p class=\"content\">"
+        return "<div class=\"comment\"><div><span class=\"username\"><a href=\"person.do?name=" + c.username + "\">"
+            + c.username + "</a></span><span class=\"time\">"
+            + cj.timestampToString(c.createtime) + "</span></div><p class=\"content\">"
             + c.content + "</p><hr></div>";
+    },
+    // 时间戳转换字符串
+    timestampToString(time) {
+        var d = new Date(time);
+        return (d.getYear() + 1900) + "-" +
+                (d.getMonth() + 1) + "-" +
+                d.getDate() + " " +
+                d.getHours() + ":" +
+                d.getMinutes();
+
     }
+
 
 }
 $(cj.onLoad)

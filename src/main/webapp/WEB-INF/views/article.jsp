@@ -35,9 +35,7 @@
         </c:choose>
     </div>
     <hr>
-    <div id="comments">
-
-    </div>
+    <div id="comments"></div>
 </section>
 <%@ include file="footer.jsp" %>
 <%@ include file="dialog.jsp" %>
