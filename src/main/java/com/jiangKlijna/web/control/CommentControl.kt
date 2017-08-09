@@ -43,4 +43,18 @@ class CommentControl : BaseControl() {
 			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
 		}
 	}
+
+	/**
+	 * 删除自己的评论
+	 */
+	@ResponseBody
+	@RequestMapping("/delete.json", method = arrayOf(RequestMethod.POST))
+	fun delete(commentid: Int?): Result {
+		val un = sess_username
+		testParameter(un, commentid).let { if (!it) return errorParameterResult }
+		return cs!!.delete(commentid!!, un!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_DELETE else Result.FAILURE_DELETE)
+		}
+	}
+
 }

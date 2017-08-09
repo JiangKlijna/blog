@@ -40,4 +40,18 @@ class CommentServiceImpl : BaseService(), CommentService {
 			return errorResult(e)
 		}
 	}
+
+	override fun delete(commentid: Int, username: String): Result {
+		try {
+			val u = um!!.findUserByName(username)
+			val c = cm!!.selectByPrimaryKey(commentid)
+			if (c.userid == u!!.id) {
+				cm.deleteByPrimaryKey(commentid)
+				return sucessResult()
+			}
+			return errorResult()
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
 }

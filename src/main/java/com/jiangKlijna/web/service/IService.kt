@@ -41,4 +41,6 @@ interface CommentService {
 	//分页查询articleid的评论
 	fun listByArticle(articleid: Int, pageNum: Int, perPage: Int): Result
 
+	//删除自己的评论
+	fun delete(commentid: Int, username: String): Result
 }
