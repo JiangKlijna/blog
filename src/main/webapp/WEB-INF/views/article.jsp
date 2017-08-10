@@ -36,6 +36,10 @@
     </div>
     <hr>
     <div id="comments"></div>
+    <div id="loadmore">
+        <p id="load_more_btn" class="text-center">查看更多</p>
+        <hr>
+    </div>
 </section>
 <%@ include file="footer.jsp" %>
 <%@ include file="dialog.jsp" %>

@@ -36,3 +36,10 @@
 .comment .time {
     float: right;
 }
+#loadmore {
+    padding: 10px;
+}
+#load_more_btn {
+
+    cursor: pointer;
+}

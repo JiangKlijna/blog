@@ -1,13 +1,13 @@
-
 window.cj = {
     COMMENT_LIST_URL: "comment/listByArticle.json",
     WRITE_COMMENT_URL: "comment/write.json",
     onLoad: function() {
         cj.onLoadComments();
         $('#article_comment_submit').click(cj.onClickComment);
+        $('#load_more_btn').click(cj.onLoadComments);
     },
     // 当点击评论时
-    onClickComment() {
+    onClickComment: function (){
         var comment = $('#article-comment').val()
         if (comment == '') return
         $.post(cj.WRITE_COMMENT_URL, {'articleid': articleid, 'content': comment}, function (result) {
@@ -17,20 +17,30 @@ window.cj = {
     },
     // 当前页数
     pageNum: 0,
-    // 加载10条评论
+    // 每页多少
+    perPage: 10,
+    // 当点及加载更多时 and 加载10条评论
     onLoadComments() {
-        $.post(cj.COMMENT_LIST_URL, {'articleid': articleid, 'perPage': 10, 'pageNum': cj.pageNum}, function (result){
+        $.post(cj.COMMENT_LIST_URL, {'articleid': articleid, 'perPage': cj.perPage, 'pageNum': cj.pageNum}, function (result){
             if (result.code == 0) cj.displayComments(result.data);
             else dialog.info(result.message);
         });
     },
     // 显示评论列表
     displayComments(comments) {
+        if (comments.length == 0) {
+            $('#loadmore').hide();
+            return;
+        }
         cj.pageNum++;
         var $comments = $('#comments');
         for (var i in comments) {
             var html = cj.commentHtml(comments[i]);
             $comments.append(html);
+        }
+        if (comments.length < cj.perPage) { // 如果评论数小于期望的数量则隐藏加载更多
+            $('#loadmore').hide();
+            return;
         }
     },
     // 获得一条评论的html
@@ -48,9 +58,7 @@ window.cj = {
                 d.getDate() + " " +
                 d.getHours() + ":" +
                 d.getMinutes();
-
     }
-
 
 }
 $(cj.onLoad)
