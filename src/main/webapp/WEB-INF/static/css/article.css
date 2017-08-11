@@ -36,10 +36,14 @@
 .comment .time {
     float: right;
 }
+.comment .delete {
+    cursor: pointer;
+    float: right;
+    padding-right: 10px;
+}
 #loadmore {
     padding: 10px;
 }
 #load_more_btn {
-
     cursor: pointer;
 }

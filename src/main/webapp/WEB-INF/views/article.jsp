@@ -43,7 +43,7 @@
 </section>
 <%@ include file="footer.jsp" %>
 <%@ include file="dialog.jsp" %>
-<script>articleid=${article.id}</script>
+<script>articleid=${article.id};username="${username}"</script>
 <script src="static/js/article.js"></script>
 </body>
 </html>
