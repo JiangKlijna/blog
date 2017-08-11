@@ -10,7 +10,8 @@ window.cj = {
     // 当点击评论时
     onClickComment: function (){
         var comment = $('#article-comment').val()
-        if (comment == '') return
+        if (comment == '') return dialog.info("评论不能为空");
+        if (comment.length > 20) return dialog.info("评论不能超过20个字");
         $.post(cj.WRITE_COMMENT_URL, {'articleid': articleid, 'content': comment}, function (result) {
             if (result.code == 0) history.go();
             else dialog.info(result.message);
