@@ -12,13 +12,17 @@ window.cj = {
         $('#btn_clear').click(cj.clear);
     },
     submit: function() {
+        var title = cj.$title.val();
+        if (title == '' || title.length > 20) return dialog.info("标题不能为空,或者超过20个字");
+        var subject = cj.$subject.val();
+        if (subject == '' || subject.length > 8) return dialog.info("主题不能为空,或者超过8个字");
         dialog.show('是否发布内容', '发布', function () {
             cj.remove_content_attr();
             var content_text = cj.content_text()
             var obj  = {'content': cj.$content.html(),
                         'preview': content_text.substr(0, 80),
-                        'title': cj.$title.val(),
-                        'subject': cj.$subject.val(),
+                        'title': title,
+                        'subject': subject,
                         'numberofwords': content_text.length};
             $.post(cj.PUBLISH_URL, obj, function (result) {
                 dialog.dismiss();
