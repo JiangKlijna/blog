@@ -69,4 +69,18 @@ class ArticleControl : BaseControl() {
 		}
 	}
 
+	/**
+	 *  喜欢文章(点赞),给作者推送消息
+	 */
+	@ResponseBody
+	@RequestMapping("/follow.json", method = arrayOf(RequestMethod.POST))
+	fun followArticle(articleid: Int?): Result {
+		val un = sess_username
+		testParameter(un, articleid).let { if (!it) return errorParameterResult }
+		return `as`!!.follow(articleid!!, un!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_FOLLOW else Result.FAILURE_FOLLOW)
+		}
+	}
+
+
 }

@@ -32,6 +32,8 @@ interface ArticleService {
 	//分页查询user的文章
 	fun listByUser(username: String, pageNum: Int, perPage: Int): Result
 
+	//喜欢,点赞文章
+	fun follow(articleid: Int, username: String): Result
 }
 
 interface CommentService {

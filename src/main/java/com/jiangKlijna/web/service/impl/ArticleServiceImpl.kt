@@ -4,10 +4,7 @@ import com.jiangKlijna.web.app.Result
 import com.jiangKlijna.web.bean.Article
 import com.jiangKlijna.web.bean.Comment
 import com.jiangKlijna.web.bean.Subject
-import com.jiangKlijna.web.dao.ArticleMapper
-import com.jiangKlijna.web.dao.CommentMapper
-import com.jiangKlijna.web.dao.SubjectMapper
-import com.jiangKlijna.web.dao.UserMapper
+import com.jiangKlijna.web.dao.*
 import com.jiangKlijna.web.service.ArticleService
 import com.jiangKlijna.web.service.BaseService
 import org.springframework.stereotype.Service
@@ -27,7 +24,6 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 
 	@Resource
 	private val sm: SubjectMapper? = null
-
 
 	override fun publish(content: String, preview: String, title: String, subject: String, username: String, numberofwords: Long): Result {
 		try {
@@ -77,4 +73,16 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 		}
 	}
 
+	override fun follow(articleid: Int, username: String): Result {
+		try {
+			val a = am!!.selectByPrimaryKey(articleid)
+			val u = um!!.findUserByName(username)
+			if (u?.id == a?.id) return errorResult()
+			a?.favoritenumber = a!!.favoritenumber + 1
+			am.updateByPrimaryKey(a)
+			return sucessResult()
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
 }
