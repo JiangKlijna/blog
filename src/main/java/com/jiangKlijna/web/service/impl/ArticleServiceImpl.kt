@@ -4,6 +4,7 @@ import com.jiangKlijna.web.app.Result
 import com.jiangKlijna.web.bean.Article
 import com.jiangKlijna.web.bean.Comment
 import com.jiangKlijna.web.bean.Subject
+import com.jiangKlijna.web.bean.toArticle
 import com.jiangKlijna.web.dao.*
 import com.jiangKlijna.web.service.ArticleService
 import com.jiangKlijna.web.service.BaseService
@@ -31,9 +32,9 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 			var s = sm!!.findSubjectByTitle(subject)
 			if (s == null) {
 				s = Subject(title = subject)
-				sm!!.insert(s)
+				sm.insert(s)
 			}
-			val a = Article(content = content, preview = preview, title = title, subjectid = s.id!!, userid = u!!.id!!, numberofwords = numberofwords)
+			val a = Article(content = content, preview = preview, title = title, subjectid = s.id, userid = u!!.id, numberofwords = numberofwords)
 			am!!.insert(a)
 			return sucessResult()
 		} catch (e: Exception) {
@@ -46,7 +47,7 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 			val u = um!!.findUserByName(username)
 			val a = am!!.selectByPrimaryKey(id)
 			if (u!!.id == a!!.userid) {
-				am!!.deleteByPrimaryKey(a.id)
+				am.deleteByPrimaryKey(a.id)
 				return sucessResult()
 			}
 			return errorResult()
@@ -58,6 +59,7 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 	override fun findById(id: Int): Result {
 		try {
 			val a = am!!.findById(id)
+			am.updateByPrimaryKey(a.toArticle().apply { seenumber++ })
 			return sucessResult(a)
 		} catch (e: Exception) {
 			return errorResult(e)

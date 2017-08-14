@@ -96,3 +96,7 @@ data class VComment(
 		var createtime: Long = currentTimeMillis(),
 		var username: String? = null
 )
+
+fun VArticle.toArticle() :Article = Article(
+		id, title, content, preview, userid, subjectid, favoritenumber, seenumber, numberofwords, createtime
+)
