@@ -47,3 +47,6 @@
 #load_more_btn {
     cursor: pointer;
 }
+#articletime {
+    font-weight: 300;
+}

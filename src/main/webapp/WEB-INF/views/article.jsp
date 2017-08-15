@@ -13,6 +13,10 @@
         <c:choose>
         <c:when test="${isExist}">
         <p class="text-center title">${article.title}</p><hr>
+        <p class="text-center author">
+            <a href="person.do?name=${article.username}">${article.username}</a>
+            <b id="articletime">${article.createtime}</b>
+        </p><hr>
         ${article.content}
         </c:when>
         <c:otherwise>

@@ -6,6 +6,7 @@ window.cj = {
         cj.onLoadComments();
         $('#article_comment_submit').click(cj.onClickComment);
         $('#load_more_btn').click(cj.onLoadComments);
+        $('#articletime').html(cj.timestampToString(parseInt($('#articletime').html())));
     },
     // 当点击评论时
     onClickComment: function (){
