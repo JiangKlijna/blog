@@ -85,7 +85,8 @@ data class VArticle(
 		var numberofwords: Long = 0,
 		var createtime: Long = currentTimeMillis(),
 		var username: String? = null,
-		var numberOfComments: Int? = 0
+		var numberOfComments: Int? = 0,
+		var subjectname: String? = null
 )
 
 data class VComment(
