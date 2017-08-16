@@ -14,8 +14,10 @@
         <c:when test="${isExist}">
         <p class="text-center title">${article.title}</p><hr>
         <p class="text-center author">
-            <a href="person.do?name=${article.username}">${article.username}</a>
-            <b id="articletime">${article.createtime}</b>
+            <a href="person.do?name=${article.username}"><span class="label label-primary">${article.username}</span></a>
+            <span class="label label-success" id="articletime">${article.createtime}</span>
+            <a href="subject.do?id=${article.subjectid}"><span class="label label-info">${article.subjectname}</span></a>
+            <span class="label label-danger" id="articletime"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;${article.favoritenumber}</span>
         </p><hr>
         ${article.content}
         </c:when>
