@@ -17,7 +17,7 @@
             <a href="person.do?name=${article.username}"><span class="label label-primary">${article.username}</span></a>
             <span class="label label-success" id="articletime">${article.createtime}</span>
             <a href="subject.do?id=${article.subjectid}"><span class="label label-info">${article.subjectname}</span></a>
-            <span class="label label-danger" id="articletime"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;${article.favoritenumber}</span>
+            <span class="label label-danger" id="favnum"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;<b>${article.favoritenumber}</b></span>
         </p><hr>
         ${article.content}
         </c:when>

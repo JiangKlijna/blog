@@ -44,7 +44,7 @@
 #loadmore {
     padding: 10px;
 }
-#load_more_btn {
+#load_more_btn, #favnum {
     cursor: pointer;
 }
 a:hover{

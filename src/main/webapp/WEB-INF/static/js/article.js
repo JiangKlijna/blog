@@ -2,11 +2,31 @@ window.cj = {
     COMMENT_LIST_URL: "comment/listByArticle.json",
     WRITE_COMMENT_URL: "comment/write.json",
     DELETE_COMMENT_URL: "comment/delete.json",
+    FOLLOW_ARTICLE_URL: "article/follow.json",
     onLoad: function() {
         cj.onLoadComments();
         $('#article_comment_submit').click(cj.onClickComment);
         $('#load_more_btn').click(cj.onLoadComments);
+        $('#favnum').click(cj.onClickFavNum);
         $('#articletime').html(cj.timestampToString(parseInt($('#articletime').html())));
+    },
+    // 当点击点赞时, 只能点击一次
+    onClickFavNum: function (){
+        if (!isLogin) {
+            dialog.show("请先登录", "登录", function(){location='sign.do'});
+            return;
+        }
+        if (cj.isClickFavNum) return;
+        cj.isClickFavNum = true
+        $.post(cj.FOLLOW_ARTICLE_URL, {'articleid': articleid}, function (result) {
+            if (result.code == 0) {
+                var $b = $('#favnum b');
+
+                $b.html(parseInt($b.html()) + 1);
+
+            } else dialog.info(result.message);
+        });
+
     },
     // 当点击评论时
     onClickComment: function (){
