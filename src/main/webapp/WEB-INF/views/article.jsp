@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>博客</title>
+	<title>${article.title}</title>
 </head>
 <%@ include file="js.jsp" %>
 <link rel="stylesheet" href="static/css/article.css" />

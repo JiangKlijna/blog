@@ -89,6 +89,14 @@ data class VArticle(
 		var subjectname: String? = null
 )
 
+data class VSubject(
+		var id: Int = 0,
+		var title: String? = null,
+		var createtime: Long = currentTimeMillis(),
+		var numberOfArticles: Int? = null,
+		var numberOfConcerns: Int? = null
+)
+
 data class VComment(
 		var id: Int = 0,
 		var content: String? = null,
@@ -98,6 +106,6 @@ data class VComment(
 		var username: String? = null
 )
 
-fun VArticle.toArticle() :Article = Article(
+fun VArticle.toArticle(): Article = Article(
 		id, title, content, preview, userid, subjectid, favoritenumber, seenumber, numberofwords, createtime
 )

@@ -2,6 +2,7 @@ package com.jiangKlijna.web.control
 
 import com.jiangKlijna.web.app.Result
 import com.jiangKlijna.web.service.ArticleService
+import com.jiangKlijna.web.service.SubjectService
 import com.jiangKlijna.web.service.UserService
 import org.apache.log4j.Logger
 import org.springframework.stereotype.Controller
@@ -34,6 +35,9 @@ class PageControl : BaseControl() {
 
 	@Resource(name = "articleService")
 	var `as`: ArticleService? = null
+
+	@Resource(name = "subjectService")
+	var ss: SubjectService? = null
 
 	/**
 	 * 主頁
@@ -132,8 +136,16 @@ class PageControl : BaseControl() {
 		val username = sess_username
 		m.addAttribute("isLogin", isLogin)
 		m.addAttribute("username", username)
-
-		return "index"
+		var isExist = false
+		if (id != null) {
+			val s = ss!!.findById(id)
+			if (s.isSucess()) {
+				isExist = true
+				m.addAttribute("subject", s.data)
+			}
+		}
+		m.addAttribute("isExist", isExist)
+		return "subject"
 	}
 
 	/**

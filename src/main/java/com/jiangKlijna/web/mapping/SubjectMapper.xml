@@ -11,6 +11,14 @@
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="createtime" jdbcType="BIGINT" property="createtime" />
   </resultMap>
+  <resultMap id="ViewSubject" type="com.jiangKlijna.web.bean.VSubject">
+    <!-- @jiangKlijna -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="createtime" jdbcType="BIGINT" property="createtime" />
+    <result column="numberOfArticles" jdbcType="INTEGER" property="numberOfArticles" />
+    <result column="numberOfConcerns" jdbcType="INTEGER" property="numberOfConcerns" />
+  </resultMap>
   <sql id="Base_Column_List">
     <!--
       WARNING - @mbg.generated
@@ -105,5 +113,9 @@
     <include refid="Base_Column_List" />
     from blog_subject
     where title = #{title}
+  </select>
+
+  <select id="findById" parameterType="java.lang.Integer" resultMap="ViewSubject">
+    select * from v_blog_subject where id = #{id,jdbcType=INTEGER}
   </select>
 </mapper>

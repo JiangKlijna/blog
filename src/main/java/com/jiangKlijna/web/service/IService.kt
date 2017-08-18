@@ -46,3 +46,8 @@ interface CommentService {
 	//删除自己的评论
 	fun delete(commentid: Int, username: String): Result
 }
+
+interface SubjectService {
+	//通过id查询,主题
+	fun findById(id: Int): Result
+}
