@@ -50,4 +50,7 @@ interface CommentService {
 interface SubjectService {
 	//通过id查询,主题
 	fun findById(id: Int): Result
+
+	//订阅主题
+	fun follow(subjectid: Int, username: String): Result
 }
