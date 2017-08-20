@@ -37,8 +37,13 @@ class SubjectServiceImpl : BaseService(), SubjectService {
 	override fun follow(subjectid: Int, username: String): Result {
 		try {
 			val u = um!!.findUserByName(username)
-			val fs = FollowSubject(fromuser = u!!.id, tosubject = subjectid)
-			fsm!!.insert(fs)
+			var fs = fsm!!.findByFromTo(fromuser = u!!.id, tosubject = subjectid)
+			if (fs == null) {
+				fs = FollowSubject(fromuser = u.id, tosubject = subjectid)
+				fsm.insert(fs)
+			} else {
+				fsm.deleteByPrimaryKey(fs.id)
+			}
 			return sucessResult()
 		} catch (e: Exception) {
 			return errorResult(e)

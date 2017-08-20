@@ -113,4 +113,12 @@
       createtime = #{createtime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="findByFromTo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from blog_follow_subject
+    where fromuser = #{fromuser} and tosubject = #{tosubject}
+  </select>
+
 </mapper>
