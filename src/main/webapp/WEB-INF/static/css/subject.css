@@ -1,0 +1,12 @@
+#main {
+    display: block;
+    width: 1000px;
+    margin: 0 auto;
+    background-color: #f8f8f8;
+}
+.title {
+    padding-top: 20px;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 30px;
+}
