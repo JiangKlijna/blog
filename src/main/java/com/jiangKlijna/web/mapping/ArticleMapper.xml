@@ -202,7 +202,13 @@
   </update>
 
   <select id="listByUser" resultMap="ViewArticle">
-    select id, title, preview, userid, subjectid, favoritenumber, seenumber, numberofwords, createtime, username, numberOfComments, subjectname from v_blog_article where username = #{username} limit #{limit} offset #{offset}
+    select id, title, preview, userid, subjectid, favoritenumber, seenumber, numberofwords, createtime, username, numberOfComments, subjectname
+    from v_blog_article where username = #{username} limit #{limit} offset #{offset}
+  </select>
+
+  <select id="listBySubject" resultMap="ViewArticle">
+    select id, title, preview, userid, subjectid, favoritenumber, seenumber, numberofwords, createtime, username, numberOfComments, subjectname
+    from v_blog_article where subjectid = #{subjectid} limit #{limit} offset #{offset}
   </select>
 
   <select id="findById" parameterType="java.lang.Integer" resultMap="ViewArticle">

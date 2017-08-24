@@ -70,6 +70,18 @@ class ArticleControl : BaseControl() {
 	}
 
 	/**
+	 * 分页查询subject的文章
+	 */
+	@ResponseBody
+	@RequestMapping("/listBySubject.json", method = arrayOf(RequestMethod.POST))
+	fun listBySubject(subjectid: Int?, pageNum: Int?, perPage: Int?): Result {
+		testParameter(subjectid, pageNum, perPage).let { if (!it) return errorParameterResult }
+		return `as`!!.listBySubject(subjectid!!, pageNum!!, perPage!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
+		}
+	}
+
+	/**
 	 *  喜欢文章(点赞),给作者推送消息
 	 */
 	@ResponseBody
