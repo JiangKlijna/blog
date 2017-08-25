@@ -63,7 +63,7 @@ create view v_blog_article as
     (select username from blog_user where id = a.userid) as username, -- 用户名
     (select count(id) from blog_comment where articleid = a.id) as numberOfComments, -- 评论数
     (select title from blog_subject where id = a.subjectid) as subjectname -- 主题名
-from blog_article as a;
+from blog_article as a order by a.id desc;
 
 create view v_blog_subject as
 	select s.*,
@@ -74,4 +74,4 @@ from blog_subject as s;
 create view v_blog_comment as
 	select c.*,
 	(select username from blog_user where id = c.userid) as username
-from blog_comment as c
+from blog_comment as c;
