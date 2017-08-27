@@ -1,6 +1,6 @@
 #main {
     display: block;
-    width: 1000px;
+    width: 660px;
     margin: 0 auto;
     background-color: #f8f8f8;
 }
@@ -9,4 +9,10 @@
     font-size: 26px;
     font-weight: 700;
     line-height: 30px;
+}
+#loadmore {
+    padding: 10px;
+}
+#load_more_btn, #favnum {
+    cursor: pointer;
 }

@@ -14,8 +14,13 @@
         <span class="label label-success">文章:${subject.numberOfArticles}</span>
         <span class="label label-danger">关注:${subject.numberOfConcerns}</span>
     </p><hr>
+    <div id="articles"></div>
+    <div id="loadmore">
+        <p id="load_more_btn" class="text-center">查看更多</p>
+    </div>
 </section>
 <%@ include file="footer.jsp" %>
+<script>subjectid=${subject.id}</script>
 <script src="static/js/subject.js"></script>
 </body>
 </html>
