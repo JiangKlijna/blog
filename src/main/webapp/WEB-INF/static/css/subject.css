@@ -16,3 +16,27 @@
 #load_more_btn, #favnum {
     cursor: pointer;
 }
+.article .username {
+    font-size: 18px;
+    margin-left: 10px;
+}
+.article .content {
+    margin-left: 10px;
+}
+.article .time {
+    margin-left: 5px;
+}
+.article .atitle {
+    margin-left: 10px;
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+}
+a:hover{
+    text-decoration: none;
+}
+.article .right {
+    margin-right: 10px;
+    float: right;
+}

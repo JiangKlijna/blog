@@ -34,7 +34,24 @@ window.cj = {
     },
     // 获得文章的html
     articleHtml(a) {
-        return "<p>" + a.preview + "</p><hr>";
+        return "<div class=\"article\"><p class=\"atitle\">" + a.title
+            + "</p><p class=\"content\">"
+            + a.preview + "</p><p><span class=\"username\"><a href=\"person.do?name="
+            + a.username + "\">" + a.username
+            + "</a></span><span class=\"time\">"
+            + cj.timestampToString(a.createtime)
+            + "</span><span class=\"right\">" + a.numberOfComments
+            + "条评论</span><span class=\"right\">" + a.favoritenumber
+            + " 赞</span></p><hr></div>";
     },
+    // 时间戳转换字符串
+    timestampToString(time) {
+        var d = new Date(time);
+        return (d.getYear() + 1900) + "-" +
+                (d.getMonth() + 1) + "-" +
+                d.getDate() + " " +
+                d.getHours() + ":" +
+                d.getMinutes();
+    }
 }
 $(cj.onLoad);
