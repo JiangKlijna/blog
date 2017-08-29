@@ -26,6 +26,9 @@
 .article .time {
     margin-left: 5px;
 }
+.article span {
+    color: #666;
+}
 .article .atitle {
     margin-left: 10px;
     line-height: 1.5;
@@ -39,4 +42,11 @@ a:hover{
 .article .right {
     margin-right: 10px;
     float: right;
+}
+.article .readmore {
+    padding-left: 4px;
+    color: #b3b3b3;
+}
+.pointer {
+    cursor: pointer;
 }

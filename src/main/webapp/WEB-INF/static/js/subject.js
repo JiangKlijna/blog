@@ -3,6 +3,7 @@ window.cj = {
     onLoad: function (){
         cj.onLoadArticles();
         $('#load_more_btn').click(cj.onLoadArticles);
+        $(document).on("click", ".pointer", cj.openArticle)
     },
     // 当前页数
     pageNum: 0,
@@ -34,14 +35,14 @@ window.cj = {
     },
     // 获得文章的html
     articleHtml(a) {
-        return "<div class=\"article\"><p class=\"atitle\">" + a.title
-            + "</p><p class=\"content\">"
-            + a.preview + "</p><p><span class=\"username\"><a href=\"person.do?name="
+        return "<div class=\"article\" data-id=\"" + a.id + "\"><p><span class=\"atitle pointer\">" + a.title
+            + "<span></p><p><span class=\"content pointer\">"
+            + a.preview + "</span><span class=\"readmore pointer\">...查看全文</span></p><p><span class=\"username\"><a href=\"person.do?name="
             + a.username + "\">" + a.username
             + "</a></span><span class=\"time\">"
             + cj.timestampToString(a.createtime)
-            + "</span><span class=\"right\">" + a.numberOfComments
-            + "条评论</span><span class=\"right\">" + a.favoritenumber
+            + "</span><span class=\"right pointer\">" + a.numberOfComments
+            + "条评论</span><span class=\"right pointer\">" + a.favoritenumber
             + " 赞</span></p><hr></div>";
     },
     // 时间戳转换字符串
@@ -52,6 +53,10 @@ window.cj = {
                 d.getDate() + " " +
                 d.getHours() + ":" +
                 d.getMinutes();
+    },
+    // 打开article
+    openArticle() {
+        location = "article.do?id=" + $(this).parent().parent().data("id");
     }
 }
 $(cj.onLoad);
