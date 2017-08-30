@@ -41,10 +41,11 @@ class SubjectServiceImpl : BaseService(), SubjectService {
 			if (fs == null) {
 				fs = FollowSubject(fromuser = u.id, tosubject = subjectid)
 				fsm.insert(fs)
+				return sucessResult(1)
 			} else {
 				fsm.deleteByPrimaryKey(fs.id)
+				return sucessResult(-1)
 			}
-			return sucessResult()
 		} catch (e: Exception) {
 			return errorResult(e)
 		}
