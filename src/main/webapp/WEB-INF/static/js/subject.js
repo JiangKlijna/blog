@@ -1,9 +1,11 @@
 window.cj = {
     ARTICLE_LIST_URL: "article/listBySubject.json",
+    FOLLOW_SUBJECT_URL: "subject/follow.json",
     onLoad: function (){
         cj.onLoadArticles();
+        $('#follow').click(cj.onClickFollow);
         $('#load_more_btn').click(cj.onLoadArticles);
-        $(document).on("click", ".pointer", cj.openArticle)
+        $(document).on("click", ".pointer", cj.openArticle);
     },
     // 当前页数
     pageNum: 0,
@@ -35,7 +37,8 @@ window.cj = {
     },
     // 获得文章的html
     articleHtml(a) {
-        return "<div class=\"article\" data-id=\"" + a.id + "\"><p><span class=\"atitle pointer\">" + a.title
+        return "<div class=\"article\" data-id=\"" + a.id
+            + "\"><p><span class=\"atitle pointer\">" + a.title
             + "<span></p><p><span class=\"content pointer\">"
             + a.preview + "</span><span class=\"readmore pointer\">...查看全文</span></p><p><span class=\"username\"><a href=\"person.do?name="
             + a.username + "\">" + a.username
@@ -57,6 +60,26 @@ window.cj = {
     // 打开article
     openArticle() {
         location = "article.do?id=" + $(this).parent().parent().data("id");
+    },
+    // 当点击关注
+    onClickFollow() {
+        if (!isLogin) {
+            dialog.show("请先登录", "登录", function(){location='sign.do'});
+            return;
+        }
+        $.post(cj.FOLLOW_SUBJECT_URL, {'subjectid': subjectid}, function (result) {
+            if (result.code == 0) {
+                var $numofollow = $('#numofollow');
+                if (result.data == 1) {
+                    $('#follow').html("取消关注");
+                    $numofollow.html(parseInt($numofollow.html())+1);
+                } else {
+                    $('#follow').html("关注");
+                    $numofollow.html(parseInt($numofollow.html())-1);
+                }
+            } else dialog.info(result.message);
+        });
+
     }
 }
 $(cj.onLoad);

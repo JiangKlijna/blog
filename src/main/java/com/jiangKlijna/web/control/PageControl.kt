@@ -143,6 +143,8 @@ class PageControl : BaseControl() {
 				isExist = true
 				m.addAttribute("subject", s.data)
 			}
+			val isFollow = if (username == null) false else ss!!.isFollow(id, username).data as Boolean
+			m.addAttribute("isFollow", isFollow)
 		}
 		m.addAttribute("isExist", isExist)
 		return "subject"
