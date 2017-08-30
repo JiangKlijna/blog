@@ -50,4 +50,14 @@ class SubjectServiceImpl : BaseService(), SubjectService {
 			return errorResult(e)
 		}
 	}
+
+	override fun isFollow(subjectid: Int, username: String): Result {
+		try {
+			val u = um!!.findUserByName(username)
+			val fs = fsm!!.findByFromTo(fromuser = u!!.id, tosubject = subjectid)
+			return sucessResult(fs != null)
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
 }

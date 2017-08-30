@@ -54,6 +54,9 @@ interface SubjectService {
 	//通过id查询,主题
 	fun findById(id: Int): Result
 
-	//订阅主题
+	//订阅主题, 如果以订阅则取消订阅
 	fun follow(subjectid: Int, username: String): Result
+
+	//是否订阅
+	fun isFollow(subjectid: Int, username: String): Result
 }
