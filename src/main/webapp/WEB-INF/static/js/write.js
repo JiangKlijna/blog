@@ -26,7 +26,7 @@ window.cj = {
                         'numberofwords': content_text.length};
             $.post(cj.PUBLISH_URL, obj, function (result) {
                 dialog.dismiss();
-                if (result.code == 0) location = "./person.do?name=" + un;
+                if (result.code == 0) location = "./person.do?name=" + username;
                 else dialog.error(result.message);
             });
         });

@@ -5,7 +5,7 @@ window.h = {
     },
     // 注销
     logout: function() {
-        $.post(h.LOGOUT_URL,{"username": un}, function(result){
+        $.post(h.LOGOUT_URL,{"username": username}, function(result){
             if (result.code == 0) history.go();
             else dialog.info(result.message);
         });

@@ -90,5 +90,5 @@ html, body, .hundred {
     </div>
 </nav>
 <!-- header的js -->
-<script>un = '${username}'; isLogin = ${isLogin}</script>
+<script>username = '${username}'; isLogin = ${isLogin}</script>
 <script src="static/js/header.js"></script>
