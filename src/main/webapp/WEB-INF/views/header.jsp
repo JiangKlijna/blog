@@ -75,7 +75,7 @@ html, body, .hundred {
                             <li class="divider"></li>
                             <li><a href="write.do">写文章</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">注销</a></li>
+                            <li><a href="#" id="nav_logout">注销</a></li>
                         </ul>
                     </div>
                 </c:when>
@@ -91,3 +91,4 @@ html, body, .hundred {
 </nav>
 <!-- header的js -->
 <script>un = '${username}'; isLogin = ${isLogin}</script>
+<script src="static/js/header.js"></script>
