@@ -61,6 +61,21 @@ class UserControl : BaseControl() {
         } else errorParameterResult
     }
 
+	/**
+	 * 判断参数tousername和session中的fromusername不能一致
+     * 关注用户
+	 */
+	@ResponseBody
+	@RequestMapping("/follow.json", method = arrayOf(RequestMethod.POST))
+	fun follow(tousername: String?): Result {
+		val fromusername = sess_username
+		testParameter(tousername, fromusername).let { if (!it) return errorParameterResult }
+        if (tousername == fromusername) return errorParameterResult
+		return us!!.follow(fromusername!!, tousername!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_FOLLOW else Result.FAILURE_FOLLOW)
+		}
+	}
+
     //    @Resource(name = "redisTemplate")
     //    private RedisTemplate<String, User> redisTemplate;
     //    @RequestMapping("/index.do")

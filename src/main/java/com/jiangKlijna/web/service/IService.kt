@@ -17,6 +17,9 @@ interface UserService {
 
 	//获得v_blog_user视图
 	fun getView(username: String): Result
+
+	//关注一个用户
+	fun follow(fromusername: String, tousername: String): Result
 }
 
 interface ArticleService {
