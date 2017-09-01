@@ -106,6 +106,15 @@ data class VComment(
 		var username: String? = null
 )
 
+data class VFollowUser(
+		var id: Int = 0,
+		var fromuser: Int? = null,
+		var touser: Int? = null,
+		var createtime: Long = currentTimeMillis(),
+		var fromusername: String? = null,
+		var tousername: String? = null
+)
+
 fun VArticle.toArticle(): Article = Article(
 		id, title, content, preview, userid, subjectid, favoritenumber, seenumber, numberofwords, createtime
 )

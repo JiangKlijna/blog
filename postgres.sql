@@ -75,3 +75,9 @@ create view v_blog_comment as
 	select c.*,
 	(select username from blog_user where id = c.userid) as username
 from blog_comment as c;
+
+create view v_blog_follow_user as
+	select fu.*,
+	(select username from blog_user where id = fu.fromuser) as fromusername,
+	(select username from blog_user where id = fu.touser) as tousername
+from blog_follow_user as fu;
