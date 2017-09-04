@@ -103,6 +103,8 @@ class PageControl : BaseControl() {
 		m.addAttribute("username", username)
 		m.addAttribute("name", name)
 		m.addAttribute("vu", re.data)
+		if (username != null) m.addAttribute("isFollow", us!!.isFollow(username, name).data as Boolean)
+		else m.addAttribute("isFollow", false)
 		return "person"
 	}
 

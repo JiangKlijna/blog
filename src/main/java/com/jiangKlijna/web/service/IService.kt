@@ -20,6 +20,9 @@ interface UserService {
 
 	//关注一个用户
 	fun follow(fromusername: String, tousername: String): Result
+
+	//是否关注
+	fun isFollow(fromusername: String, tousername: String): Result
 }
 
 interface ArticleService {

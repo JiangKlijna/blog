@@ -90,4 +90,13 @@ class UserServiceImpl : BaseService(), UserService {
 			return errorResult(e)
 		}
 	}
+
+	override fun isFollow(fromusername: String, tousername: String): Result {
+		try {
+			val fu = fum!!.findByFromTo(fromusername, tousername)
+			return sucessResult(fu != null)
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
 }

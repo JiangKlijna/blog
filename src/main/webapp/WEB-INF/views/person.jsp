@@ -13,14 +13,17 @@
 <section id="main">
     <c:choose>
     <c:when test="${isExist}">
-    <p class="text-center title">${name}</p><hr>
-    <table class="subtitle text-center"><tr>
-        <td>${vu.numberOfConcerns}<br>关注</td>
-        <td>${vu.numberOfFans}<br>粉丝</td>
-        <td>${vu.numberOfArticles}<br>文章</td>
-        <td>${vu.favoriteNumber}<br>喜欢</td>
-        <td>${vu.numberOfWords}<br>字数</td>
-    </tr></table>
+    <p class="text-center title">${name}</p>
+    <p class="text-center">
+        <button id="follow"><c:choose><c:when test="${isFollow}">取消关注</c:when><c:otherwise>关注</c:otherwise></c:choose></button>
+    </p>
+    <p class="text-center author">
+        <span class="label label-primary">关注:${vu.numberOfConcerns}</span>
+        <span class="label label-info">粉丝:${vu.numberOfFans}</span>
+        <span class="label label-warning">文章:${vu.numberOfArticles}</span>
+        <span class="label label-success">喜欢:${vu.favoriteNumber}</span>
+        <span class="label label-danger">字数:${vu.numberOfWords}</span>
+    </p>
     <hr>
 
     </c:when>
