@@ -79,8 +79,7 @@ class UserServiceImpl : BaseService(), UserService {
 			if (fu == null) {
 				val fromu = um!!.findUserByName(fromusername)!!
 				val tou = um.findUserByName(tousername)!!
-				fu = FollowUser(fromuser = fromu.id, touser = tou.id)
-				fum.insert(fu)
+				fum.insert(FollowUser(fromuser = fromu.id, touser = tou.id))
 				return sucessResult(1)
 			} else {
 				fum.deleteByPrimaryKey(fu.id)

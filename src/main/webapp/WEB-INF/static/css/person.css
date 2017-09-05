@@ -13,7 +13,7 @@
 .subtitle {
     width: 100%;
 }
-#follow {
+.follow {
     padding: 0 16px;
     font-size: 14px;
     line-height: 32px;
@@ -26,7 +26,7 @@
     color: #50c87e;
     outline: none;
 }
-#follow:hover {
+.follow:hover {
     color: white;
     background: #50c87e;
 }

@@ -1,6 +1,7 @@
 package com.jiangKlijna.web.dao
 
 import com.jiangKlijna.web.bean.FollowUser
+import com.jiangKlijna.web.bean.VFollowUser
 import org.apache.ibatis.annotations.Param
 
 interface FollowUserMapper {
@@ -52,6 +53,6 @@ interface FollowUserMapper {
      */
     fun updateByPrimaryKey(record: FollowUser): Int
 
-	fun findByFromTo(@Param("fromusername") fromusername: String, @Param("tousername") tousername: String): FollowUser?
+	fun findByFromTo(@Param("fromusername") fromusername: String, @Param("tousername") tousername: String): VFollowUser?
 
 }
