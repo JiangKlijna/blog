@@ -1,6 +1,6 @@
 #main {
     display: block;
-    width: 1000px;
+    width: 660px;
     margin: 0 auto;
     background-color: #f8f8f8;
 }
@@ -29,4 +29,38 @@
 .follow:hover {
     color: white;
     background: #50c87e;
+}
+.pointer {
+    cursor: pointer;
+}
+a:hover{
+    text-decoration: none;
+}
+.article .username {
+    font-size: 18px;
+    margin-left: 10px;
+}
+.article .content {
+    margin-left: 10px;
+}
+.article .time {
+    margin-left: 5px;
+}
+.article span {
+    color: #666;
+}
+.article .atitle {
+    margin-left: 10px;
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+}
+.article .right {
+    margin-right: 10px;
+    float: right;
+}
+.article .readmore {
+    padding-left: 4px;
+    color: #b3b3b3;
 }
