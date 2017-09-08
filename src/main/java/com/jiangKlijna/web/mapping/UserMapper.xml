@@ -142,4 +142,12 @@
   <select id="getView" parameterType="java.lang.String" resultMap="ViewUser">
     select * from v_blog_user where username = #{username}
   </select>
+
+  <select id="listByFollowUser" resultMap="ViewUser">
+    select vu.*,
+    (select count(id)>0 from blog_follow_user as fu where fu.fromuser=#{sess_userid} and fu.touser=vu.id) as isFollow
+    from v_blog_user as vu
+    where vu.id in (select fromuser from blog_follow_user where touser=#{userid})
+  </select>
+
 </mapper>

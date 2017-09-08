@@ -2,6 +2,7 @@ package com.jiangKlijna.web.dao
 
 import com.jiangKlijna.web.bean.User
 import com.jiangKlijna.web.bean.VUser
+import org.apache.ibatis.annotations.Param
 
 interface UserMapper {
 	/**
@@ -59,4 +60,6 @@ interface UserMapper {
 	fun findUserByName(username: String): User?
 
 	fun getView(username: String): VUser?
+
+	fun listByFollowUser(@Param("sess_userid") sess_userid: Int, @Param("userid") userid: Int): List<VUser>
 }

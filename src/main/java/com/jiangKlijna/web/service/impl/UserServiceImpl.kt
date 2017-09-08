@@ -98,4 +98,15 @@ class UserServiceImpl : BaseService(), UserService {
 			return errorResult(e)
 		}
 	}
+
+	override fun listByFollowUser(sess_username: String, userid: Int): Result {
+		try {
+			val u = um!!.findUserByName(sess_username)
+			val sess_userid = if (u == null) -1 else u.id
+			val list = um.listByFollowUser(sess_userid, userid)
+			return sucessResult(list)
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
 }

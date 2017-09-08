@@ -70,7 +70,8 @@ data class VUser(
 		var numberOfConcerns: Int? = null,
 		var numberOfFans: Int? = null,
 		var favoriteNumber: Int? = null,
-		var numberOfWords: Int? = null
+		var numberOfWords: Int? = null,
+		var isFollow: Boolean? = null
 )
 
 data class VArticle(
