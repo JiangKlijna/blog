@@ -150,4 +150,10 @@
     where vu.id in (select fromuser from blog_follow_user where touser=#{userid})
   </select>
 
+  <select id="listByUserFollow" resultMap="ViewUser">
+    select vu.*,
+    (select count(id)>0 from blog_follow_user as fu where fu.fromuser=#{sess_userid} and fu.touser=vu.id) as isFollow
+    from v_blog_user as vu
+    where vu.id in (select touser from blog_follow_user where fromuser=#{userid})
+  </select>
 </mapper>

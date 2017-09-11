@@ -62,4 +62,6 @@ interface UserMapper {
 	fun getView(username: String): VUser?
 
 	fun listByFollowUser(@Param("sess_userid") sess_userid: Int, @Param("userid") userid: Int): List<VUser>
+
+	fun listByUserFollow(@Param("sess_userid") sess_userid: Int, @Param("userid") userid: Int): List<VUser>
 }

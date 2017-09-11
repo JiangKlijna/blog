@@ -24,8 +24,11 @@ interface UserService {
 	//是否关注
 	fun isFollow(fromusername: String, tousername: String): Result
 
-	//查找userid的粉丝,并且查询sess_userid是否关注这些人
+	//查找userid的粉丝,并且查询sess_username是否关注这些人
 	fun listByFollowUser(sess_username: String, userid: Int): Result
+
+	//查找userid关注了哪些人,并且查询sess_username是否关注这些人
+	fun listByUserFollow(sess_username: String, userid: Int): Result
 }
 
 interface ArticleService {
