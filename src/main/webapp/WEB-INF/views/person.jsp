@@ -20,9 +20,9 @@
         </p>
     </c:when></c:choose>
     <p class="text-center">
-        <span class="label label-primary pointer">文章:${vu.numberOfArticles}</span>
-        <span class="label label-info pointer">粉丝:${vu.numberOfFans}</span>
-        <span class="label label-warning pointer">关注:${vu.numberOfConcerns}</span>
+        <span class="label label-primary pointer" data-type="0">文章:${vu.numberOfArticles}</span>
+        <span class="label label-info pointer" data-type="1">粉丝:${vu.numberOfFans}</span>
+        <span class="label label-warning pointer" data-type="2">关注:${vu.numberOfConcerns}</span>
         <span class="label label-success">喜欢:${vu.favoriteNumber}</span>
         <span class="label label-danger">字数:${vu.numberOfWords}</span>
     </p>
@@ -39,7 +39,7 @@
 </section>
 <%@ include file="footer.jsp" %>
 <%@ include file="dialog.jsp" %>
-<script>isExist = ${isExist};name = "${name}"</script>
+<script>isExist = ${isExist};name = "${name}";userid=${vu.id}</script>
 <script src="static/js/person.js"></script>
 </body>
 </html>
