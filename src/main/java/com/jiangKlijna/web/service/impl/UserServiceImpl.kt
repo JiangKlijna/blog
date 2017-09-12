@@ -99,22 +99,28 @@ class UserServiceImpl : BaseService(), UserService {
 		}
 	}
 
-	override fun listByFollowUser(sess_username: String, userid: Int): Result {
+	override fun listByFollowUser(sess_username: String?, userid: Int): Result {
 		try {
-			val u = um!!.findUserByName(sess_username)
-			val sess_userid = if (u == null) -1 else u.id
-			val list = um.listByFollowUser(sess_userid, userid)
+			val sess_userid =
+					if (sess_username == null) -1
+					else um!!.findUserByName(sess_username).let {
+						if (it == null) -1 else it.id
+					}
+			val list = um!!.listByFollowUser(sess_userid, userid)
 			return sucessResult(list)
 		} catch (e: Exception) {
 			return errorResult(e)
 		}
 	}
 
-	override fun listByUserFollow(sess_username: String, userid: Int): Result {
+	override fun listByUserFollow(sess_username: String?, userid: Int): Result {
 		try {
-			val u = um!!.findUserByName(sess_username)
-			val sess_userid = if (u == null) -1 else u.id
-			val list = um.listByUserFollow(sess_userid, userid)
+			val sess_userid =
+					if (sess_username == null) -1
+					else um!!.findUserByName(sess_username).let {
+						if (it == null) -1 else it.id
+					}
+			val list = um!!.listByUserFollow(sess_userid, userid)
 			return sucessResult(list)
 		} catch (e: Exception) {
 			return errorResult(e)
