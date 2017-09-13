@@ -11,6 +11,7 @@ window.cj = {
 
         $(document).on("click", ".follow", cj.onClickFollow);
         $(document).on("click", ".article .pointer", cj.openArticle);
+        $(document).on("click", ".user .pointer", cj.openUser);
     },
     //当点击label
     onClickLabel: function (){
@@ -38,7 +39,7 @@ window.cj = {
         });
     },
     // 0 is 文章 1 is 粉丝 2 is 关注
-    type: 1,
+    type: 2,
     // 当前页数
     pageNum: 0,
     // 每页多少
@@ -109,9 +110,22 @@ window.cj = {
             return;
         }
     },
+
     // 获得用户的html
     userHtml(u) {
-        return u.toString();
+        if (u.favoriteNumber == null) u.favoriteNumber = 0;
+        if (u.numberOfWords == null) u.numberOfWords = 0;
+        var isFollow = u.isFollow ? "取消关注" : "关注";
+        return "<div class=\"user\" data-name=\"" + u.username
+            + "\"><span class=\"pointer name\">" + u.username
+            + "</span><span class=\"label label-primary pointer\">文章:" + u.numberOfArticles
+            + "</span><span class=\"label label-info pointer\">粉丝:" + u.numberOfFans
+            + "</span><span class=\"label label-warning pointer\">关注:" + u.numberOfConcerns
+            + "</span><span class=\"label label-success pointer\">喜欢:" + u.favoriteNumber
+            + "</span><span class=\"label label-danger pointer\">字数:" + u.numberOfWords
+            + "</span><button class=\"follow\" data-name=\"" + u.username
+            + "\">" + isFollow
+            + "</button><hr></div>";
     },
     // 时间戳转换字符串
     timestampToString(time) {
@@ -126,5 +140,9 @@ window.cj = {
     openArticle() {
         location = "article.do?id=" + $(this).parent().parent().data("id");
     },
+    // 打开user
+    openUser() {
+        location = "person.do?name=" + $(this).parent().data("name");
+    }
 }
 $(cj.onLoad)

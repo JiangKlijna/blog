@@ -64,3 +64,15 @@ a:hover{
     padding-left: 4px;
     color: #b3b3b3;
 }
+.user .name {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: 700;
+}
+.user .label {
+    margin-left: 5px;
+}
+.user .follow {
+    float: right;
+    margin-right: 10px;
+}
