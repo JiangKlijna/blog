@@ -29,7 +29,6 @@ window.cj = {
         var $follow = $(this);
         $.post(cj.FOLLOW_USER_URL, {'tousername': $(this).data('name')}, function (result) {
             if (result.code == 0) {
-                var $numofollow = $('#numofollow');
                 if (result.data == 1) {
                     $follow.html("取消关注");
                 } else {
@@ -115,7 +114,10 @@ window.cj = {
     userHtml(u) {
         if (u.favoriteNumber == null) u.favoriteNumber = 0;
         if (u.numberOfWords == null) u.numberOfWords = 0;
-        var isFollow = u.isFollow ? "取消关注" : "关注";
+        var isFollow = u.follow ? "取消关注" : "关注";
+        var follow_html = u.username == username ? "" : "<button class=\"follow\" data-name=\"" + u.username
+                                                                     + "\">" + isFollow
+                                                                     + "</button>"
         return "<div class=\"user\" data-name=\"" + u.username
             + "\"><span class=\"pointer name\">" + u.username
             + "</span><span class=\"label label-primary pointer\">文章:" + u.numberOfArticles
@@ -123,9 +125,8 @@ window.cj = {
             + "</span><span class=\"label label-warning pointer\">关注:" + u.numberOfConcerns
             + "</span><span class=\"label label-success pointer\">喜欢:" + u.favoriteNumber
             + "</span><span class=\"label label-danger pointer\">字数:" + u.numberOfWords
-            + "</span><button class=\"follow\" data-name=\"" + u.username
-            + "\">" + isFollow
-            + "</button><hr></div>";
+            + "</span>" + follow_html
+            + "<hr></div>";
     },
     // 时间戳转换字符串
     timestampToString(time) {
