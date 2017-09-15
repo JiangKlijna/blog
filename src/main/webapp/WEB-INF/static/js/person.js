@@ -17,7 +17,34 @@ window.cj = {
     onClickLabel: function (){
         var type = $(this).data("type");
         if (type == cj.type) return;
-
+        if (type == 0) { // 加载文章
+            $.post(cj.ARTICLE_LIST_URL, {'username': name, 'perPage': cj.perPage, 'pageNum': 0}, function (result){
+                if (result.code == 0) {
+                    cj.type = 0;
+                    $('#listview').html('');
+                    cj.displayArticles(result.data);
+                    cj.pageNum = 1;
+                } else dialog.info(result.message);
+            });
+        } else if (type == 1) { // 加载粉丝
+            $.post(cj.FOLLOW_USER_LIST_URL, {'userid': userid, 'perPage': cj.perPage, 'pageNum': 0}, function (result){
+                if (result.code == 0) {
+                    cj.type = 1;
+                    $('#listview').html('');
+                    cj.displayUsers(result.data);
+                    cj.pageNum = 1;
+                } else dialog.info(result.message);
+            });
+        } else { // 加载关注
+            $.post(cj.USER_FOLLOW_LIST_URL, {'userid': userid, 'perPage': cj.perPage, 'pageNum': 0}, function (result){
+                if (result.code == 0) {
+                    cj.type = 2;
+                    $('#listview').html('');
+                    cj.displayUsers(result.data);
+                    cj.pageNum = 1;
+                } else dialog.info(result.message);
+            });
+        }
 
     },
     //当点击关注的时候
@@ -38,7 +65,7 @@ window.cj = {
         });
     },
     // 0 is 文章 1 is 粉丝 2 is 关注
-    type: 2,
+    type: 0,
     // 当前页数
     pageNum: 0,
     // 每页多少
@@ -51,12 +78,12 @@ window.cj = {
                 else dialog.info(result.message);
             });
         } else if (cj.type == 1) { // 加载粉丝
-            $.post(cj.USER_FOLLOW_LIST_URL, {'userid': userid, 'perPage': cj.perPage, 'pageNum': cj.pageNum}, function (result){
+            $.post(cj.FOLLOW_USER_LIST_URL, {'userid': userid, 'perPage': cj.perPage, 'pageNum': cj.pageNum}, function (result){
                 if (result.code == 0) cj.displayUsers(result.data);
                 else dialog.info(result.message);
             });
         } else { // 加载关注
-            $.post(cj.FOLLOW_USER_LIST_URL, {'userid': userid, 'perPage': cj.perPage, 'pageNum': cj.pageNum}, function (result){
+            $.post(cj.USER_FOLLOW_LIST_URL, {'userid': userid, 'perPage': cj.perPage, 'pageNum': cj.pageNum}, function (result){
                 if (result.code == 0) cj.displayUsers(result.data);
                 else dialog.info(result.message);
             });
@@ -76,7 +103,8 @@ window.cj = {
         }
         if (articles.length < cj.perPage) { // 如果文章数小于期望的数量则隐藏加载更多
             $('#loadmore').hide();
-            return;
+        } else {
+            $('#loadmore').show();
         }
     },
     // 获得文章的html
@@ -114,10 +142,8 @@ window.cj = {
     userHtml(u) {
         if (u.favoriteNumber == null) u.favoriteNumber = 0;
         if (u.numberOfWords == null) u.numberOfWords = 0;
-        var isFollow = u.follow ? "取消关注" : "关注";
-        var follow_html = u.username == username ? "" : "<button class=\"follow\" data-name=\"" + u.username
-                                                                     + "\">" + isFollow
-                                                                     + "</button>"
+        var follow_html = u.username == username ? "" : "<button class=\"follow\" data-name=\"" + u.username + "\">"
+            + (u.follow ? "取消关注" : "关注") + "</button>";
         return "<div class=\"user\" data-name=\"" + u.username
             + "\"><span class=\"pointer name\">" + u.username
             + "</span><span class=\"label label-primary pointer\">文章:" + u.numberOfArticles

@@ -85,7 +85,7 @@ class UserControl : BaseControl() {
 		val sess_un = sess_username
 		testParameter(userid).let { if (!it) return errorParameterResult }
 		return us!!.listByFollowUser(sess_un, userid!!).apply {
-			setMessage(if (isSucess()) Result.SUCCESS_FOLLOW else Result.FAILURE_FOLLOW)
+			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
 		}
 	}
 
@@ -98,7 +98,7 @@ class UserControl : BaseControl() {
 		val sess_un = sess_username
 		testParameter(userid).let { if (!it) return errorParameterResult }
 		return us!!.listByUserFollow(sess_un, userid!!).apply {
-			setMessage(if (isSucess()) Result.SUCCESS_FOLLOW else Result.FAILURE_FOLLOW)
+			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
 		}
 	}
 
