@@ -48,7 +48,7 @@ html, body, .hundred {
             <ul class="nav navbar-nav">
 
                 <li class="nav_title"><a href="index.do">主页</a></li>
-                <li class="nav_title"><a href="explore.do">发现</a></li>
+                <li class="nav_title"><a href="follow.do">关注</a></li>
                 <li>
                     <form action="search.do"><div class="input-group">
                         <input type="text" class="form-control" name="query">

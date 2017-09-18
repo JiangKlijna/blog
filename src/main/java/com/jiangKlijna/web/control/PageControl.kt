@@ -27,7 +27,7 @@ class PageControl : BaseControl() {
 	 */
 	var isLogin: Boolean = false
 		get() = sess_username.let {
-			return if (it != null) us!!.find(it).isSucess() else false
+			if (it != null) us!!.find(it).isSucess() else false
 		}
 
 	@Resource(name = "userService")
@@ -45,7 +45,7 @@ class PageControl : BaseControl() {
 	@RequestMapping("index.do")
 	fun index(m: Model): String {
 		val isLogin = isLogin
-		var username = sess_username
+		val username = sess_username
 		m.addAttribute("isLogin", isLogin)
 		m.addAttribute("username", username)
 
@@ -53,12 +53,12 @@ class PageControl : BaseControl() {
 	}
 
 	/**
-	 * 发现
+	 * 关注
 	 */
-	@RequestMapping("explore.do")
-	fun explore(m: Model): String {
+	@RequestMapping("follow.do")
+	fun follow(m: Model): String {
 		val isLogin = isLogin
-		var username = sess_username
+		val username = sess_username
 		m.addAttribute("isLogin", isLogin)
 		m.addAttribute("username", username)
 
@@ -71,7 +71,7 @@ class PageControl : BaseControl() {
 	@RequestMapping("search.do")
 	fun search(query: String, m: Model): String {
 		val isLogin = isLogin
-		var username = sess_username
+		val username = sess_username
 		m.addAttribute("isLogin", isLogin)
 		m.addAttribute("username", username)
 
