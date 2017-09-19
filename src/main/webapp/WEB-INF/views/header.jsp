@@ -51,9 +51,9 @@ html, body, .hundred {
                 <li class="nav_title"><a href="follow.do">关注</a></li>
                 <li>
                     <form action="search.do"><div class="input-group">
-                        <input type="text" class="form-control" name="query">
+                        <input id="nav_text" type="text" class="form-control" name="query">
                         <span class="input-group-btn">
-                        <button class="btn btn-info" type="submit"><span class="glyphicon glyphicon-search"></span>搜索</button>
+                        <button id="nav_search" class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>搜索</button>
                         </span>
                     </div></form>
                 </li>

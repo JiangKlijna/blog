@@ -69,7 +69,8 @@ class PageControl : BaseControl() {
 	 * 搜索
 	 */
 	@RequestMapping("search.do")
-	fun search(query: String, m: Model): String {
+	fun search(query: String?, m: Model): String {
+		if (query == null || query == "") return "redirect:index.do"
 		val isLogin = isLogin
 		val username = sess_username
 		m.addAttribute("isLogin", isLogin)
