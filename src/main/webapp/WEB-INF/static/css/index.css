@@ -1,6 +1,19 @@
 #main {
     display: block;
     width: 1000px;
+    min-height: 500px;
     margin: 0 auto;
     background-color: #f8f8f8;
+}
+#articles {
+    width: 660px;
+    min-height: 500px;
+    float: left;
+    background-color: #abcdef;
+}
+#subjects {
+    width: 340px;
+    min-height: 500px;
+    float: right;
+    background-color: #c5eecf;
 }

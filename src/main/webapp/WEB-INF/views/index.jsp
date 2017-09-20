@@ -9,7 +9,8 @@
 <body>
 <%@ include file="header.jsp" %>
 <section id="main">
-    <h1 id="jqtest">Echo Server</h1>
+    <article id="articles"></article>
+    <aside id="subjects"></aside>
 </section>
 <%@ include file="footer.jsp" %>
 <script src="static/js/index.js"></script>
