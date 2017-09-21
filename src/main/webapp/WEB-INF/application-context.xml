@@ -14,6 +14,8 @@
     http://www.springframework.org/schema/websocket
     http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
+    <bean id="ChatWebSocketHandler" class="com.jiangKlijna.web.websocket.ChatWebSocketHandler" />
+
     <bean id="DesUtils" class="com.jiangKlijna.web.app.DesUtils" />
 
     <bean id="sucessResult" class="com.jiangKlijna.web.app.Result" scope="request">
