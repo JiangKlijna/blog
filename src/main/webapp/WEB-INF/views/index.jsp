@@ -9,8 +9,18 @@
 <body>
 <%@ include file="header.jsp" %>
 <section id="main">
-    <article id="articles"></article>
-    <aside id="subjects"></aside>
+    <article id="articles">
+
+        <div>
+            <p id="article_load_more" class="text-center pointer">查看更多</p><hr>
+        </div>
+    </article>
+    <aside id="subjects">
+
+        <div>
+            <p id="subject_load_more" class="text-center pointer">查看更多</p><hr>
+        </div>
+    </aside>
 </section>
 <%@ include file="footer.jsp" %>
 <script src="static/js/index.js"></script>

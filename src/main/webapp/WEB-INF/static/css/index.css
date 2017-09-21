@@ -5,15 +5,19 @@
     margin: 0 auto;
     background-color: #f8f8f8;
 }
+.pointer {
+    cursor: pointer;
+}
+a:hover{
+    text-decoration: none;
+}
 #articles {
     width: 660px;
     min-height: 500px;
     float: left;
-    background-color: #abcdef;
 }
 #subjects {
     width: 340px;
     min-height: 500px;
     float: right;
-    background-color: #c5eecf;
 }
