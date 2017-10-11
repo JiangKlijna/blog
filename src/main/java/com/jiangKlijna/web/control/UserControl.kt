@@ -102,20 +102,4 @@ class UserControl : BaseControl() {
 		}
 	}
 
-
-    //    @Resource(name = "redisTemplate")
-    //    private RedisTemplate<String, User> redisTemplate;
-    //    @RequestMapping("/index.do")
-    //    public String reids(Model m) {
-    //        User u0 = new User(10, "test", "test");
-    //        ValueOperations<String, User> valueOper = redisTemplate.opsForValue();
-    //        valueOper.set(u0.getId() + "", u0);
-    //        User u1 = valueOper.get(u0.getId() + "");
-    //        System.out.println(u0 == u1);
-    //        System.out.println(u0.toString());
-    //        System.out.println(u1.toString());
-    //        return "index";
-    //    }
-
-
 }
