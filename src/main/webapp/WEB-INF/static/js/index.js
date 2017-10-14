@@ -12,7 +12,7 @@ window.cj = {
         else if (type === 'follow')
             return cj.LIST_ARTICLE_FOLLOW_URL;
         else
-            return cj.LIST_ARTICLE_SEARCH_URL + type;
+            return cj.LIST_ARTICLE_SEARCH_URL;
     },
     // 获得主题列表的url
     getListSubjectUrl: function() {
@@ -21,7 +21,25 @@ window.cj = {
         else if (type === 'follow')
             return cj.LIST_SUBJECT_FOLLOW_URL;
         else
-            return cj.LIST_SUBJECT_SEARCH_URL + type;
+            return cj.LIST_SUBJECT_SEARCH_URL;
+    },
+    // 获得文章列表url的{}
+    getListArticleObj: function() {
+        if (type === 'index')
+            return {};
+        else if (type === 'follow')
+            return {};
+        else
+            return {};
+    },
+    // 获得主题列表url的{}
+    getListSubjectObj: function() {
+        if (type === 'index')
+            return {};
+        else if (type === 'follow')
+            return {};
+        else
+            return {};
     },
     // 当前页数 article
     a_pageNum: 0,
@@ -39,9 +57,19 @@ window.cj = {
     },
     // 当点击#articles #article_load_more
     onClickArticleLoadMore: function () {
+        $.post(cj.getListArticleUrl(), {},
+            function (data) {
+
+            }
+        );
     },
     // 当点击#subjects #subject_load_more
     onClickSubjectLoadMore: function () {
+        $.post(cj.getListSubjectUrl(), {},
+            function (data) {
+
+            }
+        );
     },
     // 时间戳转换字符串
     timestampToString(time) {
