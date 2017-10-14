@@ -1,46 +1,10 @@
 window.cj = {
-    LIST_ARTICLE_INDEX_URL: '',
+    LIST_ARTICLE_INDEX_URL: 'article/listByIndex.json',
     LIST_SUBJECT_INDEX_URL: '',
     LIST_ARTICLE_FOLLOW_URL: '',
     LIST_SUBJECT_FOLLOW_URL: '',
     LIST_ARTICLE_SEARCH_URL: '',
     LIST_SUBJECT_SEARCH_URL: '',
-    // 获得文章列表的url
-    getListArticleUrl: function() {
-        if (type === 'index')
-            return cj.LIST_ARTICLE_INDEX_URL;
-        else if (type === 'follow')
-            return cj.LIST_ARTICLE_FOLLOW_URL;
-        else
-            return cj.LIST_ARTICLE_SEARCH_URL;
-    },
-    // 获得主题列表的url
-    getListSubjectUrl: function() {
-        if (type === 'index')
-            return cj.LIST_SUBJECT_INDEX_URL;
-        else if (type === 'follow')
-            return cj.LIST_SUBJECT_FOLLOW_URL;
-        else
-            return cj.LIST_SUBJECT_SEARCH_URL;
-    },
-    // 获得文章列表url的{}
-    getListArticleObj: function() {
-        if (type === 'index')
-            return {};
-        else if (type === 'follow')
-            return {};
-        else
-            return {};
-    },
-    // 获得主题列表url的{}
-    getListSubjectObj: function() {
-        if (type === 'index')
-            return {};
-        else if (type === 'follow')
-            return {};
-        else
-            return {};
-    },
     // 当前页数 article
     a_pageNum: 0,
     // 每页多少 article
@@ -57,19 +21,35 @@ window.cj = {
     },
     // 当点击#articles #article_load_more
     onClickArticleLoadMore: function () {
-        $.post(cj.getListArticleUrl(), {},
-            function (data) {
+        var url = null;
+        var obj = {'perPage': cj.a_perPage, 'pageNum': cj.a_pageNum};
+        if (type === 'index') {
+            url = cj.LIST_ARTICLE_INDEX_URL;
+        } else if (type === 'follow') {
+            url = cj.LIST_ARTICLE_FOLLOW_URL;
+        } else {
+            url = cj.LIST_ARTICLE_SEARCH_URL;
+        }
 
-            }
-        );
+        $.post(url, obj, function (data) {
+
+        });
     },
     // 当点击#subjects #subject_load_more
     onClickSubjectLoadMore: function () {
-        $.post(cj.getListSubjectUrl(), {},
-            function (data) {
+        var url = null;
+        var obj = {'perPage': cj.s_perPage, 'pageNum': cj.s_pageNum};
+        if (type === 'index') {
+            url = cj.LIST_SUBJECT_INDEX_URL;
+        } else if (type === 'follow') {
+            url = cj.LIST_SUBJECT_FOLLOW_URL;
+        } else {
+            url = cj.LIST_SUBJECT_SEARCH_URL;
+        }
 
-            }
-        );
+        $.post(url, obj, function (data) {
+
+        });
     },
     // 时间戳转换字符串
     timestampToString(time) {
