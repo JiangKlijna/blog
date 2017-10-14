@@ -217,6 +217,6 @@
 
   <select id="listByIndex" resultMap="ViewArticle">
     select id, title, preview, userid, subjectid, favoritenumber, seenumber, numberofwords, createtime, username, numberOfComments, subjectname
-    from v_blog_article where limit #{limit} offset #{offset}
+    from v_blog_article limit #{limit} offset #{offset}
   </select>
 </mapper>

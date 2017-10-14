@@ -32,7 +32,7 @@ window.cj = {
         }
 
         $.post(url, obj, function (data) {
-
+            console.log(data);
         });
     },
     // 当点击#subjects #subject_load_more
@@ -48,7 +48,7 @@ window.cj = {
         }
 
         $.post(url, obj, function (data) {
-
+            console.log(data);
         });
     },
     // 时间戳转换字符串
