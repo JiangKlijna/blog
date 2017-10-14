@@ -84,6 +84,15 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 		}
 	}
 
+	override fun listByIndex(pageNum: Int, perPage: Int): Result {
+		try {
+			val list = am!!.listByIndex(perPage, perPage * pageNum)
+			return sucessResult(list)
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
+
 	override fun follow(articleid: Int, username: String): Result {
 		try {
 			val a = am!!.selectByPrimaryKey(articleid)

@@ -49,6 +49,9 @@ interface ArticleService {
 
 	//喜欢,点赞文章
 	fun follow(articleid: Int, username: String): Result
+
+	//分页查询index页面所有的文章
+	fun listByIndex(pageNum: Int, perPage: Int): Result
 }
 
 interface CommentService {

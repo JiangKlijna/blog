@@ -57,6 +57,8 @@ interface ArticleMapper {
 
 	fun listBySubject(@Param("subjectid") subjectid: Int, @Param("limit") limit: Int, @Param("offset") offset: Int): List<VArticle>
 
+	fun listByIndex(@Param("limit") limit: Int, @Param("offset") offset: Int): List<VArticle>
+
 	fun findById(id: Int): VArticle
 
 }

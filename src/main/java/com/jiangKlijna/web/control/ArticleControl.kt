@@ -82,6 +82,18 @@ class ArticleControl : BaseControl() {
 	}
 
 	/**
+	 * 分页查询index页面所有的文章
+	 */
+	@ResponseBody
+	@RequestMapping("/listByIndex.json", method = arrayOf(RequestMethod.POST))
+	fun listByIndex(pageNum: Int?, perPage: Int?): Result {
+		testParameter(pageNum, perPage).let { if (!it) return errorParameterResult }
+		return `as`!!.listByIndex(pageNum!!, perPage!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
+		}
+	}
+
+	/**
 	 *  喜欢文章(点赞),给作者推送消息
 	 */
 	@ResponseBody

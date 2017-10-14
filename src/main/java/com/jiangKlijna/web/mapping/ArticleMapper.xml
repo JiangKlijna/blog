@@ -214,4 +214,9 @@
   <select id="findById" parameterType="java.lang.Integer" resultMap="ViewArticle">
     select * from v_blog_article where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="listByIndex" resultMap="ViewArticle">
+    select id, title, preview, userid, subjectid, favoritenumber, seenumber, numberofwords, createtime, username, numberOfComments, subjectname
+    from v_blog_article where limit #{limit} offset #{offset}
+  </select>
 </mapper>
