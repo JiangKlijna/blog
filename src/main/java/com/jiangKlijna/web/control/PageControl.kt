@@ -42,7 +42,7 @@ class PageControl : BaseControl() {
 	/**
 	 * 主頁
 	 */
-	@RequestMapping("index.do")
+	@RequestMapping("index.do", method = arrayOf(RequestMethod.GET))
 	fun index(m: Model): String {
 		val isLogin = isLogin
 		val username = sess_username
@@ -55,7 +55,7 @@ class PageControl : BaseControl() {
 	/**
 	 * 关注
 	 */
-	@RequestMapping("follow.do")
+	@RequestMapping("follow.do", method = arrayOf(RequestMethod.GET))
 	fun follow(m: Model): String {
 		val isLogin = isLogin
 		val username = sess_username
@@ -68,7 +68,7 @@ class PageControl : BaseControl() {
 	/**
 	 * 搜索
 	 */
-	@RequestMapping("search.do")
+	@RequestMapping("search.do", method = arrayOf(RequestMethod.GET))
 	fun search(query: String?, m: Model): String {
 		if (query == null || query == "") return "redirect:index.do"
 		val isLogin = isLogin
@@ -82,7 +82,7 @@ class PageControl : BaseControl() {
 	/**
 	 * 写文章
 	 */
-	@RequestMapping("write.do")
+	@RequestMapping("write.do", method = arrayOf(RequestMethod.GET))
 	fun write(m: Model): String = if (isLogin) {
 		val username = sess_username
 		m.addAttribute("isLogin", true)
@@ -93,7 +93,7 @@ class PageControl : BaseControl() {
 	/**
 	 * 每个人的主页
 	 */
-	@RequestMapping("person.do")
+	@RequestMapping("person.do", method = arrayOf(RequestMethod.GET))
 	fun people(name: String, m: Model): String {
 		val isLogin = isLogin
 		val username = sess_username
@@ -112,7 +112,7 @@ class PageControl : BaseControl() {
 	/**
 	 * 文章
 	 */
-	@RequestMapping("article.do")
+	@RequestMapping("article.do", method = arrayOf(RequestMethod.GET))
 	fun article(id: Int?, m: Model): String {
 		val isLogin = isLogin
 		val username = sess_username
@@ -133,7 +133,7 @@ class PageControl : BaseControl() {
 	/**
 	 * 课题
 	 */
-	@RequestMapping("subject.do")
+	@RequestMapping("subject.do", method = arrayOf(RequestMethod.GET))
 	fun subject(id: Int?, m: Model): String {
 		val isLogin = isLogin
 		val username = sess_username
@@ -156,7 +156,7 @@ class PageControl : BaseControl() {
 	/**
 	 * 如果用户已登录则重定向到index主页
 	 */
-	@RequestMapping("sign.do")
+	@RequestMapping("sign.do", method = arrayOf(RequestMethod.GET))
 	fun sign(): String = if (isLogin) "redirect:index.do" else "sign"
 
 }
