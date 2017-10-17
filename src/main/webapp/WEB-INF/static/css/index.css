@@ -1,9 +1,7 @@
 #main {
     display: block;
     width: 1000px;
-    min-height: 500px;
     margin: 0 auto;
-    background-color: #f8f8f8;
 }
 .pointer {
     cursor: pointer;
@@ -13,11 +11,46 @@ a:hover{
 }
 #articles {
     width: 660px;
-    min-height: 500px;
     float: left;
+    min-height: 660px;
+    background-color: #f8f8f8;
 }
 #subjects {
     width: 340px;
-    min-height: 500px;
+    float: right;
+    background-color: #f8f8f8;
+}
+/*
+article
+*/
+.article .username {
+    font-size: 18px;
+    margin-left: 10px;
+}
+.article .content {
+    margin-left: 10px;
+}
+.article .time {
+    margin-left: 5px;
+}
+.article span {
+    color: #666;
+}
+.article .atitle {
+    margin-left: 10px;
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+}
+.article .right {
+    margin-right: 10px;
     float: right;
 }
+.article .readmore {
+    padding-left: 4px;
+    color: #b3b3b3;
+}
+/*
+subject
+*/
