@@ -118,4 +118,9 @@
   <select id="findById" parameterType="java.lang.Integer" resultMap="ViewSubject">
     select * from v_blog_subject where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="listByIndex" resultMap="ViewSubject">
+    select * from v_blog_subject limit #{limit} offset #{offset}
+  </select>
+
 </mapper>

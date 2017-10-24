@@ -74,4 +74,7 @@ interface SubjectService {
 
 	//是否订阅
 	fun isFollow(subjectid: Int, username: String): Result
+
+	//分页查询index页面所有的主题
+	fun listByIndex(pageNum: Int, perPage: Int): Result
 }

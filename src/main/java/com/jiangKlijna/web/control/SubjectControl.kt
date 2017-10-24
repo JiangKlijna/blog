@@ -31,4 +31,17 @@ class SubjectControl : BaseControl() {
 			setMessage(if (isSucess()) Result.SUCCESS_FOLLOW else Result.FAILURE_FOLLOW)
 		}
 	}
+
+	/**
+	 * 分页查询index页面所有的主题
+	 */
+	@ResponseBody
+	@RequestMapping("/listByIndex.json", method = arrayOf(RequestMethod.POST))
+	fun listByIndex(pageNum: Int?, perPage: Int?): Result {
+		testParameter(pageNum, perPage).let { if (!it) return errorParameterResult }
+		return ss!!.listByIndex(pageNum!!, perPage!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
+		}
+	}
+
 }

@@ -1,7 +1,9 @@
 package com.jiangKlijna.web.dao
 
 import com.jiangKlijna.web.bean.Subject
+import com.jiangKlijna.web.bean.VArticle
 import com.jiangKlijna.web.bean.VSubject
+import org.apache.ibatis.annotations.Param
 
 interface SubjectMapper {
 	/**
@@ -55,4 +57,7 @@ interface SubjectMapper {
 	fun findSubjectByTitle(title: String): Subject?
 
 	fun findById(id: Int): VSubject
+
+	fun listByIndex(@Param("limit") limit: Int, @Param("offset") offset: Int): List<VSubject>
+
 }

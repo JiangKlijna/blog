@@ -60,4 +60,14 @@ class SubjectServiceImpl : BaseService(), SubjectService {
 			return errorResult(e)
 		}
 	}
+
+	override fun listByIndex(pageNum: Int, perPage: Int): Result {
+		try {
+			val list = sm!!.listByIndex(perPage, perPage * pageNum)
+			return sucessResult(list)
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
+
 }
