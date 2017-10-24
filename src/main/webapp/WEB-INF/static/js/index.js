@@ -104,10 +104,9 @@ window.cj = {
     },
     // 获得文章的html
     subjectHtml(s) {
-        return "<div class=\"subject\" data-id=\"" + s.id
-            + "\"><a href='#'><span class=\"badge pull-right\">" + s.numberOfArticles
-            + "</span>" + s.title
-            + "</a><hr></div>";
+        return "<div class=\"subject\"><a href='subject.do?id=" + s.id
+            + "'><span class=\"badge pull-right\">" + s.numberOfArticles
+            + "</span>" + s.title + "</a><hr></div>";
     },
     // 时间戳转换字符串
     timestampToString(time) {
