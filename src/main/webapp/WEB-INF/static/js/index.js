@@ -1,6 +1,6 @@
 window.cj = {
     LIST_ARTICLE_INDEX_URL: 'article/listByIndex.json',
-    LIST_SUBJECT_INDEX_URL: '',
+    LIST_SUBJECT_INDEX_URL: 'subject/listByIndex.json',
     LIST_ARTICLE_FOLLOW_URL: '',
     LIST_SUBJECT_FOLLOW_URL: '',
     LIST_ARTICLE_SEARCH_URL: '',
@@ -48,8 +48,9 @@ window.cj = {
             url = cj.LIST_SUBJECT_SEARCH_URL;
         }
 
-        $.post(url, obj, function (data) {
-            console.log(data);
+        $.post(url, obj, function (result) {
+            if (result.code == 0) cj.displaySubjects(result.data);
+            else dialog.info(result.message);
         });
     },
     // 显示文章列表
@@ -58,7 +59,7 @@ window.cj = {
             $('#article_load_more').hide();
             return;
         }
-        cj.pageNum++;
+        cj.a_pageNum++;
         var $articles = $('#articles');
         for (var i in articles) {
             var html = cj.articleHtml(articles[i]);
@@ -82,6 +83,31 @@ window.cj = {
             + "</span><span class=\"right pointer\">" + a.numberOfComments
             + "条评论</span><span class=\"right pointer\">" + a.favoritenumber
             + " 赞</span></p><hr></div>";
+    },
+    // 显示主题列表
+    displaySubjects(subjects) {
+        if (subjects.length == 0) {
+            $('#subject_load_more').hide();
+            return;
+        }
+        cj.s_pageNum++;
+        var $subjects = $('#subjects');
+        for (var i in subjects) {
+            var html = cj.subjectHtml(subjects[i]);
+            $subjects.prepend(html);
+        }
+         // 如果文章数小于期望的数量则隐藏加载更多
+        if (subjects.length == 0 || subjects.length < cj.s_perPage) {
+            $('#subject_load_more').parent().hide();
+            return;
+        }
+    },
+    // 获得文章的html
+    subjectHtml(s) {
+        return "<div class=\"subject\" data-id=\"" + s.id
+            + "\"><a href='#'><span class=\"badge pull-right\">" + s.numberOfArticles
+            + "</span>" + s.title
+            + "</a><hr></div>";
     },
     // 时间戳转换字符串
     timestampToString(time) {
