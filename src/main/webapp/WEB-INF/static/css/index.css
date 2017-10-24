@@ -18,6 +18,7 @@ a:hover{
 #subjects {
     width: 340px;
     float: right;
+    min-height: 660px;
     background-color: #f8f8f8;
 }
 /*
