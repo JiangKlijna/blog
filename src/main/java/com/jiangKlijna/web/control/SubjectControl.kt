@@ -55,4 +55,17 @@ class SubjectControl : BaseControl() {
 			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
 		}
 	}
+
+	/**
+	 * 分页查询follow页面所有的主题
+	 */
+	@ResponseBody
+	@RequestMapping("/listByFollow.json", method = arrayOf(RequestMethod.POST))
+	fun listByFollow(pageNum: Int?, perPage: Int?): Result {
+		val username = sess_username
+		testParameter(username, pageNum, perPage).let { if (!it) return errorParameterResult }
+		return ss!!.listByFollow(pageNum!!, perPage!!, username!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
+		}
+	}
 }

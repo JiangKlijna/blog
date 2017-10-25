@@ -127,4 +127,9 @@
     select * from v_blog_subject where title like '%#{search}%' limit #{limit} offset #{offset}
   </select>
 
+  <select id="listByFollow" resultMap="ViewSubject">
+    select * from v_blog_follow_subject where fromuser=(select id from blog_user where username=#{username})
+    limit #{limit} offset #{offset}
+  </select>
+
 </mapper>

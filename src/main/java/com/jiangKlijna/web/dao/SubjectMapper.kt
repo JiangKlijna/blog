@@ -62,4 +62,6 @@ interface SubjectMapper {
 
 	fun listBySearch(@Param("limit") limit: Int, @Param("offset") offset: Int, @Param("search") search: String): List<VSubject>
 
+	fun listByFollow(@Param("limit") limit: Int, @Param("offset") offset: Int, @Param("username") username: String): List<VSubject>
+
 }

@@ -79,4 +79,13 @@ class SubjectServiceImpl : BaseService(), SubjectService {
 		}
 	}
 
+	override fun listByFollow(pageNum: Int, perPage: Int, username: String): Result {
+		try {
+			val list = sm!!.listByFollow(perPage, perPage * pageNum, username)
+			return sucessResult(list)
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
+
 }
