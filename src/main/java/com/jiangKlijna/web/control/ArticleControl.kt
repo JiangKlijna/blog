@@ -105,6 +105,18 @@ class ArticleControl : BaseControl() {
 		}
 	}
 
+	/**
+	 * 分页查询follow页面所有的文章
+	 */
+	@ResponseBody
+	@RequestMapping("/listByFollow.json", method = arrayOf(RequestMethod.POST))
+	fun listByFollow(pageNum: Int?, perPage: Int?, search: String?): Result {
+		val username = sess_username
+		testParameter(username, pageNum, perPage, search).let { if (!it) return errorParameterResult }
+		return `as`!!.listByFollow(pageNum!!, perPage!!, username!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
+		}
+	}
 
 	/**
 	 *  喜欢文章(点赞),给作者推送消息

@@ -61,6 +61,8 @@ interface ArticleMapper {
 
 	fun listBySearch(@Param("limit") limit: Int, @Param("offset") offset: Int, @Param("search") search: String): List<VArticle>
 
+	fun listByFollow(@Param("limit") limit: Int, @Param("offset") offset: Int, @Param("username") username: String): List<VArticle>
+
 	fun findById(id: Int): VArticle
 
 }

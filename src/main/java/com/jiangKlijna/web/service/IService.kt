@@ -55,6 +55,9 @@ interface ArticleService {
 
 	//分页查询search页面所有的文章
 	fun listBySearch(pageNum: Int, perPage: Int, search: String): Result
+
+	//分页查询follow页面所有的文章
+	fun listByFollow(pageNum: Int, perPage: Int, username: String): Result
 }
 
 interface CommentService {
