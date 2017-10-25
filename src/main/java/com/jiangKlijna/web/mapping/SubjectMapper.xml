@@ -123,4 +123,8 @@
     select * from v_blog_subject limit #{limit} offset #{offset}
   </select>
 
+  <select id="listBySearch" resultMap="ViewSubject">
+    select * from v_blog_subject where title like '%#{search}%' limit #{limit} offset #{offset}
+  </select>
+
 </mapper>

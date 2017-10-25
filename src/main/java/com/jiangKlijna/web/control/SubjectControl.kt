@@ -44,4 +44,15 @@ class SubjectControl : BaseControl() {
 		}
 	}
 
+	/**
+	 * 分页查询search页面所有的主题
+	 */
+	@ResponseBody
+	@RequestMapping("/listBySearch.json", method = arrayOf(RequestMethod.POST))
+	fun listBySearch(pageNum: Int?, perPage: Int?, search: String?): Result {
+		testParameter(pageNum, perPage, search).let { if (!it) return errorParameterResult }
+		return ss!!.listBySearch(pageNum!!, perPage!!, search!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
+		}
+	}
 }

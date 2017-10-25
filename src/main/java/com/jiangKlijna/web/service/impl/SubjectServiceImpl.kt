@@ -70,4 +70,13 @@ class SubjectServiceImpl : BaseService(), SubjectService {
 		}
 	}
 
+	override fun listBySearch(pageNum: Int, perPage: Int, search: String): Result {
+		try {
+			val list = sm!!.listBySearch(perPage, perPage * pageNum, search)
+			return sucessResult(list)
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
+
 }

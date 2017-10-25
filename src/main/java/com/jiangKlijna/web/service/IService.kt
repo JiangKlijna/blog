@@ -77,4 +77,7 @@ interface SubjectService {
 
 	//分页查询index页面所有的主题
 	fun listByIndex(pageNum: Int, perPage: Int): Result
+
+	//分页查询search页面所有的主题
+	fun listBySearch(pageNum: Int, perPage: Int, search: String): Result
 }
