@@ -60,6 +60,6 @@ interface SubjectMapper {
 
 	fun listByIndex(@Param("limit") limit: Int, @Param("offset") offset: Int): List<VSubject>
 
-	fun listBySearch(@Param("limit") limit: Int, @Param("offset") offset: Int, search: String): List<VSubject>
+	fun listBySearch(@Param("limit") limit: Int, @Param("offset") offset: Int, @Param("search") search: String): List<VSubject>
 
 }

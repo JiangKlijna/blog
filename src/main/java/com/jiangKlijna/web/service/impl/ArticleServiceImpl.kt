@@ -93,6 +93,15 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 		}
 	}
 
+	override fun listBySearch(pageNum: Int, perPage: Int, search: String): Result {
+		try {
+			val list = am!!.listBySearch(perPage, perPage * pageNum, search)
+			return sucessResult(list)
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
+
 	override fun follow(articleid: Int, username: String): Result {
 		try {
 			val a = am!!.selectByPrimaryKey(articleid)

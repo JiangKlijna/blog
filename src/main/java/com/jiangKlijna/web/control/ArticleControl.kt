@@ -94,6 +94,19 @@ class ArticleControl : BaseControl() {
 	}
 
 	/**
+	 * 分页查询search页面所有的文章
+	 */
+	@ResponseBody
+	@RequestMapping("/listBySearch.json", method = arrayOf(RequestMethod.POST))
+	fun listBySearch(pageNum: Int?, perPage: Int?, search: String?): Result {
+		testParameter(pageNum, perPage, search).let { if (!it) return errorParameterResult }
+		return `as`!!.listBySearch(pageNum!!, perPage!!, search!!).apply {
+			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
+		}
+	}
+
+
+	/**
 	 *  喜欢文章(点赞),给作者推送消息
 	 */
 	@ResponseBody
