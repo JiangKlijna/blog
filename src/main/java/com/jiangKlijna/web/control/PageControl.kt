@@ -56,14 +56,13 @@ class PageControl : BaseControl() {
 	 * 关注
 	 */
 	@RequestMapping("follow.do", method = arrayOf(RequestMethod.GET))
-	fun follow(m: Model): String {
-		val isLogin = isLogin
+	fun follow(m: Model): String = if (isLogin) {
 		val username = sess_username
-		m.addAttribute("isLogin", isLogin)
+		m.addAttribute("isLogin", true)
 		m.addAttribute("username", username)
 		m.addAttribute("type", "follow")
-		return "index"
-	}
+		"index"
+	} else "redirect:sign.do"
 
 	/**
 	 * 搜索
