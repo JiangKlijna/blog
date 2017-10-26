@@ -128,7 +128,8 @@
   </select>
 
   <select id="listByFollow" resultMap="ViewSubject">
-    select * from v_blog_follow_subject where fromuser=(select id from blog_user where username=#{username})
+    select * from v_blog_subject where id in
+    (select tosubject from blog_follow_subject where fromuser=(select id from blog_user where username=#{username}))
     limit #{limit} offset #{offset}
   </select>
 
