@@ -21,6 +21,7 @@
     </aside>
 </section>
 <%@ include file="footer.jsp" %>
+<%@ include file="dialog.jsp" %>
 <script>type='${type}'</script>
 <script src="static/js/index.js"></script>
 </body>

@@ -1,10 +1,10 @@
 window.cj = {
     LIST_ARTICLE_INDEX_URL: 'article/listByIndex.json',
     LIST_SUBJECT_INDEX_URL: 'subject/listByIndex.json',
-    LIST_ARTICLE_FOLLOW_URL: '',
-    LIST_SUBJECT_FOLLOW_URL: '',
-    LIST_ARTICLE_SEARCH_URL: '',
-    LIST_SUBJECT_SEARCH_URL: '',
+    LIST_ARTICLE_FOLLOW_URL: 'article/listByFollow.json',
+    LIST_SUBJECT_FOLLOW_URL: 'subject/listByFollow.json',
+    LIST_ARTICLE_SEARCH_URL: 'article/listBySearch.json',
+    LIST_SUBJECT_SEARCH_URL: 'subject/listBySearch.json',
     // 当前页数 article
     a_pageNum: 0,
     // 每页多少 article
@@ -30,6 +30,7 @@ window.cj = {
             url = cj.LIST_ARTICLE_FOLLOW_URL;
         } else {
             url = cj.LIST_ARTICLE_SEARCH_URL;
+            obj.search = type;
         }
         $.post(url, obj, function (result) {
             if (result.code == 0) cj.displayArticles(result.data);
@@ -46,6 +47,7 @@ window.cj = {
             url = cj.LIST_SUBJECT_FOLLOW_URL;
         } else {
             url = cj.LIST_SUBJECT_SEARCH_URL;
+            obj.search = type;
         }
 
         $.post(url, obj, function (result) {
