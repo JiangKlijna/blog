@@ -124,7 +124,7 @@
   </select>
 
   <select id="listBySearch" resultMap="ViewSubject">
-    select * from v_blog_subject where title like '%#{search}%' limit #{limit} offset #{offset}
+    select * from v_blog_subject where title like '%${search}%' limit #{limit} offset #{offset}
   </select>
 
   <select id="listByFollow" resultMap="ViewSubject">

@@ -222,7 +222,7 @@
 
   <select id="listBySearch" resultMap="ViewArticle">
     select id, title, preview, userid, subjectid, favoritenumber, seenumber, numberofwords, createtime, username, numberOfComments, subjectname
-    from v_blog_article where title like '%#{search}%' limit #{limit} offset #{offset}
+    from v_blog_article where title like '%${search}%' limit #{limit} offset #{offset}
   </select>
 
   <select id="listByFollow" resultMap="ViewArticle">
