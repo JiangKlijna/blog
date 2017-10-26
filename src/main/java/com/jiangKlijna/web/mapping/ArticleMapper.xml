@@ -228,7 +228,7 @@
   <select id="listByFollow" resultMap="ViewArticle">
     select id, title, preview, userid, subjectid, favoritenumber, seenumber, numberofwords, createtime, username, numberOfComments, subjectname
     from v_blog_article
-    where id in (select tosubject from blog_follow_subject where fromuser=(select id from blog_user where username=#{username}))
+    where subjectid in (select tosubject from blog_follow_subject where fromuser=(select id from blog_user where username=#{username}))
     limit #{limit} offset #{offset}
   </select>
 
