@@ -74,7 +74,7 @@ class PageControl : BaseControl() {
 		val username = sess_username
 		m.addAttribute("isLogin", isLogin)
 		m.addAttribute("username", username)
-		m.addAttribute("type", reString(query)) // tomcat
+		m.addAttribute("type", query) // tomcat
 		return "index"
 	}
 
