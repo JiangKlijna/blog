@@ -19,6 +19,10 @@ window.cj = {
         if(type == 'signup') {
             $('#title_signup').click()
         }
+        cj.path = cj.getQueryString("path");
+        if (cj.path == null || cj.path == '') {
+            cj.path = 'index.do';
+        }
     },
     onkeydown: function(e) {
         if(e && e.keyCode == 13) {
@@ -29,7 +33,7 @@ window.cj = {
     onClickSignin: function () {//当点击登陆按钮的时候触发
         var data = cj.getSignData();
         if (data) $.post(cj.SIGNIN_URL, data, function(result){
-            if (result.code == 0) location = "./index.do";
+            if (result.code == 0) location = cj.path;
             else cj.alert(result.message);
         });
     },
