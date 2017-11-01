@@ -14,6 +14,11 @@ window.cj = {
         $('#title_signin').css('color', '#ea6f5a').css("border-bottom","3px solid #ea6f5a");
 
         document.onkeydown = cj.onkeydown;
+        // 根据参数,决定内容
+        var type = cj.getQueryString("type");
+        if(type == 'signup') {
+            $('#title_signup').click()
+        }
     },
     onkeydown: function(e) {
         if(e && e.keyCode == 13) {
@@ -65,6 +70,11 @@ window.cj = {
             return null;
         }
         return {'username': username, 'password': password, 'action': 'json'};
+    },
+    getQueryString: function(name) { // 获取url参数
+         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+         var r = location.search.substr(1).match(reg);
+         return r === null ? null : unescape(r[2]);
     },
     alert: function (msg) {
         $('#alert').slideDown().html(msg);

@@ -81,7 +81,7 @@ html, body, .hundred {
                 </c:when>
                 <c:otherwise>
                     <a type="button" class="btn btn-success navbar-btn" href="sign.do">登陆</a>
-                    <a type="button" class="btn btn-danger navbar-btn" href="sign.do">注册</a>
+                    <a type="button" class="btn btn-danger navbar-btn" href="sign.do?type=signup">注册</a>
                 </c:otherwise>
                 </c:choose>
                 <div>
