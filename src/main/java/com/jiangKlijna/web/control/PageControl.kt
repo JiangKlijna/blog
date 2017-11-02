@@ -62,7 +62,7 @@ class PageControl : BaseControl() {
 		m.addAttribute("username", username)
 		m.addAttribute("type", "follow")
 		"index"
-	} else "redirect:sign.do"
+	} else "redirect:sign.do?path=follow.do"
 
 	/**
 	 * 搜索
@@ -87,7 +87,7 @@ class PageControl : BaseControl() {
 		m.addAttribute("isLogin", true)
 		m.addAttribute("username", username)
 		"write"
-	} else "redirect:sign.do"
+	} else "redirect:sign.do?path=write.do"
 
 	/**
 	 * 每个人的主页
