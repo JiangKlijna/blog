@@ -58,7 +58,7 @@ window.cj = {
     // 显示文章列表
     displayArticles(articles) {
         if (articles.length == 0) {
-            $('#article_load_more').hide();
+            $('#article_load_more').html("没有数据").unbind("");
             return;
         }
         cj.a_pageNum++;
@@ -68,8 +68,8 @@ window.cj = {
             $articles.prepend(html);
         }
          // 如果文章数小于期望的数量则隐藏加载更多
-        if (articles.length == 0 || articles.length < cj.a_perPage) {
-            $('#article_load_more').parent().hide();
+        if (articles.length < cj.a_perPage) {
+            $('#article_load_more').html("没有数据").unbind("");
             return;
         }
     },
@@ -89,7 +89,7 @@ window.cj = {
     // 显示主题列表
     displaySubjects(subjects) {
         if (subjects.length == 0) {
-            $('#subject_load_more').hide();
+            $('#subject_load_more').html("没有数据").unbind("");
             return;
         }
         cj.s_pageNum++;
@@ -99,8 +99,8 @@ window.cj = {
             $subjects.prepend(html);
         }
          // 如果文章数小于期望的数量则隐藏加载更多
-        if (subjects.length == 0 || subjects.length < cj.s_perPage) {
-            $('#subject_load_more').parent().hide();
+        if (subjects.length < cj.s_perPage) {
+            $('#subject_load_more').html("没有数据").unbind("");
             return;
         }
     },
