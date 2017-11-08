@@ -3,6 +3,10 @@ window.h = {
     init: function(){
         $('#nav_logout').click(h.logout);
         $('#nav_search').click(h.search).blur(h.searchBlur);
+
+        // 浏览器关闭前,close websocket,google浏览器没用.
+        // 不写这句也不影响,页面关闭时服务端会close
+        $(window).bind('beforeunload', h.onBeforeUnload);
         // init websocket
         if (!isLogin) return;
         h.ws = new WebSocket(h.getWsUrl());
@@ -35,6 +39,10 @@ window.h = {
     searchBlur: function() {
         var form = $(this).parent().parent().parent();
         form.removeClass('has-error');
+    },
+    // 浏览器关闭前
+    onBeforeUnload: function() {
+        h.ws.close();
     },
     // websocket url
     getWsUrl: function() {
