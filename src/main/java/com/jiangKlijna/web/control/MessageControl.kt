@@ -23,10 +23,23 @@ class MessageControl : BaseControl() {
      */
     @ResponseBody
     @RequestMapping("/listByArticle.json", method = arrayOf(RequestMethod.POST))
-    fun listByArticle(articleid: Int?, pageNum: Int?, perPage: Int?): Result {
+    fun listByArticle(pageNum: Int?, perPage: Int?): Result {
         val username = sess_username
-        testParameter(username, articleid, pageNum, perPage).let { if (!it) return errorParameterResult }
+        testParameter(username, pageNum, perPage).let { if (!it) return errorParameterResult }
         return ms!!.listByUser(username!!, pageNum!!, perPage!!).apply {
+            setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
+        }
+    }
+
+    /**
+     * 阅读一条message
+     */
+    @ResponseBody
+    @RequestMapping("/read.json", method = arrayOf(RequestMethod.POST))
+    fun read(messageid: Int?): Result {
+        val username = sess_username
+        testParameter(username, messageid).let { if (!it) return errorParameterResult }
+        return ms!!.read(username!!, messageid!!).apply {
             setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
         }
     }

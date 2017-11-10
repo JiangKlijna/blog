@@ -95,4 +95,7 @@ interface MessageService {
     //分页查询username的message
     fun listByUser(username: String, pageNum: Int, perPage: Int): Result
 
+    //阅读一条message
+    fun read(username: String, messageid: Int): Result
+
 }
