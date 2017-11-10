@@ -42,4 +42,13 @@ class MessageServiceImpl : BaseService(), MessageService {
             return errorResult(e)
         }
     }
+
+    override fun countUnread(userid: Int): Result {
+        try {
+            val re = mm!!.countUnread(userid)
+            return sucessResult(re)
+        } catch (e: Exception) {
+            return errorResult(e)
+        }
+    }
 }

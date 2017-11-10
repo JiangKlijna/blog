@@ -43,5 +43,4 @@ class MessageControl : BaseControl() {
             setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
         }
     }
-
 }

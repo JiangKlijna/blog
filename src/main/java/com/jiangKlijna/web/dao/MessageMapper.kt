@@ -54,4 +54,6 @@ interface MessageMapper {
     fun updateByPrimaryKey(record: Message): Int
 
     fun listByUser(@Param("username") username: String, @Param("limit") limit: Int, @Param("offset") offset: Int): List<VMessage>
+
+    fun countUnread(userid: Int): Long
 }

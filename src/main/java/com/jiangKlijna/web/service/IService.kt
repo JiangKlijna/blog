@@ -98,4 +98,7 @@ interface MessageService {
     //阅读一条message
     fun read(username: String, messageid: Int): Result
 
+    //获得一个人的未读消息数量
+    fun countUnread(userid: Int): Result
+
 }

@@ -157,4 +157,8 @@
     limit #{limit} offset #{offset}
   </select>
 
+  <select id="countUnread" parameterType="java.lang.Integer" resultMap="java.lang.Long">
+    select count(id) from blog_message where touser=#{userid,jdbcType=INTEGER}
+  </select>
+
 </mapper>
