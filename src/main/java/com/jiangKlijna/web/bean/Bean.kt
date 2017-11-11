@@ -60,7 +60,7 @@ data class Message(
         var flag: Int = 0,
         var isread: Boolean = false,
         var createtime: Long = currentTimeMillis()
-)
+) : java.io.Serializable
 
 data class VUser(
         var id: Int = 0,
@@ -125,7 +125,7 @@ data class VMessage(
         var flag: Int = 0,
         var isread: Boolean = false,
         var createtime: Long = currentTimeMillis()
-)
+) : java.io.Serializable
 
 fun VArticle.toArticle(): Article = Article(
         id, title, content, preview, userid, subjectid, favoritenumber, seenumber, numberofwords, createtime
