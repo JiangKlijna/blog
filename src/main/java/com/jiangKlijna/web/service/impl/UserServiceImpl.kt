@@ -15,115 +15,115 @@ import javax.annotation.Resource
 @Service("userService")
 class UserServiceImpl : BaseService(), UserService {
 
-	@Resource
-	private val um: UserMapper? = null
+    @Resource
+    private val um: UserMapper? = null
 
-	@Resource
-	private val fum: FollowUserMapper? = null
+    @Resource
+    private val fum: FollowUserMapper? = null
 
 
-	override fun regist(username: String, password: String): Result {
-		try {
-			val u = User(username = username, password = password)
-			um!!.insert(u)
-			return sucessResult()
-		} catch (e: Exception) {
-			return errorResult(e)
-		}
-	}
+    override fun regist(username: String, password: String): Result {
+        try {
+            val re = um!!.findByUsername(username) ?: return errorResult()
+            if (re == 0L) {
+                val u = User(username = username, password = password)
+                um.insert(u)
+                return sucessResult()
+            }
+            return errorResult()
+        } catch (e: Exception) {
+            return errorResult(e)
+        }
+    }
 
-	override fun find(username: String, password: String): Result {
-		try {
-			val u = User(username = username, password = password)
-			val re = um!!.findByUser(u)
-			return (re != null && re > 0).let {
-				if (it) sucessResult() else errorResult()
-			}
-		} catch (e: Exception) {
-			return errorResult(e)
-		}
-	}
+    override fun find(username: String, password: String): Result {
+        try {
+            val u = User(username = username, password = password)
+            val re = um!!.findByUser(u) ?: return errorResult()
+            return if (re > 0) sucessResult() else errorResult()
+        } catch (e: Exception) {
+            return errorResult(e)
+        }
+    }
 
-	override fun find(username: String): Result {
-		try {
-			val re = um!!.findByUsername(username)
-			return (re != null && re > 0).let {
-				if (it) sucessResult() else errorResult()
-			}
-		} catch (e: Exception) {
-			return errorResult(e)
-		}
-	}
+    override fun find(username: String): Result {
+        try {
+            val re = um!!.findByUsername(username) ?: return errorResult()
+            return if (re > 0) sucessResult() else errorResult()
+        } catch (e: Exception) {
+            return errorResult(e)
+        }
+    }
 
-	override fun get(username: String): Result {
-		try {
-			val re = um!!.findUserByName(username)
-			return if (re != null) sucessResult(re) else errorResult()
-		} catch (e: Exception) {
-			return errorResult(e)
-		}
-	}
+    override fun get(username: String): Result {
+        try {
+            val re = um!!.findUserByName(username) ?: return errorResult()
+            return sucessResult(re)
+        } catch (e: Exception) {
+            return errorResult(e)
+        }
+    }
 
-	override fun getView(username: String): Result {
-		try {
-			val re = um!!.getView(username)
-			return if (re != null) sucessResult(re) else errorResult()
-		} catch (e: Exception) {
-			return errorResult(e)
-		}
-	}
+    override fun getView(username: String): Result {
+        try {
+            val re = um!!.getView(username) ?: return errorResult()
+            return sucessResult(re)
+        } catch (e: Exception) {
+            return errorResult(e)
+        }
+    }
 
-	override fun follow(fromusername: String, tousername: String): Result {
-		try {
-			var fu = fum!!.findByFromTo(fromusername, tousername)
-			if (fu == null) {
-				val fromu = um!!.findUserByName(fromusername)!!
-				val tou = um.findUserByName(tousername)!!
-				fum.insert(FollowUser(fromuser = fromu.id, touser = tou.id))
-				return sucessResult(1)
-			} else {
-				fum.deleteByPrimaryKey(fu.id)
-				return sucessResult(-1)
-			}
-		} catch (e: Exception) {
-			return errorResult(e)
-		}
-	}
+    override fun follow(fromusername: String, tousername: String): Result {
+        try {
+            val fu = fum!!.findByFromTo(fromusername, tousername)
+            if (fu == null) {
+                val fromu = um!!.findUserByName(fromusername)!!
+                val tou = um.findUserByName(tousername)!!
+                fum.insert(FollowUser(fromuser = fromu.id, touser = tou.id))
+                return sucessResult(1)
+            } else {
+                fum.deleteByPrimaryKey(fu.id)
+                return sucessResult(-1)
+            }
+        } catch (e: Exception) {
+            return errorResult(e)
+        }
+    }
 
-	override fun isFollow(fromusername: String, tousername: String): Result {
-		try {
-			val fu = fum!!.findByFromTo(fromusername, tousername)
-			return sucessResult(fu != null)
-		} catch (e: Exception) {
-			return errorResult(e)
-		}
-	}
+    override fun isFollow(fromusername: String, tousername: String): Result {
+        try {
+            val fu = fum!!.findByFromTo(fromusername, tousername)
+            return sucessResult(fu != null)
+        } catch (e: Exception) {
+            return errorResult(e)
+        }
+    }
 
-	override fun listByFollowUser(sess_username: String?, userid: Int): Result {
-		try {
-			val sess_userid =
-					if (sess_username == null) -1
-					else um!!.findUserByName(sess_username).let {
-						if (it == null) -1 else it.id
-					}
-			val list = um!!.listByFollowUser(sess_userid, userid)
-			return sucessResult(list)
-		} catch (e: Exception) {
-			return errorResult(e)
-		}
-	}
+    override fun listByFollowUser(sess_username: String?, userid: Int): Result {
+        try {
+            val sess_userid =
+                    if (sess_username == null) -1
+                    else um!!.findUserByName(sess_username).let {
+                        if (it == null) -1 else it.id
+                    }
+            val list = um!!.listByFollowUser(sess_userid, userid)
+            return sucessResult(list)
+        } catch (e: Exception) {
+            return errorResult(e)
+        }
+    }
 
-	override fun listByUserFollow(sess_username: String?, userid: Int): Result {
-		try {
-			val sess_userid =
-					if (sess_username == null) -1
-					else um!!.findUserByName(sess_username).let {
-						if (it == null) -1 else it.id
-					}
-			val list = um!!.listByUserFollow(sess_userid, userid)
-			return sucessResult(list)
-		} catch (e: Exception) {
-			return errorResult(e)
-		}
-	}
+    override fun listByUserFollow(sess_username: String?, userid: Int): Result {
+        try {
+            val sess_userid =
+                    if (sess_username == null) -1
+                    else um!!.findUserByName(sess_username).let {
+                        if (it == null) -1 else it.id
+                    }
+            val list = um!!.listByUserFollow(sess_userid, userid)
+            return sucessResult(list)
+        } catch (e: Exception) {
+            return errorResult(e)
+        }
+    }
 }
