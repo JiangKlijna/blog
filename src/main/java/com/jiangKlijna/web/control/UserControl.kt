@@ -39,7 +39,7 @@ class UserControl : BaseControl() {
         testParameter(username, password, action).let {
             return if (it) us!!.find(username!!, password!!).apply {
                 if (isSucess()) {
-                    session!!.setAttribute(TOKEN, getDesUtils().encrypt(username))
+                    session!!.setAttribute(TOKEN, encrypt(username))
                     setMessage(Result.SUCCESS_LOGIN)
                 } else setMessage(Result.FAILURE_LOGIN)
             } else errorParameterResult

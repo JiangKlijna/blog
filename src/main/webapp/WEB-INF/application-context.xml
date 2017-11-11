@@ -18,8 +18,6 @@
             http://www.springframework.org/schema/websocket
             http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
-    <bean id="DesUtils" class="com.jiangKlijna.web.app.DesUtils"/>
-
     <bean id="sucessResult" class="com.jiangKlijna.web.app.Result" scope="request">
         <property name="code" value="0"/>
         <property name="message" value=""/>

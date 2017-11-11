@@ -86,7 +86,9 @@ class DesUtils
     }
 
     companion object {
-        private const val defaultSecretKey = "default_secret_key" //默认密钥
+        private const val defaultSecretKey = "jiangKlijna" //默认密钥
+
+        val du: DesUtils = DesUtils()
 
         @Throws(Exception::class)
         fun byteArr2HexStr(arrB: ByteArray): String {

@@ -18,7 +18,7 @@ open class BaseControl : ContextWrapper() {
 	//获得session里面存储的username
 	var sess_username: String? = null
 		get() = session!!.getAttribute(TOKEN).let {
-			if (it != null) getDesUtils().decrypt(it as String) else null
+			if (it != null) decrypt(it as String) else null
 		}
 
 	@ModelAttribute
