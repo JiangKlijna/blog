@@ -19,6 +19,7 @@ window.cj = {
         $('#article_load_more').click(cj.onClickArticleLoadMore);
         $('#subject_load_more').click(cj.onClickSubjectLoadMore);
         $(document).on("click", ".article .pointer", cj.openArticle);
+        if (type != 'index' && type != 'follow') $('#nav_text').val(type);
     },
     // 当点击#articles #article_load_more
     onClickArticleLoadMore: function () {
