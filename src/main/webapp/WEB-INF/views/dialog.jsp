@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" import="java.util.*" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <!-- dialog -->
 <div id="dialog">
     <button id="dialog_show" data-toggle="modal" data-target="#dialog_modal" style="display: none"></button>
@@ -28,24 +28,24 @@ window.dialog = {
         dialog.toast('提示', msg);
     },
     toast: function (title, msg) {
-        $('#dialog_header_area').show();
-        $('#dialog_title').html(title);
-        $('#dialog_body').html(msg);
-        $('#dialog_footer_area').hide();
-        if ($('#dialog_modal').css('display') == 'none')
-            $('#dialog_show').click();
+        $('#dialog #dialog_header_area').show();
+        $('#dialog #dialog_title').html(title);
+        $('#dialog #dialog_body').html(msg);
+        $('#dialog #dialog_footer_area').hide();
+        if ($('#dialog #dialog_modal').css('display') == 'none')
+            $('#dialog #dialog_show').click();
     },
     show: function (msg, primary, onClickPrimary) {
-        $('#dialog_header_area').hide();
-        $('#dialog_body').html(msg);
-		$('#dialog_primary').text(primary).unbind("click").click(onClickPrimary)
-        $('#dialog_footer_area').show();
-        if ($('#dialog_modal').css('display') == 'none')
-            $('#dialog_show').click();
+        $('#dialog #dialog_header_area').hide();
+        $('#dialog #dialog_body').html(msg);
+		$('#dialog #dialog_primary').text(primary).unbind("click").click(onClickPrimary)
+        $('#dialog #dialog_footer_area').show();
+        if ($('#dialog #dialog_modal').css('display') == 'none')
+            $('#dialog #dialog_show').click();
     },
 	dismiss: function () {
-	    if ($('#dialog_modal').css('display') != 'none')
-		    $('#dialog_show').click();
+	    if ($('#dialog #dialog_modal').css('display') != 'none')
+		    $('#dialog #dialog_show').click();
 	}
 }
 </script>
