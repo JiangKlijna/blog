@@ -115,7 +115,7 @@ class ArticleServiceImpl : BaseService(), ArticleService {
 		try {
 			val a = am!!.selectByPrimaryKey(articleid)
 			val u = um!!.findUserByName(username)
-			if (u?.id == a?.id) return errorResult()
+			if (u?.id == a?.userid) return errorResult()
 			a?.favoritenumber = a!!.favoritenumber + 1
 			am.updateByPrimaryKey(a)
 			return sucessResult()

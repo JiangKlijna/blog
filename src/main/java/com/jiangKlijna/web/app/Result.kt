@@ -27,6 +27,7 @@ data class Result(
 		const val FAILURE_DELETE = "删除失败"
 		const val FAILURE_SEARCH = "查询失败"
 		const val FAILURE_FOLLOW = "关注失败"
+		const val FAILURE_LIKE = "点赞失败"
 
 		const val SUCCESS_LOGIN = "登陆成功"
 		const val SUCCESS_REGIST = "注册成功"
@@ -34,5 +35,6 @@ data class Result(
 		const val SUCCESS_DELETE = "删除成功"
 		const val SUCCESS_SEARCH = "查询成功"
 		const val SUCCESS_FOLLOW = "关注成功"
+		const val SUCCESS_LIKE = "点赞成功"
 	}
 }

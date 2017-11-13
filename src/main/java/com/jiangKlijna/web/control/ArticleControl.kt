@@ -127,7 +127,7 @@ class ArticleControl : BaseControl() {
 		val un = sess_username
 		testParameter(un, articleid).let { if (!it) return errorParameterResult }
 		return `as`!!.follow(articleid!!, un!!).apply {
-			setMessage(if (isSucess()) Result.SUCCESS_FOLLOW else Result.FAILURE_FOLLOW)
+			setMessage(if (isSucess()) Result.SUCCESS_LIKE else Result.FAILURE_LIKE)
 		}
 	}
 
