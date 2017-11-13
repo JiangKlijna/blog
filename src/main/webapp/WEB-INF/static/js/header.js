@@ -10,8 +10,14 @@ window.h = {
         // init websocket
         if (!isLogin) return;
         h.ws = new WebSocket(h.getWsUrl());
+        h.ws.onopen = h.onWsOpen;
         h.ws.onmessage = h.onWsMessage;
         h.ws.onerror = h.onWsError;
+    },
+    // websocket连接上的时候
+    onWsOpen: function(){
+        var json = JSON.stringify({num: 0, data: {username: username}});
+        h.ws.send(json);
     },
     // websocket接受消息
     onWsMessage: function(msg){
