@@ -15,46 +15,47 @@ import javax.annotation.Resource
 @Controller
 class CommentControl : BaseControl() {
 
-	@Resource(name = "commentService")
-	var cs: CommentService? = null
+    @Resource(name = "commentService")
+    var cs: CommentService? = null
 
 
-	/**
-	 * 写评论,并推送给文章作者
-	 */
-	@ResponseBody
-	@RequestMapping("/write.json", method = arrayOf(RequestMethod.POST))
-	fun writeComment(articleid: Int?, content: String?): Result {
-		val un = sess_username
-		testParameter(un, articleid, content).let { if (!it) return errorParameterResult }
-		return cs!!.write(un!!, articleid!!, content!!).apply {
-			setMessage(if (isSucess()) Result.SUCCESS_PUBLISH else Result.FAILURE_PUBLISH)
-		}
-	}
+    /**
+     * 写评论
+     * @message type 1 推送给文章作者
+     */
+    @ResponseBody
+    @RequestMapping("/write.json", method = arrayOf(RequestMethod.POST))
+    fun writeComment(articleid: Int?, content: String?): Result {
+        val un = sess_username
+        testParameter(un, articleid, content).let { if (!it) return errorParameterResult }
+        return cs!!.write(un!!, articleid!!, content!!).apply {
+            setMessage(if (isSucess()) Result.SUCCESS_PUBLISH else Result.FAILURE_PUBLISH)
+        }
+    }
 
-	/**
-	 * 分页查询Article的评论
-	 */
-	@ResponseBody
-	@RequestMapping("/listByArticle.json", method = arrayOf(RequestMethod.POST))
-	fun listByArticle(articleid: Int?, pageNum: Int?, perPage: Int?): Result {
-		testParameter(articleid, pageNum, perPage).let { if (!it) return errorParameterResult }
-		return cs!!.listByArticle(articleid!!, pageNum!!, perPage!!).apply {
-			setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
-		}
-	}
+    /**
+     * 分页查询Article的评论
+     */
+    @ResponseBody
+    @RequestMapping("/listByArticle.json", method = arrayOf(RequestMethod.POST))
+    fun listByArticle(articleid: Int?, pageNum: Int?, perPage: Int?): Result {
+        testParameter(articleid, pageNum, perPage).let { if (!it) return errorParameterResult }
+        return cs!!.listByArticle(articleid!!, pageNum!!, perPage!!).apply {
+            setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
+        }
+    }
 
-	/**
-	 * 删除自己的评论
-	 */
-	@ResponseBody
-	@RequestMapping("/delete.json", method = arrayOf(RequestMethod.POST))
-	fun delete(commentid: Int?): Result {
-		val un = sess_username
-		testParameter(un, commentid).let { if (!it) return errorParameterResult }
-		return cs!!.delete(commentid!!, un!!).apply {
-			setMessage(if (isSucess()) Result.SUCCESS_DELETE else Result.FAILURE_DELETE)
-		}
-	}
+    /**
+     * 删除自己的评论
+     */
+    @ResponseBody
+    @RequestMapping("/delete.json", method = arrayOf(RequestMethod.POST))
+    fun delete(commentid: Int?): Result {
+        val un = sess_username
+        testParameter(un, commentid).let { if (!it) return errorParameterResult }
+        return cs!!.delete(commentid!!, un!!).apply {
+            setMessage(if (isSucess()) Result.SUCCESS_DELETE else Result.FAILURE_DELETE)
+        }
+    }
 
 }
