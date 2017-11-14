@@ -2,6 +2,7 @@ package com.jiangKlijna.web.websocket
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.jiangKlijna.web.bean.Message
+import com.jiangKlijna.web.bean.User
 import com.jiangKlijna.web.service.UserService
 import org.springframework.data.redis.connection.MessageListener
 import org.springframework.data.redis.core.RedisTemplate
@@ -31,13 +32,12 @@ class ChatWebSocketHandler : TextWebSocketHandler() {
     //接收文本消息，并发送出去
     override fun handleTextMessage(session: WebSocketSession, message: TextMessage) {
         try {
-            rt!!.convertAndSend("abc", "qwe")
             val cmd = mapper.readValue(message.payload, Command::class.java)
             if ("userid" !in session.attributes && !cmd.isLogin()) throw RuntimeException("not login")
             if (cmd.isLogin()) {
-//                val re = us!!.get(cmd.data["username"]!!)
-//                if (!re.isSucess()) throw RuntimeException("unknown username")
-//                session.attributes["userid"] = (re.data as User).id
+                val re = us!!.get(cmd.data["username"]!!)
+                if (!re.isSucess()) throw RuntimeException("unknown username")
+                session.attributes["userid"] = (re.data as User).id
             }
         } catch (e: Exception) {
             handleTransportError(session, e)
@@ -58,7 +58,7 @@ class ChatWebSocketHandler : TextWebSocketHandler() {
     //2.抛出异常时处理
     override fun handleTransportError(session: WebSocketSession, exception: Throwable?) {
         if (session.isOpen) session.close()
-        sessions.remove(session)
+        if (session in sessions) sessions.remove(session)
     }
 
 
@@ -80,7 +80,7 @@ class ChatWebSocketHandler : TextWebSocketHandler() {
         }
     }
 
-    data class Command(var num: Int = 0, var data: Map<String, String> = mapOf()) {
+    data class Command(var num: Int = 0, var data: Map<String, String> = emptyMap()) {
         // 是否为登陆命令
         val isLogin = fun() = num == 0
     }

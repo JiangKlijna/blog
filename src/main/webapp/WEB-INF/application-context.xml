@@ -18,13 +18,13 @@
             http://www.springframework.org/schema/websocket
             http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
-    <bean id="sucessResult" class="com.jiangKlijna.web.app.Result" scope="request">
+    <bean id="sucessResult" class="com.jiangKlijna.web.app.Result" scope="prototype">
         <property name="code" value="0"/>
         <property name="message" value=""/>
         <property name="data" value=""/>
     </bean>
 
-    <bean id="errorResult" class="com.jiangKlijna.web.app.Result" scope="request">
+    <bean id="errorResult" class="com.jiangKlijna.web.app.Result" scope="prototype">
         <property name="code" value="1"/>
         <property name="message" value=""/>
         <property name="data" value=""/>
