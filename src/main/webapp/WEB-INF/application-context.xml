@@ -129,12 +129,12 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="ChatWebSocketHandler" class="com.jiangKlijna.web.websocket.ChatWebSocketHandler"/>
+    <bean id="RedisMessageListener" class="com.jiangKlijna.web.websocket.ChatWebSocketHandler.RedisMessageListener"/>
 
     <redis:listener-container connection-factory="jedisConnectionFactory">
         <!-- the method attribute can be skipped as the default method name is "handleMessage" -->
         <!-- topic代表监听的通道，是一个正规匹配 -->
-        <redis:listener ref="ChatWebSocketHandler" method="onMessage" topic="*"/>
+        <redis:listener ref="RedisMessageListener" method="onMessage" topic="*"/>
     </redis:listener-container>
 
 </beans>

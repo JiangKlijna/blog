@@ -18,30 +18,30 @@ import javax.annotation.Resource
 @EnableWebSocket
 open class WebSocketConfig : WebSocketConfigurer {
 
-	@Resource(name = "ChatWebSocketHandler")
-	var handler: ChatWebSocketHandler? = null
+    @Resource(name = "ChatWebSocketHandler")
+    var handler: ChatWebSocketHandler? = null
 
-	override fun registerWebSocketHandlers(registry: WebSocketHandlerRegistry) {
-		println("registerWebSocketHandlers" + handler)
-		registry.addHandler(handler, "/echo.ws").let {
-			//            it.withSockJS()
-			it.addInterceptors(HandshakeInterceptor())
-			it.setAllowedOrigins("http://localhost")
-		}
-	}
+    override fun registerWebSocketHandlers(registry: WebSocketHandlerRegistry) {
+        println("registerWebSocketHandlers" + handler)
+        registry.addHandler(handler, "/echo.ws").let {
+            //            it.withSockJS()
+            it.addInterceptors(HandshakeInterceptor())
+            it.setAllowedOrigins("http://localhost")
+        }
+    }
 
-	@Bean
-	open fun HandshakeInterceptor() = object : HttpSessionHandshakeInterceptor() {
+    @Bean
+    open fun HandshakeInterceptor() = object : HttpSessionHandshakeInterceptor() {
 
-		@Throws(Exception::class)
-		override fun beforeHandshake(request: ServerHttpRequest?, response: ServerHttpResponse?,
-									 wsHandler: WebSocketHandler?, attributes: Map<String, Any>): Boolean {
-			// 解决The extension [x-webkit-deflate-frame] is not supported问题
-			if (request!!.headers.containsKey("Sec-WebSocket-Extensions")) {
-				request.headers.set("Sec-WebSocket-Extensions", "permessage-deflate")
-			}
-			return super.beforeHandshake(request, response, wsHandler, attributes)
-		}
-	}
+        @Throws(Exception::class)
+        override fun beforeHandshake(request: ServerHttpRequest?, response: ServerHttpResponse?,
+                                     wsHandler: WebSocketHandler?, attributes: Map<String, Any>): Boolean {
+            // 解决The extension [x-webkit-deflate-frame] is not supported问题
+            if (request!!.headers.containsKey("Sec-WebSocket-Extensions")) {
+                request.headers.set("Sec-WebSocket-Extensions", "permessage-deflate")
+            }
+            return super.beforeHandshake(request, response, wsHandler, attributes)
+        }
+    }
 
 }

@@ -2,9 +2,10 @@ package com.jiangKlijna.web.websocket
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.jiangKlijna.web.bean.Message
+import com.jiangKlijna.web.service.UserService
 import org.springframework.data.redis.connection.MessageListener
 import org.springframework.data.redis.core.RedisTemplate
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Component
 import org.springframework.web.socket.CloseStatus
 import org.springframework.web.socket.TextMessage
 import org.springframework.web.socket.WebSocketSession
@@ -18,15 +19,19 @@ import javax.annotation.Resource
 /**
  * Created by leil7 on 2017/6/6.
  */
-@Service
-class ChatWebSocketHandler : TextWebSocketHandler(), MessageListener {
+@Component("ChatWebSocketHandler")
+class ChatWebSocketHandler : TextWebSocketHandler() {
 
     @Resource(name = "redisTemplate")
     val rt: RedisTemplate<String, Message>? = null
 
+    @Resource(name = "userService")
+    val us: UserService? = null
+
     //接收文本消息，并发送出去
     override fun handleTextMessage(session: WebSocketSession, message: TextMessage) {
         try {
+            rt!!.convertAndSend("abc", "qwe")
             val cmd = mapper.readValue(message.payload, Command::class.java)
             if ("userid" !in session.attributes && !cmd.isLogin()) throw RuntimeException("not login")
             if (cmd.isLogin()) {
@@ -56,21 +61,23 @@ class ChatWebSocketHandler : TextWebSocketHandler(), MessageListener {
         sessions.remove(session)
     }
 
-    /**
-     *  msg.body为com.jiangKlijna.web.bean.Message
-     *  rt.convertAndSend(String, Message)
-     */
-    override fun onMessage(msg: org.springframework.data.redis.connection.Message, topic: ByteArray?) {
-        val m = msg.body.toObject<Message>()
-        println(m)
-    }
-
-    private fun <T : java.io.Serializable> ByteArray.toObject(): T =
-            ObjectInputStream(ByteArrayInputStream(this)).readObject() as T
 
     companion object {
         private val mapper: ObjectMapper = ObjectMapper()
         private val sessions = Collections.synchronizedList(ArrayList<WebSocketSession>())
+        private fun <T : java.io.Serializable> ByteArray.toObject(): T =
+                ObjectInputStream(ByteArrayInputStream(this)).readObject() as T
+    }
+
+    /**
+     *  msg.body为com.jiangKlijna.web.bean.Message
+     *  rt.convertAndSend(String, Message)
+     */
+    class RedisMessageListener : MessageListener {
+        override fun onMessage(msg: org.springframework.data.redis.connection.Message, p1: ByteArray?) {
+            val m = msg.body.toObject<Message>()
+            println(m)
+        }
     }
 
     data class Command(var num: Int = 0, var data: Map<String, String> = mapOf()) {
