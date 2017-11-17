@@ -63,8 +63,10 @@ html, body, .hundred {
                     <div class="btn-group nav_middle">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-bell"></span>
+                            <span class="badge pull-right" id="unReadNum"></span>
                         </button>
-                        <ul class="dropdown-menu" role="menu"></ul>
+                        <ul class="dropdown-menu" role="menu">
+                        </ul>
                     </div>
                     <div class="btn-group nav_middle">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

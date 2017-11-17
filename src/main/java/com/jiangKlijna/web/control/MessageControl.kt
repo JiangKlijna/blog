@@ -22,8 +22,8 @@ class MessageControl : BaseControl() {
      * 分页查询session_name的message
      */
     @ResponseBody
-    @RequestMapping("/listByArticle.json", method = arrayOf(RequestMethod.POST))
-    fun listByArticle(pageNum: Int?, perPage: Int?): Result {
+    @RequestMapping("/list.json", method = arrayOf(RequestMethod.POST))
+    fun list(pageNum: Int?, perPage: Int?): Result {
         val username = sess_username
         testParameter(username, pageNum, perPage).let { if (!it) return errorParameterResult }
         return ms!!.listByUser(username!!, pageNum!!, perPage!!).apply {
