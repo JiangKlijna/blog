@@ -16,7 +16,6 @@ import java.io.ObjectInputStream
 import java.util.concurrent.CopyOnWriteArrayList
 import javax.annotation.Resource
 
-
 /**
  * Created by leil7 on 2017/6/6.
  */
@@ -33,13 +32,11 @@ class ChatWebSocketHandler : TextWebSocketHandler() {
     //只接受login信息,否则断开连接
     override fun handleTextMessage(session: WebSocketSession, message: TextMessage) {
         try {
-            val cmd = mapper.readValue(message.payload, Command::class.java)
-            if ("userid" !in session.attributes && !cmd.isLogin()) throw RuntimeException("not login")
-            if (cmd.isLogin()) {
-                val re = us!!.get(cmd.data["username"]!!)
-                if (!re.isSucess()) throw RuntimeException("unknown username")
-                session.attributes["userid"] = (re.data as User).id
-            }
+            val username = message.payload
+            if (username == null || username.isEmpty()) throw RuntimeException("null")
+            val re = us!!.get(username)
+            if (!re.isSucess()) throw RuntimeException("unknown username")
+            session.attributes["userid"] = (re.data as User).id
         } catch (e: Exception) {
             handleTransportError(session, e)
         }

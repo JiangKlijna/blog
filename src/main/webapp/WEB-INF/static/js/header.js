@@ -14,10 +14,9 @@ window.h = {
         h.ws.onmessage = h.onWsMessage;
         h.ws.onerror = h.onWsError;
     },
-    // websocket连接上的时候
+    // websocket连接上的时候, 发送username
     onWsOpen: function(){
-        var json = JSON.stringify({num: 0, data: {username: username}});
-        h.ws.send(json);
+        h.ws.send(username);
     },
     // websocket接受消息
     onWsMessage: function(msg){
