@@ -13,7 +13,7 @@ import org.springframework.web.socket.WebSocketSession
 import org.springframework.web.socket.handler.TextWebSocketHandler
 import java.io.ByteArrayInputStream
 import java.io.ObjectInputStream
-import java.util.*
+import java.util.concurrent.CopyOnWriteArrayList
 import javax.annotation.Resource
 
 
@@ -29,7 +29,8 @@ class ChatWebSocketHandler : TextWebSocketHandler() {
     @Resource(name = "userService")
     val us: UserService? = null
 
-    //接收文本消息，并发送出去
+    //接收文本消息
+    //只接受login信息,否则断开连接
     override fun handleTextMessage(session: WebSocketSession, message: TextMessage) {
         try {
             val cmd = mapper.readValue(message.payload, Command::class.java)
@@ -64,9 +65,11 @@ class ChatWebSocketHandler : TextWebSocketHandler() {
 
     companion object {
         private val mapper: ObjectMapper = ObjectMapper()
-        private val sessions = Collections.synchronizedList(ArrayList<WebSocketSession>())
+        private val sessions = CopyOnWriteArrayList<WebSocketSession>()
         private fun <T : java.io.Serializable> ByteArray.toObject(): T =
                 ObjectInputStream(ByteArrayInputStream(this)).readObject() as T
+
+        private val updateMessage = TextMessage("update")
     }
 
     /**
@@ -74,9 +77,15 @@ class ChatWebSocketHandler : TextWebSocketHandler() {
      *  rt.convertAndSend(String, Message)
      */
     class RedisMessageListener : MessageListener {
+        @Throws
         override fun onMessage(msg: org.springframework.data.redis.connection.Message, p1: ByteArray?) {
             val m = msg.body.toObject<Message>()
-            println(m)
+            // 遍历所有session
+            for (session in sessions) {
+                if ("userid" !in session.attributes) continue
+                if (m.touser != session.attributes["userid"]) continue
+                session.sendMessage(updateMessage)
+            }
         }
     }
 
