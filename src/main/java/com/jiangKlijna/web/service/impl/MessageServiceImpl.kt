@@ -43,9 +43,10 @@ class MessageServiceImpl : BaseService(), MessageService {
         }
     }
 
-    override fun countUnread(userid: Int): Result {
+    override fun countUnread(username: String): Result {
         try {
-            val re = mm!!.countUnread(userid)
+            val u = um!!.findUserByName(username) ?: return errorResult()
+            val re = mm!!.countUnread(u.id)
             return sucessResult(re)
         } catch (e: Exception) {
             return errorResult(e)

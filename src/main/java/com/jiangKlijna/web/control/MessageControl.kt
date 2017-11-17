@@ -43,4 +43,17 @@ class MessageControl : BaseControl() {
             setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
         }
     }
+
+    /**
+     * 统计未读message的数量
+     */
+    @ResponseBody
+    @RequestMapping("/unread/count.json", method = arrayOf(RequestMethod.POST))
+    fun unRead(): Result {
+        val username = sess_username
+        testParameter(username).let { if (!it) return errorParameterResult }
+        return ms!!.countUnread(username!!).apply {
+            setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
+        }
+    }
 }
