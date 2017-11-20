@@ -5,23 +5,18 @@ import com.jiangKlijna.web.bean.Result
 
 open class BaseService : ContextWrapper() {
 
-    protected fun sucessResult(): Result {
-        return applicationContext.getBean("sucessResult", Result::class.java)
-    }
+    protected fun sucessResult(): Result = applicationContext.getBean(SUCESS_RESULT, Result::class.java)
 
-    protected fun sucessResult(data: Any): Result {
-        return sucessResult().setData(data)
-    }
+    protected fun sucessResult(data: Any): Result = sucessResult().setData(data)
 
-    protected fun errorResult(): Result {
-        return applicationContext.getBean("errorResult", Result::class.java)
-    }
+    protected fun errorResult(): Result = applicationContext.getBean(ERROR_RESULT, Result::class.java)
 
-    protected fun errorResult(message: String): Result {
-        return applicationContext.getBean("errorResult", Result::class.java).setMessage(message)
-    }
+    protected fun errorResult(message: String): Result = errorResult().setMessage(message)
 
-    protected fun errorResult(e: Exception): Result {
-        return errorResult(e.toString())
+    protected fun errorResult(e: Exception): Result = errorResult(e.toString())
+
+    companion object {
+        const val SUCESS_RESULT = "sucessResult"
+        const val ERROR_RESULT = "errorResult"
     }
 }
