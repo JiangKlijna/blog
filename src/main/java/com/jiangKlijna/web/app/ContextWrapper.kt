@@ -8,6 +8,7 @@ import org.springframework.web.context.ContextLoader
 import org.springframework.web.context.WebApplicationContext
 import org.springframework.web.context.support.WebApplicationContextUtils
 import java.nio.charset.Charset
+import java.util.concurrent.Executors
 
 open class ContextWrapper {
     private var context: ApplicationContext? = null
@@ -33,4 +34,10 @@ open class ContextWrapper {
     fun decrypt(s: String) = DesUtils.du.decrypt(s)
 
     fun reString(s: String): String = s.toByteArray(Charset.forName("iso8859-1")).let { String(it) }
+
+    // 线程池,主要作用是生成message对象,并发布
+    companion object {
+        private val pool = Executors.newCachedThreadPool()
+        val execute = fun(command: Runnable) = pool.execute(command)
+    }
 }
