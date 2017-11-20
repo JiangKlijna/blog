@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession
 import org.springframework.web.bind.annotation.ModelAttribute
 
 import com.jiangKlijna.web.app.ContextWrapper
-import com.jiangKlijna.web.app.Result
+import com.jiangKlijna.web.bean.Result
 
 open class BaseControl : ContextWrapper() {
 

@@ -1,7 +1,7 @@
 package com.jiangKlijna.web.service
 
 import com.jiangKlijna.web.app.ContextWrapper
-import com.jiangKlijna.web.app.Result
+import com.jiangKlijna.web.bean.Result
 
 open class BaseService : ContextWrapper() {
 

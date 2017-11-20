@@ -1,4 +1,4 @@
-package com.jiangKlijna.web.app
+package com.jiangKlijna.web.bean
 
 data class Result(
 		var code: Int = 0,

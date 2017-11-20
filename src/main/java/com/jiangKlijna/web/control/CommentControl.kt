@@ -1,6 +1,6 @@
 package com.jiangKlijna.web.control
 
-import com.jiangKlijna.web.app.Result
+import com.jiangKlijna.web.bean.Result
 import com.jiangKlijna.web.service.CommentService
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping

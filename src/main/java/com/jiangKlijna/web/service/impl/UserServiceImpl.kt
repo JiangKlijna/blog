@@ -2,7 +2,7 @@ package com.jiangKlijna.web.service.impl
 
 import org.springframework.stereotype.Service
 
-import com.jiangKlijna.web.app.Result
+import com.jiangKlijna.web.bean.Result
 import com.jiangKlijna.web.bean.FollowUser
 import com.jiangKlijna.web.bean.User
 import com.jiangKlijna.web.dao.FollowUserMapper

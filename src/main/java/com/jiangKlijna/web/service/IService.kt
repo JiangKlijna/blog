@@ -1,6 +1,6 @@
 package com.jiangKlijna.web.service
 
-import com.jiangKlijna.web.app.Result
+import com.jiangKlijna.web.bean.Result
 
 interface UserService {
     //注册用户

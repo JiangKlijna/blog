@@ -1,4 +1,4 @@
-package com.jiangKlijna.web.app
+package com.jiangKlijna.web.util
 
 import javax.crypto.Cipher
 import java.security.Key
@@ -10,7 +10,7 @@ class DesUtils
 /**
  * @param secretKey 加密解密使用的密钥
  */
-@JvmOverloads constructor(secretKey: String = DesUtils.defaultSecretKey) {
+@JvmOverloads constructor(secretKey: String = defaultSecretKey) {
     private var encryptCipher: Cipher? = null //加密器
     private var decryptCipher: Cipher? = null //解密器
 

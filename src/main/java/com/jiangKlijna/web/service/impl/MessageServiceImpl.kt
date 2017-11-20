@@ -1,6 +1,6 @@
 package com.jiangKlijna.web.service.impl
 
-import com.jiangKlijna.web.app.Result
+import com.jiangKlijna.web.bean.Result
 import com.jiangKlijna.web.dao.MessageMapper
 import com.jiangKlijna.web.dao.UserMapper
 import com.jiangKlijna.web.service.BaseService

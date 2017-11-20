@@ -1,6 +1,6 @@
 package com.jiangKlijna.web.service.impl
 
-import com.jiangKlijna.web.app.Result
+import com.jiangKlijna.web.bean.Result
 import com.jiangKlijna.web.bean.FollowSubject
 import com.jiangKlijna.web.dao.FollowSubjectMapper
 import com.jiangKlijna.web.dao.SubjectMapper

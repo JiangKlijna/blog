@@ -1,8 +1,7 @@
 package com.jiangKlijna.web.service.impl
 
-import com.jiangKlijna.web.app.Result
+import com.jiangKlijna.web.bean.Result
 import com.jiangKlijna.web.bean.Article
-import com.jiangKlijna.web.bean.Comment
 import com.jiangKlijna.web.bean.Subject
 import com.jiangKlijna.web.bean.toArticle
 import com.jiangKlijna.web.dao.*
