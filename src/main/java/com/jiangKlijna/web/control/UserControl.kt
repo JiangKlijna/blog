@@ -13,7 +13,7 @@ import javax.annotation.Resource
 class UserControl : BaseControl() {
 
     @Resource(name = "userService")
-    var us: UserService? = null
+    val us: UserService? = null
 
     /**
      * 用户注册

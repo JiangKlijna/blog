@@ -16,7 +16,7 @@ import javax.annotation.Resource
 class MessageControl : BaseControl() {
 
     @Resource(name = "messageService")
-    var ms: MessageService? = null
+    val ms: MessageService? = null
 
     /**
      * 分页查询session_name的message

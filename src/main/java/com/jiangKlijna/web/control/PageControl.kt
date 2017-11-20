@@ -28,13 +28,13 @@ class PageControl : BaseControl() {
 		}
 
 	@Resource(name = "userService")
-	var us: UserService? = null
+	val us: UserService? = null
 
 	@Resource(name = "articleService")
-	var `as`: ArticleService? = null
+	val `as`: ArticleService? = null
 
 	@Resource(name = "subjectService")
-	var ss: SubjectService? = null
+	val ss: SubjectService? = null
 
 	/**
 	 * 主頁

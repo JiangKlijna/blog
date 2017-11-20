@@ -16,7 +16,7 @@ import javax.annotation.Resource
 class ArticleControl : BaseControl() {
 
     @Resource(name = "articleService")
-    var `as`: ArticleService? = null
+    val `as`: ArticleService? = null
 
     /**
      * 发表文章

@@ -16,7 +16,7 @@ import javax.annotation.Resource
 class SubjectControl : BaseControl() {
 
 	@Resource(name = "subjectService")
-	var ss: SubjectService? = null
+	val ss: SubjectService? = null
 
 	/**
 	 *  关注主题

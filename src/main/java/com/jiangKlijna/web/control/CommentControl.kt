@@ -16,7 +16,7 @@ import javax.annotation.Resource
 class CommentControl : BaseControl() {
 
     @Resource(name = "commentService")
-    var cs: CommentService? = null
+    val cs: CommentService? = null
 
 
     /**
