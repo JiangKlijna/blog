@@ -65,7 +65,7 @@ html, body, .hundred {
                             <span class="glyphicon glyphicon-bell"></span>
                             <span class="badge pull-right" id="unReadNum" style="background-color:red"></span>
                         </button>
-                        <ul class="dropdown-menu" role="menu">
+                        <ul id="messages" class="dropdown-menu" role="menu">
 
                         </ul>
                     </div>
