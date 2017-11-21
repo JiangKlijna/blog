@@ -11,6 +11,7 @@ window.h = {
         $(window).bind('beforeunload', h.onBeforeUnload);
         // init websocket
         if (!isLogin) return;
+        h.getUnReadNum();
         h.onLoadMessages();
 
         h.ws = new WebSocket(h.getWsUrl());
@@ -22,9 +23,10 @@ window.h = {
     onWsOpen: function(){
         h.ws.send(username);
     },
-    // websocket接受消息
+    // websocket接受消息, 并请求消息列表
     onWsMessage: function(msg){
-        console.log(msg);
+        h.getUnReadNum();
+        h.onLoadMessages();
     },
     // websocket错误处理
     onWsError: function(){
@@ -56,6 +58,14 @@ window.h = {
     // websocket url
     getWsUrl: function() {
         return "ws://" + location.host + "/blog/echo.ws";
+    },
+    // 获得消息未读数量
+    getUnReadNum() {
+        $.post(h.MESSAGE_UNREAD_COUNT_URL, {}, function (result){
+            if (result.code == 0) {
+                if (result.data > 0) $('#header_nav #unReadNum').html(result.data);
+            } else dialog.info(result.message);
+        });
     },
     // 当前页数
     pageNum: 0,
