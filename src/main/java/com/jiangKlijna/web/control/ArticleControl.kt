@@ -20,7 +20,7 @@ class ArticleControl : BaseControl() {
 
     /**
      * 发表文章
-     * @message type 3 给所有订阅此人和订阅主题的用户推送消息
+     * @message type 2 给所有订阅此人和订阅主题的用户推送消息
      */
     @ResponseBody
     @RequestMapping("/publish.json", method = arrayOf(RequestMethod.POST))
@@ -120,7 +120,6 @@ class ArticleControl : BaseControl() {
 
     /**
      *  喜欢文章(点赞)
-     *  @message type 2 给作者推送消息
      */
     @ResponseBody
     @RequestMapping("/follow.json", method = arrayOf(RequestMethod.POST))

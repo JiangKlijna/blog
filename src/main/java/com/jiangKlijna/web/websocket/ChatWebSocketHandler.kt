@@ -1,8 +1,9 @@
 package com.jiangKlijna.web.websocket
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import com.jiangKlijna.web.app.ContextWrapper
 import com.jiangKlijna.web.bean.Message
 import com.jiangKlijna.web.bean.User
+import com.jiangKlijna.web.dao.MessageMapper
 import com.jiangKlijna.web.service.UserService
 import org.springframework.data.redis.connection.MessageListener
 import org.springframework.data.redis.core.RedisTemplate
@@ -22,11 +23,14 @@ import javax.annotation.Resource
 @Component("ChatWebSocketHandler")
 class ChatWebSocketHandler : TextWebSocketHandler() {
 
-    @Resource(name = "redisTemplate")
+    @Resource
     val rt: RedisTemplate<String, Message>? = null
 
-    @Resource(name = "userService")
+    @Resource
     val us: UserService? = null
+
+    @Resource
+    val mm: MessageMapper? = null
 
     //接收文本消息
     //只接受login信息,否则断开连接
@@ -61,7 +65,6 @@ class ChatWebSocketHandler : TextWebSocketHandler() {
 
 
     companion object {
-        private val mapper: ObjectMapper = ObjectMapper()
         private val sessions = CopyOnWriteArrayList<WebSocketSession>()
         private fun <T : java.io.Serializable> ByteArray.toObject(): T =
                 ObjectInputStream(ByteArrayInputStream(this)).readObject() as T
@@ -86,8 +89,16 @@ class ChatWebSocketHandler : TextWebSocketHandler() {
         }
     }
 
-    data class Command(var num: Int = 0, var data: Map<String, String> = emptyMap()) {
-        // 是否为登陆命令
-        val isLogin = fun() = num == 0
+    //@message 推送
+    val publish = fun(flag: Int, fromuser: Int, tousers: Collection<Int>) {
+        if (tousers.isEmpty()) return
+        ContextWrapper.execute(Runnable {
+            for (touser in tousers) {
+                val msg = Message(fromuser = fromuser, touser = touser, flag = flag)
+                mm!!.insert(msg)
+                rt!!.convertAndSend(Message::class.java.simpleName, msg)
+            }
+        })
     }
+
 }

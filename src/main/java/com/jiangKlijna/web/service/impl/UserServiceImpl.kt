@@ -1,18 +1,14 @@
 package com.jiangKlijna.web.service.impl
 
-import org.springframework.stereotype.Service
-
-import com.jiangKlijna.web.bean.Result
 import com.jiangKlijna.web.bean.FollowUser
-import com.jiangKlijna.web.bean.Message
+import com.jiangKlijna.web.bean.Result
 import com.jiangKlijna.web.bean.User
 import com.jiangKlijna.web.dao.FollowUserMapper
-import com.jiangKlijna.web.dao.MessageMapper
 import com.jiangKlijna.web.dao.UserMapper
 import com.jiangKlijna.web.service.BaseService
 import com.jiangKlijna.web.service.UserService
-import org.springframework.data.redis.core.RedisTemplate
-
+import com.jiangKlijna.web.websocket.ChatWebSocketHandler
+import org.springframework.stereotype.Service
 import javax.annotation.Resource
 
 @Service("userService")
@@ -24,11 +20,9 @@ class UserServiceImpl : BaseService(), UserService {
     @Resource
     private val fum: FollowUserMapper? = null
 
-    @Resource
-    private val mm: MessageMapper? = null
+    @Resource(name = "ChatWebSocketHandler")
+    private val handler: ChatWebSocketHandler? = null
 
-    @Resource(name = "redisTemplate")
-    val rt: RedisTemplate<String, Message>? = null
 
     override fun regist(username: String, password: String): Result {
         try {
@@ -81,14 +75,6 @@ class UserServiceImpl : BaseService(), UserService {
         }
     }
 
-    //@message type 0 推送给被关注的用户
-    private val publish = fun(fromuser: Int, touser: Int) =
-            execute(Runnable {
-                val msg = Message(fromuser = fromuser, touser = touser, flag = 0)
-                mm!!.insert(msg)
-                rt!!.convertAndSend(Message::class.java.simpleName, msg)
-            })
-
     override fun follow(fromusername: String, tousername: String): Result {
         try {
             val fu = fum!!.findByFromTo(fromusername, tousername)
@@ -96,7 +82,7 @@ class UserServiceImpl : BaseService(), UserService {
                 val fromu = um!!.findUserByName(fromusername)!!
                 val tou = um.findUserByName(tousername)!!
                 fum.insert(FollowUser(fromuser = fromu.id, touser = tou.id))
-                publish(fromu.id, tou.id)
+                handler!!.publish(0, fromu.id, arrayListOf(tou.id))
                 return sucessResult(1)
             } else {
                 fum.deleteByPrimaryKey(fu.id)

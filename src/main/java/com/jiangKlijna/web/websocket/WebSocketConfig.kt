@@ -19,7 +19,7 @@ import javax.annotation.Resource
 open class WebSocketConfig : WebSocketConfigurer {
 
     @Resource(name = "ChatWebSocketHandler")
-    var handler: ChatWebSocketHandler? = null
+    val handler: ChatWebSocketHandler? = null
 
     override fun registerWebSocketHandlers(registry: WebSocketHandlerRegistry) {
         println("registerWebSocketHandlers" + handler)

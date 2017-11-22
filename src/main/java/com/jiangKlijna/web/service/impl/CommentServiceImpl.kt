@@ -1,15 +1,13 @@
 package com.jiangKlijna.web.service.impl
 
-import com.jiangKlijna.web.bean.Result
 import com.jiangKlijna.web.bean.Comment
-import com.jiangKlijna.web.bean.Message
+import com.jiangKlijna.web.bean.Result
 import com.jiangKlijna.web.dao.ArticleMapper
 import com.jiangKlijna.web.dao.CommentMapper
-import com.jiangKlijna.web.dao.MessageMapper
 import com.jiangKlijna.web.dao.UserMapper
 import com.jiangKlijna.web.service.BaseService
 import com.jiangKlijna.web.service.CommentService
-import org.springframework.data.redis.core.RedisTemplate
+import com.jiangKlijna.web.websocket.ChatWebSocketHandler
 import org.springframework.stereotype.Service
 import javax.annotation.Resource
 
@@ -28,21 +26,8 @@ class CommentServiceImpl : BaseService(), CommentService {
     @Resource
     private val am: ArticleMapper? = null
 
-    @Resource
-    private val mm: MessageMapper? = null
-
-    @Resource(name = "redisTemplate")
-    val rt: RedisTemplate<String, Message>? = null
-
-
-    //@message type 1 推送给文章作者
-    private val publish = fun(fromuser: Int, touser: Int) =
-            execute(Runnable {
-                val msg = Message(fromuser = fromuser, touser = touser, flag = 1)
-                mm!!.insert(msg)
-                rt!!.convertAndSend(Message::class.java.simpleName, msg)
-            })
-
+    @Resource(name = "ChatWebSocketHandler")
+    private val handler: ChatWebSocketHandler? = null
 
     override fun write(username: String, articleid: Int, content: String): Result {
         try {
@@ -50,7 +35,7 @@ class CommentServiceImpl : BaseService(), CommentService {
             val u = um!!.findUserByName(username) ?: return errorResult()
             val c = Comment(userid = u.id, content = content, articleid = articleid)
             cm!!.insert(c)
-            publish(u.id, a.userid!!)
+            handler!!.publish(1, u.id, arrayListOf(a.userid!!))
             return sucessResult()
         } catch (e: Exception) {
             return errorResult(e)
