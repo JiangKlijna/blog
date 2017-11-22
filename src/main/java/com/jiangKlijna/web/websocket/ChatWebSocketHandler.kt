@@ -90,15 +90,18 @@ class ChatWebSocketHandler : TextWebSocketHandler() {
     }
 
     //@message 推送
-    val publish = fun(flag: Int, fromuser: Int, tousers: Collection<Int>) {
+    fun publish(flag: Int, fromuser: Int, tousers: Collection<Int>, isSubThread: Boolean = true) {
         if (tousers.isEmpty()) return
-        ContextWrapper.execute(Runnable {
+        val core = fun() {
             for (touser in tousers) {
                 val msg = Message(fromuser = fromuser, touser = touser, flag = flag)
                 mm!!.insert(msg)
                 rt!!.convertAndSend(Message::class.java.simpleName, msg)
             }
-        })
+        }
+        if (isSubThread)
+            ContextWrapper.execute(Runnable { core() })
+        else core()
     }
 
 }

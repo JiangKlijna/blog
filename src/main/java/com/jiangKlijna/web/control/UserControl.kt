@@ -84,7 +84,7 @@ class UserControl : BaseControl() {
     fun listByFollowUser(userid: Int?): Result {
         val sess_un = sess_username
         testParameter(userid).let { if (!it) return errorParameterResult }
-        return us!!.listByFollowUser(sess_un, userid!!).apply {
+        return us!!.listByFollowUser(sess_un!!, userid!!).apply {
             setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
         }
     }
@@ -97,7 +97,7 @@ class UserControl : BaseControl() {
     fun listByUserFollow(userid: Int?): Result {
         val sess_un = sess_username
         testParameter(userid).let { if (!it) return errorParameterResult }
-        return us!!.listByUserFollow(sess_un, userid!!).apply {
+        return us!!.listByUserFollow(sess_un!!, userid!!).apply {
             setMessage(if (isSucess()) Result.SUCCESS_SEARCH else Result.FAILURE_SEARCH)
         }
     }
