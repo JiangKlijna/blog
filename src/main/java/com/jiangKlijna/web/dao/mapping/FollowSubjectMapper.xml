@@ -121,4 +121,8 @@
     where fromuser = #{fromuser} and tosubject = #{tosubject}
   </select>
 
+  <select id="idListByFollowSubjectId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select fromuser from blog_follow_subject where tosubject = #{subjectid}
+  </select>
+
 </mapper>

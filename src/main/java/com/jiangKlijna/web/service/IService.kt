@@ -92,6 +92,9 @@ interface SubjectService {
 
     //分页查询follow页面所有的主题
     fun listByFollow(pageNum: Int, perPage: Int, username: String): Result
+
+    //查找谁关注了SubjectId
+    fun idListByFollowSubjectId(subjectid: Int): Result
 }
 
 interface MessageService {

@@ -131,7 +131,7 @@
   </select>
 
   <select id="idListByFollowUserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-    select fromusername from blog_follow_user where tousername = #{userid}
+    select fromuser from blog_follow_user where touser = #{userid}
   </select>
 
 </mapper>

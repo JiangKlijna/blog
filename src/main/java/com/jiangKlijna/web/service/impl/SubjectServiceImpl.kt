@@ -88,4 +88,13 @@ class SubjectServiceImpl : BaseService(), SubjectService {
 		}
 	}
 
+	override fun idListByFollowSubjectId(subjectid: Int): Result {
+		try {
+			val list = fsm!!.idListByFollowSubjectId(subjectid)
+			return sucessResult(list)
+		} catch (e: Exception) {
+			return errorResult(e)
+		}
+	}
+
 }
