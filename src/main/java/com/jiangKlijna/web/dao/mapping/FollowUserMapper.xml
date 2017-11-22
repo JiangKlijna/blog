@@ -130,4 +130,8 @@
     select * from v_blog_follow_user where fromusername = #{fromusername} and tousername = #{tousername}
   </select>
 
+  <select id="idListByFollowUserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select fromusername from blog_follow_user where tousername = #{userid}
+  </select>
+
 </mapper>

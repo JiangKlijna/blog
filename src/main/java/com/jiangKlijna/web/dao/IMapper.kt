@@ -113,6 +113,9 @@ interface FollowUserMapper {
 
     // 查找fromusername是否关注了tousername
     fun findByFromTo(@Param("fromusername") fromusername: String, @Param("tousername") tousername: String): VFollowUser?
+
+    // 查找谁关注了userid
+    fun idListByFollowUserId(userid: Int): List<Int>
 }
 
 //This interface corresponds to the database table blog_message
