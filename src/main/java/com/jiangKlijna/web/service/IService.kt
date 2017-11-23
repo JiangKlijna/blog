@@ -29,9 +29,6 @@ interface UserService {
 
     //查找userid关注了哪些人,并且查询sess_username是否关注这些人
     fun listByUserFollow(sess_username: String?, userid: Int): Result
-
-    //查找谁关注了userid
-    fun idListByFollowUserId(userid: Int): Result
 }
 
 interface ArticleService {
@@ -92,9 +89,6 @@ interface SubjectService {
 
     //分页查询follow页面所有的主题
     fun listByFollow(pageNum: Int, perPage: Int, username: String): Result
-
-    //查找谁关注了SubjectId
-    fun idListByFollowSubjectId(subjectid: Int): Result
 }
 
 interface MessageService {

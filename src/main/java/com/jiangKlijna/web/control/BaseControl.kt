@@ -15,23 +15,25 @@ open class BaseControl : ContextWrapper() {
 
     //获得session里面存储的username
     var sess_username: String? = null
-        get() = session!!.getAttribute(TOKEN).let {
+        get() = session?.getAttribute(TOKEN).let {
             if (it != null) decrypt(it as String) else null
         }
 
     @ModelAttribute
-    fun setReqAndRes(request: HttpServletRequest, response: HttpServletResponse) {
+    fun setReqAndRes(request: HttpServletRequest?, response: HttpServletResponse?) {
         this.request = request
         this.response = response
-        this.session = request.session
+        this.session = request?.session
     }
 
-    protected fun response(contentType: String, content: String) {
-        response!!.contentType = contentType
-        response!!.writer.apply {
-            print(content)
-            flush()
-            close()
+    protected fun response(contentType: String?, content: String?) {
+        response?.let {
+            it.contentType = contentType
+            it.writer.run {
+                print(content)
+                flush()
+                close()
+            }
         }
     }
 

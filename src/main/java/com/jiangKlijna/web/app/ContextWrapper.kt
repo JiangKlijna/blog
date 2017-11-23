@@ -9,7 +9,6 @@ import java.util.concurrent.Executors
 import javax.servlet.ServletContext
 
 open class ContextWrapper {
-    private var context: ApplicationContext? = null
 
     val webApplicationContext: WebApplicationContext
         get() = ContextLoader.getCurrentWebApplicationContext()
@@ -17,11 +16,9 @@ open class ContextWrapper {
     val servletContext: ServletContext
         get() = webApplicationContext.servletContext
 
-    val applicationContext: ApplicationContext
-        get() = synchronized(ContextWrapper::class.java) {
-            if (context == null) context = WebApplicationContextUtils.getWebApplicationContext(servletContext)
-            return context!!
-        }
+    val applicationContext: ApplicationContext by lazy {
+        WebApplicationContextUtils.getWebApplicationContext(servletContext)
+    }
 
     // 上下文无关
     companion object {

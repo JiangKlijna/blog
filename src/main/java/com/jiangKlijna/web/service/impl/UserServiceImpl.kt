@@ -129,13 +129,4 @@ class UserServiceImpl : BaseService(), UserService {
             return errorResult(e)
         }
     }
-
-    override fun idListByFollowUserId(userid: Int): Result {
-        try {
-            val re = fum!!.idListByFollowUserId(userid)
-            return sucessResult(re)
-        } catch (e: Exception) {
-            return errorResult(e)
-        }
-    }
 }
