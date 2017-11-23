@@ -91,7 +91,7 @@ interface FollowSubjectMapper {
     fun findByFromTo(@Param("fromuser") fromuser: Int, @Param("tosubject") tosubject: Int): FollowSubject?
 
     // 查找谁关注了SubjectId
-    fun idListByFollowSubjectId(subjectid: Int): List<Int>
+    fun idListByFollowSubjectId(subjectid: Int): List<Int>?
 }
 
 //This interface corresponds to the database table blog_follow_user
@@ -118,7 +118,7 @@ interface FollowUserMapper {
     fun findByFromTo(@Param("fromusername") fromusername: String, @Param("tousername") tousername: String): VFollowUser?
 
     // 查找谁关注了userid
-    fun idListByFollowUserId(userid: Int): List<Int>
+    fun idListByFollowUserId(userid: Int): List<Int>?
 }
 
 //This interface corresponds to the database table blog_message
