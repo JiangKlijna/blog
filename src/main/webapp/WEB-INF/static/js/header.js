@@ -87,7 +87,7 @@ window.h = {
         h.pageNum++;
         var $messages = $('#header_nav #messages');
         for (var i in messages) {
-            var html = h.messagesHtml(messages[i]);
+            var html = h.messageHtml(messages[i]);
             $messages.append(html);
         }
         if (messages.length < h.perPage) { // 如果消息数小于期望的数量则隐藏加载更多
@@ -104,10 +104,10 @@ window.h = {
         } else if(m.flag == 2) {
             msg_str = m.fromusername + "发布了一篇文章";
         }
-        return "<li class=\"message\" data-id=\"" + m.id
+        return "<li class=\"message pointer\" data-id=\"" + m.id
             + "\" data-flag=\"" + m.flag
-            + "\">" + msg_str
-            + "</li>";
+            + "\"><a>" + msg_str
+            + "</a></li>";
     },
 
 }
