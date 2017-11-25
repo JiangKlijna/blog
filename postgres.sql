@@ -86,4 +86,4 @@ create view v_blog_message as
 	select m.*,
 	(select username from blog_user where id = m.fromuser) as fromusername,
 	(select username from blog_user where id = m.touser) as tousername
-from blog_message as m;
+from blog_message as m order by id;

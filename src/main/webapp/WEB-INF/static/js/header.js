@@ -1,6 +1,7 @@
 window.h = {
     LOGOUT_URL: "user/logout.json",
     MESSAGE_LIST_URL: "message/list.json",
+    MESSAGE_READ_URL: "message/read.json",
     MESSAGE_UNREAD_COUNT_URL: "message/unread/count.json",
     init: function(){
         $('#nav_logout').click(h.logout);
@@ -12,6 +13,7 @@ window.h = {
         // init websocket
         if (!isLogin) return;
         $('#header_nav #msg_loadmore').click(h.onLoadMessages);
+        $('#header_nav').on("click", ".message", h.openMessage);
         h.getUnReadNum();
         h.onLoadMessages();
 
@@ -108,10 +110,24 @@ window.h = {
         }
         if (!m.isread) msg_str += '<b>●</b>';
         return "<li class=\"message pointer\" data-id=\"" + m.id
-            + "\" data-flag=\"" + m.flag
+            + "\" data-fromuser=\"" + m.fromusername
             + "\"><a>" + msg_str
             + "</a></li>";
     },
+    // 打开message
+    openMessage() {
+        var dom = $(this);
+        open('person.do?name=' + dom.data('fromuser'));
+        $.post(h.MESSAGE_READ_URL, {messageid:dom.data('id')}, function(result){
+            if (result.code == 0) {
+                dom.find('b').hide();
+                var $unReadNum = $('#header_nav #unReadNum');
+                var count = parseInt($unReadNum.html()) - 1;
+                $unReadNum.html(count);
+                if (count == 0) $unReadNum.hide();
+            } else dialog.info(result.message);
+        })
+    }
 
 }
 h.init();
