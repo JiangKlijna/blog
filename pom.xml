@@ -4,7 +4,7 @@
     <groupId>com.jiangKlijna.web</groupId>
     <artifactId>blog</artifactId>
     <packaging>war</packaging>
-    <version>0.2</version>
+    <version>1.0</version>
     <name>blog Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
