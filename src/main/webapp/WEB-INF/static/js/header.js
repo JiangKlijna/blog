@@ -11,6 +11,7 @@ window.h = {
         $(window).bind('beforeunload', h.onBeforeUnload);
         // init websocket
         if (!isLogin) return;
+        $('#header_nav #msg_loadmore').click(h.onLoadMessages);
         h.getUnReadNum();
         h.onLoadMessages();
 
@@ -72,7 +73,8 @@ window.h = {
     // 每页多少
     perPage: 5,
     // 当点及加载更多时 and 加载5条消息
-    onLoadMessages() {
+    onLoadMessages(e) {
+        if (e) e.stopPropagation();
         $.post(h.MESSAGE_LIST_URL, {'perPage': h.perPage, 'pageNum': h.pageNum}, function (result){
             if (result.code == 0) h.displayMessages(result.data);
             else dialog.info(result.message);
@@ -80,18 +82,18 @@ window.h = {
     },
     // 显示消息列表
     displayMessages(messages) {
+        var $loadmore = $('#header_nav #msg_loadmore');
         if (messages.length == 0) {
-//            $('#loadmore').hide();
+            $loadmore.hide();
             return;
         }
         h.pageNum++;
-        var $messages = $('#header_nav #messages');
         for (var i in messages) {
             var html = h.messageHtml(messages[i]);
-            $messages.append(html);
+            $loadmore.before(html);
         }
         if (messages.length < h.perPage) { // 如果消息数小于期望的数量则隐藏加载更多
-//            $('#loadmore').hide();
+            $loadmore.hide();
         }
     },
     // 获得消息的html
@@ -104,6 +106,7 @@ window.h = {
         } else if(m.flag == 2) {
             msg_str = m.fromusername + "发布了一篇文章";
         }
+        if (!m.isread) msg_str += '<b>●</b>';
         return "<li class=\"message pointer\" data-id=\"" + m.id
             + "\" data-flag=\"" + m.flag
             + "\"><a>" + msg_str

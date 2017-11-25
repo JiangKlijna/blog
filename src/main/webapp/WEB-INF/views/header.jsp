@@ -40,6 +40,13 @@ html, body, .hundred {
     color: black;
     background-color: #e7e7e7;
 }
+#header_nav #messages{
+    overflow:auto;
+    max-height:200px;
+}
+#header_nav #messages b {
+    color: red;
+}
 </style>
 <nav class="navbar navbar-default"></nav>
 <nav id="header_nav" class="navbar navbar-default">
@@ -66,7 +73,7 @@ html, body, .hundred {
                             <span class="badge pull-right" id="unReadNum" style="background-color:red"></span>
                         </button>
                         <ul id="messages" class="dropdown-menu" role="menu">
-
+                            <li id="msg_loadmore" class="pointer"><a>加载更多</a></li>
                         </ul>
                     </div>
                     <div class="btn-group nav_middle">
